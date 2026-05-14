@@ -1,0 +1,84 @@
+name: Weekly Excel Sync
+
+# Runs every Tuesday at 08:00 UTC (= 15:00 ICT)
+# Also runnable manually via Actions > "Run workflow"
+on:
+  schedule:
+    - cron: "0 8 * * 2"   # Tuesday 08:00 UTC = 15:00 ICT
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------------------
+      # Download Excel files from SharePoint via Microsoft Graph API
+      # Required GitHub Secrets:
+      #   MS_TENANT_ID     — Azure AD tenant ID (from portal.azure.com)
+      #   MS_CLIENT_ID     — App Registration client ID
+      #   MS_CLIENT_SECRET — App Registration client secret
+      #
+      # Optional (for Oversea monthly files):
+      #   MS_OVS_SITE_ID        — SharePoint site ID for Oversea files
+      #   MS_OVS_FOLDER_ITEM_ID — Drive item ID of the Oversea folder
+      # ------------------------------------------------------------------
+      - name: Download BP and MAI files from SharePoint
+        env:
+          TENANT_ID:     ${{ secrets.MS_TENANT_ID }}
+          CLIENT_ID:     ${{ secrets.MS_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.MS_CLIENT_SECRET }}
+        run: |
+          # Get OAuth2 access token (client credentials flow)
+          TOKEN=$(curl -s -X POST \
+            "https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token" \
+            -d "client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}" \
+            -d "scope=https://graph.microsoft.com/.default&grant_type=client_credentials" \
+            | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
+
+          HOST="logman365.sharepoint.com"
+          mkdir -p excel_files
+
+          # Team BP — sites/BPTeam / Shared Documents / General / TEAM BP.xlsx
+          curl -s -L -H "Authorization: Bearer $TOKEN" \
+            "https://graph.microsoft.com/v1.0/sites/${HOST}:/sites/BPTeam:/drive/root:/General/TEAM%20BP.xlsx:/content" \
+            -o "excel_files/TEAM_BP.xlsx"
+
+          # Team MAI — sites/Salesteam / Shared Documents / General / Sales Log.xlsx
+          curl -s -L -H "Authorization: Bearer $TOKEN" \
+            "https://graph.microsoft.com/v1.0/sites/${HOST}:/sites/Salesteam:/drive/root:/General/Sales%20Log.xlsx:/content" \
+            -o "excel_files/Sales_Log.xlsx"
+
+          echo "Downloaded files:"
+          ls -lh excel_files/
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r sync/requirements.txt
+
+      - name: Run ETL (CI mode)
+        env:
+          BP_PATH:     "excel_files/TEAM_BP.xlsx"
+          MAI_PATH:    "excel_files/Sales_Log.xlsx"
+          OUTPUT_PATH: "data.json"
+          # OVS_BASE is not set — Oversea will be skipped in CI unless the
+          # monthly files are downloaded separately (add a step above if needed)
+        run: python sync/sync_excel.py
+
+      - name: Commit and push data.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m \
+            "data: auto-sync $(date -u +'%Y-%m-%d %H:%M') UTC [skip ci]"
+          git push

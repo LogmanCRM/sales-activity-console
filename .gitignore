@@ -1,0 +1,16 @@
+# Downloaded / cached Excel files and auth tokens — never commit these
+sync/.cache/
+
+# Python cache
+sync/__pycache__/
+*.pyc
+
+# Claude Code local config
+.claude/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+~$*

@@ -1,0 +1,2018 @@
+{
+  "TEAMS": [
+    {
+      "id": "all",
+      "name": "ALL TEAMS",
+      "thai": "รวมทุกทีม",
+      "color": "#0a1628"
+    },
+    {
+      "id": "bp",
+      "name": "TEAM BP",
+      "thai": "ทีม BP",
+      "color": "#d97706"
+    },
+    {
+      "id": "mai",
+      "name": "TEAM MAI",
+      "thai": "ทีม MAI",
+      "color": "#0891b2"
+    },
+    {
+      "id": "oversea",
+      "name": "TEAM OVERSEA",
+      "thai": "ทีม Oversea",
+      "color": "#7c3aed"
+    }
+  ],
+  "SALESPEOPLE": [
+    {
+      "id": "s1",
+      "name": "Nidhi",
+      "thai": "Nidhi",
+      "team": "oversea",
+      "avatar": "NI"
+    },
+    {
+      "id": "s2",
+      "name": "Yash",
+      "thai": "Yash",
+      "team": "oversea",
+      "avatar": "YA"
+    },
+    {
+      "id": "s3",
+      "name": "Benz",
+      "thai": "Benz",
+      "team": "oversea",
+      "avatar": "BE"
+    },
+    {
+      "id": "s4",
+      "name": "Est",
+      "thai": "Est",
+      "team": "oversea",
+      "avatar": "ES"
+    },
+    {
+      "id": "s5",
+      "name": "Charlie",
+      "thai": "Charlie",
+      "team": "oversea",
+      "avatar": "CH"
+    }
+  ],
+  "WEEKS": [
+    "W17",
+    "W18",
+    "W19",
+    "W20"
+  ],
+  "ACTIVITY": {
+    "s1": [
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W17"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 5,
+          "total": 5
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 2,
+          "total": 2
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 32,
+          "total": 32
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 2,
+          "total": 2
+        },
+        "week": "W18"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 5,
+          "total": 5
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 4,
+          "total": 4
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 14,
+          "total": 14
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 11,
+          "total": 11
+        },
+        "week": "W19"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W20"
+      }
+    ],
+    "s2": [
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W17"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 8,
+          "total": 8
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 7,
+          "total": 7
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 1,
+          "total": 1
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 16,
+          "total": 16
+        },
+        "week": "W18"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 11,
+          "total": 11
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 3,
+          "total": 3
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 15,
+          "total": 15
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 10,
+          "total": 10
+        },
+        "week": "W19"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W20"
+      }
+    ],
+    "s3": [
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W17"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 6,
+          "total": 6
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 3,
+          "total": 3
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 20,
+          "total": 20
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 32,
+          "total": 32
+        },
+        "week": "W18"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 1,
+          "total": 1
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W19"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W20"
+      }
+    ],
+    "s4": [
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W17"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W18"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 5,
+          "total": 5
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W19"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 1,
+          "total": 1
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W20"
+      }
+    ],
+    "s5": [
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 1,
+          "total": 1
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W17"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 20,
+          "total": 20
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 4,
+          "total": 4
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 23,
+          "total": 23
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 2,
+          "total": 2
+        },
+        "week": "W18"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 16,
+          "total": 16
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 3,
+          "total": 3
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 90,
+          "total": 90
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 9,
+          "total": 9
+        },
+        "week": "W19"
+      },
+      {
+        "contacts": {
+          "existing": 0,
+          "new": 2,
+          "total": 2
+        },
+        "visits": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "quotations": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "problems": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "newClients": {
+          "existing": 0,
+          "new": 2,
+          "total": 2
+        },
+        "potentialTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "wonTeu": {
+          "existing": 0,
+          "new": 0,
+          "total": 0
+        },
+        "week": "W20"
+      }
+    ]
+  },
+  "STAGES": [
+    {
+      "id": "lead",
+      "label": "Lead",
+      "thai": "ลูกค้าใหม่",
+      "color": "#94a3b8"
+    },
+    {
+      "id": "contact",
+      "label": "First Contact",
+      "thai": "ติดต่อครั้งแรก",
+      "color": "#60a5fa"
+    },
+    {
+      "id": "visit",
+      "label": "Site Visit",
+      "thai": "เข้าพบลูกค้า",
+      "color": "#22d3ee"
+    },
+    {
+      "id": "quote",
+      "label": "Quotation Sent",
+      "thai": "ส่งใบเสนอราคา",
+      "color": "#fbbf24"
+    },
+    {
+      "id": "negotiate",
+      "label": "Negotiating",
+      "thai": "ต่อรองราคา",
+      "color": "#f97316"
+    },
+    {
+      "id": "won",
+      "label": "Closed Won",
+      "thai": "ปิดการขาย",
+      "color": "#10b981"
+    },
+    {
+      "id": "lost",
+      "label": "Closed Lost",
+      "thai": "เสียโอกาส",
+      "color": "#ef4444"
+    },
+    {
+      "id": "hold",
+      "label": "On Hold",
+      "thai": "รอลูกค้า",
+      "color": "#a78bfa"
+    }
+  ],
+  "CUSTOMERS": [
+    {
+      "name": "BDP [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s1",
+      "potentialTeu": 12,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C001"
+    },
+    {
+      "name": "SFS [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s1",
+      "potentialTeu": 10,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C002"
+    },
+    {
+      "name": "PROXIMA [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s1",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C003"
+    },
+    {
+      "name": "GLOBWIN [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-03",
+      "firstContactDate": "2026-05-03",
+      "owner": "s1",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 11,
+      "id": "C004"
+    },
+    {
+      "name": "VERTEX [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-03",
+      "firstContactDate": "2026-05-03",
+      "owner": "s1",
+      "potentialTeu": 10,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 11,
+      "id": "C005"
+    },
+    {
+      "name": "AGEON SHIPPING [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s1",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C006"
+    },
+    {
+      "name": "FAMOUS [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s1",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C007"
+    },
+    {
+      "name": "LLP [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s1",
+      "potentialTeu": 14,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C008"
+    },
+    {
+      "name": "THAI WARASAP",
+      "team": "oversea",
+      "stage": "won",
+      "location": "CMB",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s2",
+      "potentialTeu": 4,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C009"
+    },
+    {
+      "name": "HKS",
+      "team": "oversea",
+      "stage": "won",
+      "location": "KUCHING",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s2",
+      "potentialTeu": 4,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C010"
+    },
+    {
+      "name": "TTN",
+      "team": "oversea",
+      "stage": "won",
+      "location": "CMB",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s2",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C011"
+    },
+    {
+      "name": "ROCKERS",
+      "team": "oversea",
+      "stage": "won",
+      "location": "CMB",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s2",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C012"
+    },
+    {
+      "name": "NAKHON COLOMBO",
+      "team": "oversea",
+      "stage": "won",
+      "location": "CMB",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s2",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C013"
+    },
+    {
+      "name": "BETIME",
+      "team": "oversea",
+      "stage": "won",
+      "location": "BKK",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-01",
+      "firstContactDate": "2026-05-01",
+      "owner": "s2",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 13,
+      "id": "C014"
+    },
+    {
+      "name": "CHUSILP",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "SEATTLE",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-07",
+      "firstContactDate": "2026-05-07",
+      "owner": "s2",
+      "potentialTeu": 1,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 7,
+      "id": "C015"
+    },
+    {
+      "name": "KRUNGSIAM",
+      "team": "oversea",
+      "stage": "lost",
+      "location": "DAKAR",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-07",
+      "firstContactDate": "2026-05-07",
+      "owner": "s2",
+      "potentialTeu": 16,
+      "notes": "COMPETITOR: 3800 // LOGMAN: 3850",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 7,
+      "id": "C016"
+    },
+    {
+      "name": "RONI MOTORS",
+      "team": "oversea",
+      "stage": "won",
+      "location": "PARAMARIBO",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s2",
+      "potentialTeu": 6,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C017"
+    },
+    {
+      "name": "BDL [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-02",
+      "firstContactDate": "2026-05-02",
+      "owner": "s2",
+      "potentialTeu": 1,
+      "notes": "AWAIT CARGO READY",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 12,
+      "id": "C018"
+    },
+    {
+      "name": "SIAM AUTOMOBILE",
+      "team": "oversea",
+      "stage": "won",
+      "location": "GRENADA",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s2",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C019"
+    },
+    {
+      "name": "CONCORDE [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-07",
+      "firstContactDate": "2026-05-06",
+      "owner": "s2",
+      "potentialTeu": 2,
+      "notes": "CONTACTING SHIPPER",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C020"
+    },
+    {
+      "name": "GTL EUROPE [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s2",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C021"
+    },
+    {
+      "name": "TRANSGATE [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s2",
+      "potentialTeu": 1,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C022"
+    },
+    {
+      "name": "AFFINITY LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-04",
+      "firstContactDate": "2026-05-04",
+      "owner": "s2",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C023"
+    },
+    {
+      "name": "THAI AGRI",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "BIRGUNJ",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-07",
+      "firstContactDate": "2026-05-07",
+      "owner": "s2",
+      "potentialTeu": 8,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 7,
+      "id": "C024"
+    },
+    {
+      "name": "CHINA ENGINEERING CONSTRUCTION SUPPLY CHAIN（TIANJIN）CO.,LTD [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-27",
+      "firstContactDate": "2026-04-27",
+      "owner": "s3",
+      "potentialTeu": 30,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C025"
+    },
+    {
+      "name": "SHANGHAI KINGHOM INTERNATIONAL FREIGHT FORWARDING CO.,LTD. [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-27",
+      "firstContactDate": "2026-04-27",
+      "owner": "s3",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C026"
+    },
+    {
+      "name": "TRANS TUNE INTERNATIONAL LOGISTICS LIMITED [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-27",
+      "firstContactDate": "2026-04-27",
+      "owner": "s3",
+      "potentialTeu": 3,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C027"
+    },
+    {
+      "name": "DOSEN SUPPLY CHAIN MANAGEMENT(BEIJING)CO.,LTD [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-28",
+      "firstContactDate": "2026-04-28",
+      "owner": "s3",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 16,
+      "id": "C028"
+    },
+    {
+      "name": "SHENZHEN FREE OCEAN INTERNATIONAL LOGISTICS CO.,LTD [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-29",
+      "firstContactDate": "2026-04-29",
+      "owner": "s3",
+      "potentialTeu": 15,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 15,
+      "id": "C029"
+    },
+    {
+      "name": "KUNAKORN CORPORATION LIMITED [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-29",
+      "firstContactDate": "2026-04-29",
+      "owner": "s3",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 15,
+      "id": "C030"
+    },
+    {
+      "name": "TIME LOGISTICS CO., LTD [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s3",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C031"
+    },
+    {
+      "name": "SARENS THAILAND",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "Sattahip",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-05",
+      "firstContactDate": "2026-05-04",
+      "owner": "s4",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 3,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 10,
+      "id": "C032"
+    },
+    {
+      "name": "TPIPL",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "SARABURI",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-05",
+      "firstContactDate": "2026-05-05",
+      "owner": "s4",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 9,
+      "id": "C033"
+    },
+    {
+      "name": "LEON LLP [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-05",
+      "firstContactDate": "2026-05-05",
+      "owner": "s4",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 9,
+      "id": "C034"
+    },
+    {
+      "name": "ASIAN RAIL",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "KORAT",
+      "industry": "Local Customer",
+      "lastActivity": "2026-05-11",
+      "firstContactDate": "2026-05-11",
+      "owner": "s4",
+      "potentialTeu": 0,
+      "notes": "Leadtime for transport in 2 month",
+      "sinceWeek": "W20",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 3,
+      "id": "C035"
+    },
+    {
+      "name": "CIMC FREIGHT LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "lost",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-26",
+      "firstContactDate": "2026-04-26",
+      "owner": "s5",
+      "potentialTeu": 6,
+      "notes": "",
+      "sinceWeek": "W17",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 18,
+      "id": "C036"
+    },
+    {
+      "name": "BARSAN GLOBAL LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "lost",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-27",
+      "firstContactDate": "2026-04-27",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C037"
+    },
+    {
+      "name": "JIANSU SEASON INTER [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-30",
+      "firstContactDate": "2026-04-27",
+      "owner": "s5",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C038"
+    },
+    {
+      "name": "SAMEDAY [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-11",
+      "firstContactDate": "2026-04-27",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 4,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C039"
+    },
+    {
+      "name": "GALAXY WORLD LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-27",
+      "firstContactDate": "2026-04-27",
+      "owner": "s5",
+      "potentialTeu": 3,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C040"
+    },
+    {
+      "name": "VIJAY GLOBAL FORWARDER [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-27",
+      "firstContactDate": "2026-04-27",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 17,
+      "id": "C041"
+    },
+    {
+      "name": "NGUYEN DANG VIET NAM [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-28",
+      "firstContactDate": "2026-04-28",
+      "owner": "s5",
+      "potentialTeu": 1,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 16,
+      "id": "C042"
+    },
+    {
+      "name": "MOBILITY FREIGHT [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-28",
+      "firstContactDate": "2026-04-28",
+      "owner": "s5",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 16,
+      "id": "C043"
+    },
+    {
+      "name": "AG CONSOLIDATION [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-28",
+      "firstContactDate": "2026-04-28",
+      "owner": "s5",
+      "potentialTeu": 3,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 16,
+      "id": "C044"
+    },
+    {
+      "name": "WEBLYTIC LOGISTICS PV [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-28",
+      "firstContactDate": "2026-04-28",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 16,
+      "id": "C045"
+    },
+    {
+      "name": "EXCEL LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-28",
+      "firstContactDate": "2026-04-28",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 16,
+      "id": "C046"
+    },
+    {
+      "name": "ANKAFREIGHT HAVA DENIZ [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-28",
+      "firstContactDate": "2026-04-28",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 16,
+      "id": "C047"
+    },
+    {
+      "name": "RYDER SHIPPING LINES [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-04-29",
+      "owner": "s5",
+      "potentialTeu": 10,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 3,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 15,
+      "id": "C048"
+    },
+    {
+      "name": "HEBEI TONGXIN [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-29",
+      "firstContactDate": "2026-04-29",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 15,
+      "id": "C049"
+    },
+    {
+      "name": "PIRAMID LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-29",
+      "firstContactDate": "2026-04-29",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 15,
+      "id": "C050"
+    },
+    {
+      "name": "TIANJIN MAESTRO INTER [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-29",
+      "firstContactDate": "2026-04-29",
+      "owner": "s5",
+      "potentialTeu": 1,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 15,
+      "id": "C051"
+    },
+    {
+      "name": "PINGYE [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-30",
+      "firstContactDate": "2026-04-30",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 14,
+      "id": "C052"
+    },
+    {
+      "name": "LEON [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-04-30",
+      "firstContactDate": "2026-04-30",
+      "owner": "s5",
+      "potentialTeu": 2,
+      "notes": "",
+      "sinceWeek": "W18",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 14,
+      "id": "C053"
+    },
+    {
+      "name": "SUKHIN GLOBAL LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-05",
+      "firstContactDate": "2026-05-05",
+      "owner": "s5",
+      "potentialTeu": 20,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 9,
+      "id": "C054"
+    },
+    {
+      "name": "EVERGREEN FREIGHT LIMITED [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 32,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C055"
+    },
+    {
+      "name": "WINTOP [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C056"
+    },
+    {
+      "name": "ROYAL LINE JSC [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 5,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C057"
+    },
+    {
+      "name": "TOTAL SUPPLY SOLUTION [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C058"
+    },
+    {
+      "name": "PRO IMPORTEX [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 6,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C059"
+    },
+    {
+      "name": "TICO INTERNATIONAL [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C060"
+    },
+    {
+      "name": "SOUTHERN SEASKY [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C061"
+    },
+    {
+      "name": "QINGDAO HARVEST [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 1,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C062"
+    },
+    {
+      "name": "BSL LOGISTICS CORP [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 9,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 2,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C063"
+    },
+    {
+      "name": "CP WORLD LINE [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-06",
+      "firstContactDate": "2026-05-06",
+      "owner": "s5",
+      "potentialTeu": 4,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 8,
+      "id": "C064"
+    },
+    {
+      "name": "FINO LOGISTICS [Agent]",
+      "team": "oversea",
+      "stage": "negotiate",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-07",
+      "firstContactDate": "2026-05-07",
+      "owner": "s5",
+      "potentialTeu": 3,
+      "notes": "",
+      "sinceWeek": "W19",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 7,
+      "id": "C065"
+    },
+    {
+      "name": "DOSEN SUPPLY CHAIN [Agent]",
+      "team": "oversea",
+      "stage": "won",
+      "location": "International",
+      "industry": "Overseas Agent",
+      "lastActivity": "2026-05-11",
+      "firstContactDate": "2026-05-11",
+      "owner": "s5",
+      "potentialTeu": 0,
+      "notes": "",
+      "sinceWeek": "W20",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 3,
+      "id": "C066"
+    }
+  ],
+  "generated_at": "2026-05-14T03:24:14.524312Z"
+}
