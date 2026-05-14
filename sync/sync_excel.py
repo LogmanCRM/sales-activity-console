@@ -327,8 +327,6 @@ def _graph_download(sharepoint_url, local_path):
     if not token:
         return False
 
-    # Build Graph API URL from SharePoint path
-    # /sites/{hostname}:{site_path}:/drive/root:{file_path}:/content
     m = re.match(
         r"https://([^/]+)(/sites/[^/]+)/Shared Documents(/.+)$",
         sharepoint_url,
@@ -339,17 +337,25 @@ def _graph_download(sharepoint_url, local_path):
 
     from urllib.parse import quote
     hostname, site_path, file_path = m.groups()
-    file_path_enc = quote(file_path, safe="/")   # encode spaces → %20
+    headers = {"Authorization": f"Bearer {token}"}
+
+    # Step 1 — resolve site to get its stable Graph ID
+    site_resp = rq.get(
+        f"https://graph.microsoft.com/v1.0/sites/{hostname}:{site_path}",
+        headers=headers, timeout=30,
+    )
+    if site_resp.status_code != 200:
+        print(f"    WARN Site lookup {site_resp.status_code}: {site_resp.text[:150]}")
+        return False
+    site_id = site_resp.json().get("id", "")
+
+    # Step 2 — download file using stable site ID + path
+    file_enc = quote(file_path.lstrip("/"), safe="/")
     api_url = (
         f"https://graph.microsoft.com/v1.0"
-        f"/sites/{hostname}:{site_path}:"
-        f"/drive/root:{file_path_enc}:/content"
+        f"/sites/{site_id}/drive/root:/{file_enc}:/content"
     )
-
-    resp = rq.get(api_url,
-                  headers={"Authorization": f"Bearer {token}"},
-                  allow_redirects=True,
-                  timeout=60)
+    resp = rq.get(api_url, headers=headers, allow_redirects=True, timeout=60)
 
     if resp.status_code == 200:
         os.makedirs(os.path.dirname(local_path), exist_ok=True)
