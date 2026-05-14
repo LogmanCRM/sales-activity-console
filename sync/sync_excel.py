@@ -543,7 +543,9 @@ def read_bp_mai(bp_path, mai_path):
         print("  WARN Team BP file unavailable — skipping")
 
     if mai_path:
-        read_team_file(mai_path, "mai", ["2026", "Sales Log", "MAI", "Sheet1"],
+        yr = str(datetime.today().year)
+        read_team_file(mai_path, "mai",
+                       [f"Sales Log {yr}", yr, "Sales Log 2026", "Sales Log", "MAI"],
                        sps_map, wk_data, cust_map, sp_seq)
     else:
         print("  WARN Team MAI file unavailable — skipping")
