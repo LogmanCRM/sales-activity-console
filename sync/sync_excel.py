@@ -64,7 +64,7 @@ OUTPUT_PATH = os.environ.get(
     "OUTPUT_PATH", os.path.join(_REPO_ROOT, "data.json")
 )
 
-AUTO_GIT_PUSH = False
+AUTO_GIT_PUSH = True
 TODAY         = datetime.today().date()
 
 # Status file — tracks whether last sync succeeded (used by --fallback mode)
