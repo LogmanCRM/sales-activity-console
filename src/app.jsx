@@ -1,4 +1,4 @@
-// src/app.jsx — Main app with team-based access control
+// src/app.jsx — Main app with team-based access control (sessionStorage)
 const { useState, useEffect } = React;
 
 // ─────────────────────────────────────────────────────────────────────
@@ -13,8 +13,10 @@ const ACCESS_KEYS = {
   "oversea2026": "oversea",
 };
 
+const SESSION_KEY = "sales_ops_key";
+
 function getAccess() {
-  const key = new URLSearchParams(window.location.search).get("key") || "";
+  const key = sessionStorage.getItem(SESSION_KEY) || "";
   if (key in ACCESS_KEYS) return { ok: true, team: ACCESS_KEYS[key] };
   return { ok: false, team: null };
 }
@@ -37,7 +39,7 @@ function filterData(D, teamId) {
 // ─────────────────────────────────────────────────────────────────────
 // LOGIN SCREEN
 // ─────────────────────────────────────────────────────────────────────
-function LoginScreen() {
+function LoginScreen({ onLogin }) {
   const [code, setCode] = useState("");
   const [error, setError] = useState(false);
   const [show, setShow] = useState(false);
@@ -45,7 +47,8 @@ function LoginScreen() {
   function handleSubmit(e) {
     e.preventDefault();
     if (code in ACCESS_KEYS) {
-      window.location.href = window.location.pathname + "?key=" + code;
+      sessionStorage.setItem(SESSION_KEY, code);
+      onLogin({ ok: true, team: ACCESS_KEYS[code] });
     } else {
       setError(true);
     }
@@ -185,7 +188,7 @@ function ErrorScreen({ message }) {
 // ─────────────────────────────────────────────────────────────────────
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────
-function App({ D }) {
+function App({ D, onSignOut }) {
   const defaultTeam = D.TEAMS[0]?.id || "all";
   const [teamId, setTeamId] = useState(defaultTeam);
   const [view, setView] = useState("dashboard");
@@ -271,6 +274,14 @@ function App({ D }) {
             <div className="sync-meta">Last data: {syncLabel}</div>
             <div className="sync-meta" style={{ marginTop:4 }}>Auto-refresh: every Tuesday 15:00</div>
           </div>
+          <button onClick={onSignOut} style={{
+            marginTop:10, width:"100%", padding:"8px",
+            background:"transparent", color:"#86807a",
+            border:"1px solid #e5e1d8", borderRadius:8, cursor:"pointer",
+            fontFamily:"Space Grotesk,sans-serif", fontSize:12,
+          }}>
+            Sign Out
+          </button>
         </div>
       </aside>
 
@@ -290,17 +301,19 @@ function App({ D }) {
   );
 }
 
+
 // ─────────────────────────────────────────────────────────────────────
 // ROOT — checks access, loads data, filters by team
 // ─────────────────────────────────────────────────────────────────────
 function Root() {
-  const access = getAccess();
-
+  const [access, setAccess] = useState(() => getAccess());
   const [D, setD]     = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    if (!access.ok) return;   // don't load data if not logged in
+    if (!access.ok) return;
+    setD(null);
+    setErr(null);
     window.onSalesDataReady(function (data) {
       if (data) {
         const filtered = filterData(data, access.team);
@@ -310,12 +323,19 @@ function Root() {
         setErr(window._sdError || "Unknown error loading data.json");
       }
     });
-  }, []);
+  }, [access.ok]);
 
-  if (!access.ok)  return <LoginScreen />;
+  function handleSignOut() {
+    sessionStorage.removeItem(SESSION_KEY);
+    setAccess({ ok: false, team: null });
+    setD(null);
+    setErr(null);
+  }
+
+  if (!access.ok)  return <LoginScreen onLogin={setAccess} />;
   if (err)         return <ErrorScreen message={err} />;
   if (!D)          return <LoadingScreen />;
-  return <App D={D} />;
+  return <App D={D} onSignOut={handleSignOut} />;
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<Root />);
