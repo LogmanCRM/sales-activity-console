@@ -214,8 +214,8 @@ function App({ D }) {
             <div className="bm-block bm-block-3" />
           </div>
           <div className="brand-text">
-            <div className="brand-name">SALES OPS</div>
-            <div className="brand-sub">Activity Console</div>
+            <div className="brand-name">Logman CRM</div>
+            <div className="brand-sub">Sales Activity &amp; Market Intelligence</div>
           </div>
         </div>
 
@@ -242,7 +242,7 @@ function App({ D }) {
         </div>
 
         <div className="side-section">
-          <div className="side-section-title">Navigation</div>
+          <div className="side-section-title">Sales Activity</div>
           <div className="nav-list">
             <button className={`nav-btn ${view === "dashboard" ? "active" : ""}`}
                     onClick={() => setView("dashboard")}>
@@ -255,6 +255,24 @@ function App({ D }) {
               <span className="nav-ic">◳</span>
               Customers
               <span className="nav-th">ลูกค้า</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="side-section">
+          <div className="side-section-title">Market Intelligence</div>
+          <div className="nav-list">
+            <button className={`nav-btn ${view === "mkt-customers" ? "active" : ""}`}
+                    onClick={() => setView("mkt-customers")}>
+              <span className="nav-ic">⊞</span>
+              Customer List
+              <span className="nav-th">รายชื่อลูกค้า</span>
+            </button>
+            <button className={`nav-btn ${view === "mkt-dashboard" ? "active" : ""}`}
+                    onClick={() => setView("mkt-dashboard")}>
+              <span className="nav-ic">◆</span>
+              Market Dashboard
+              <span className="nav-th">ภาพรวมตลาด</span>
             </button>
           </div>
         </div>
@@ -283,6 +301,8 @@ function App({ D }) {
         {view === "customers" && (
           <CustomersView teamId={teamId} onSelectCustomer={setSelectedCustomer} />
         )}
+        {view === "mkt-customers" && <MarketCustomersView />}
+        {view === "mkt-dashboard" && <MarketDashboardView />}
       </main>
 
       <CustomerDrawer customer={selectedCustomer} onClose={() => setSelectedCustomer(null)} />
