@@ -186,6 +186,7 @@ function ErrorScreen({ message }) {
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────
 function App({ D }) {
+  const canViewMarket = getAccess().team === null;   // management only
   const defaultTeam = D.TEAMS[0]?.id || "all";
   const [teamId, setTeamId] = useState(defaultTeam);
   const [view, setView] = useState("dashboard");
@@ -259,23 +260,25 @@ function App({ D }) {
           </div>
         </div>
 
-        <div className="side-section">
-          <div className="side-section-title">Market Intelligence</div>
-          <div className="nav-list">
-            <button className={`nav-btn ${view === "mkt-customers" ? "active" : ""}`}
-                    onClick={() => setView("mkt-customers")}>
-              <span className="nav-ic">⊞</span>
-              Customer List
-              <span className="nav-th">รายชื่อลูกค้า</span>
-            </button>
-            <button className={`nav-btn ${view === "mkt-dashboard" ? "active" : ""}`}
-                    onClick={() => setView("mkt-dashboard")}>
-              <span className="nav-ic">◆</span>
-              Market Dashboard
-              <span className="nav-th">ภาพรวมตลาด</span>
-            </button>
+        {canViewMarket && (
+          <div className="side-section">
+            <div className="side-section-title">Market Intelligence</div>
+            <div className="nav-list">
+              <button className={`nav-btn ${view === "mkt-customers" ? "active" : ""}`}
+                      onClick={() => setView("mkt-customers")}>
+                <span className="nav-ic">⊞</span>
+                Customer List
+                <span className="nav-th">รายชื่อลูกค้า</span>
+              </button>
+              <button className={`nav-btn ${view === "mkt-dashboard" ? "active" : ""}`}
+                      onClick={() => setView("mkt-dashboard")}>
+                <span className="nav-ic">◆</span>
+                Market Dashboard
+                <span className="nav-th">ภาพรวมตลาด</span>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="side-footer">
           <div className="sync-card">
@@ -301,8 +304,8 @@ function App({ D }) {
         {view === "customers" && (
           <CustomersView teamId={teamId} onSelectCustomer={setSelectedCustomer} />
         )}
-        {view === "mkt-customers" && <MarketCustomersView />}
-        {view === "mkt-dashboard" && <MarketDashboardView />}
+        {canViewMarket && view === "mkt-customers" && <MarketCustomersView />}
+        {canViewMarket && view === "mkt-dashboard" && <MarketDashboardView />}
       </main>
 
       <CustomerDrawer customer={selectedCustomer} onClose={() => setSelectedCustomer(null)} />
