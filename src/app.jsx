@@ -7,10 +7,10 @@ const { useState, useEffect } = React;
 // null = ดูได้ทุกทีม  |  "bp"/"mai"/"oversea" = ดูแค่ทีมนั้น
 // ─────────────────────────────────────────────────────────────────────
 const ACCESS_KEYS = {
-  "manager2026": null,
-  "bp2026":      "bp",
-  "mai2026":     "mai",
-  "oversea2026": "oversea",
+  "managementLMI": null,
+  "bp2026":        "bp",
+  "mai2026":       "mai",
+  "oversea2026":   "oversea",
 };
 
 function getAccess() {
@@ -186,7 +186,8 @@ function ErrorScreen({ message }) {
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────
 function App({ D }) {
-  const canViewMarket = getAccess().team === null;   // management only
+  const { ok: _ok, team: _team } = getAccess();
+  const canViewMarket = _ok && _team === null;   // management (managementLMI) only
   const defaultTeam = D.TEAMS[0]?.id || "all";
   const [teamId, setTeamId] = useState(defaultTeam);
   const [view, setView] = useState("dashboard");
