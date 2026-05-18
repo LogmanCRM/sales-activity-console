@@ -97,6 +97,7 @@
 
     return {
       TEAMS, SALESPEOPLE, WEEKS, ACTIVITY, STAGES, CUSTOMERS, generated_at,
+      MARKET: raw.MARKET || null,
       totalForTeam, weeklyTotals, teamConversionRate, personConversionRate,
       customerCount, pickVal, isStale,
     };

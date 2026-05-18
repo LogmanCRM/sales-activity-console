@@ -63,6 +63,9 @@ OVS_BASE = os.environ.get("OVS_BASE", os.path.join(
 OUTPUT_PATH = os.environ.get(
     "OUTPUT_PATH", os.path.join(_REPO_ROOT, "data.json")
 )
+MARKET_PATH = os.environ.get(
+    "MARKET_PATH", os.path.join(_SCRIPT_DIR, "market_intelligence.xlsx")
+)
 
 AUTO_GIT_PUSH = True
 TODAY         = datetime.today().date()
@@ -857,6 +860,112 @@ def build_all_weeks(all_salespeople, bp_mai_wk, ovs_wk):
 
 
 # =====================================================================
+# MARKET INTELLIGENCE  — reads local market_intelligence.xlsx
+# =====================================================================
+
+_PRODUCT_CATS = [
+    ("chicken", ["chicken", "poultry", "duck", "broiler", "layer", "hen"]),
+    ("seafood",  ["seafood", "fish", "tuna", "shrimp", "prawn", "crab",
+                  "squid", "sardine", "lobster", "oyster", "anchovy", "mackerel"]),
+    ("rice",    ["rice", "jasmine", "glutinous", "hom mali", "parboiled"]),
+    ("sugar",   ["sugar", "molasses", "syrup", "sucrose"]),
+]
+
+
+def _cat_from_products(products):
+    cats = set()
+    for p in products:
+        pl = p.lower()
+        for cat_id, kws in _PRODUCT_CATS:
+            if any(k in pl for k in kws):
+                cats.add(cat_id)
+                break
+    if len(cats) == 1:
+        return cats.pop()
+    if len(cats) > 1:
+        return "multi"
+    return "multi"
+
+
+def read_market_intelligence(path):
+    """
+    Parse market_intelligence.xlsx  (columns: Shipper / Product / Country / Shipments).
+    Returns a MARKET dict ready to embed in data.json, or None if file missing.
+    """
+    if not os.path.isfile(path):
+        print(f"  WARN Market Intelligence file not found: {path}")
+        return None
+
+    print(f"  Reading {os.path.basename(path)} (Market Intelligence) …")
+    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    ws = wb.worksheets[0]
+
+    # {shipper_name: {cv: {country: shipments}, products: set}}
+    shipper_map = {}
+    country_totals = {}
+    product_set = set()
+    row_count = 0
+
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or not row[0]:
+            continue
+        name     = str(row[0]).strip()
+        product  = str(row[1]).strip() if len(row) > 1 and row[1] else None
+        country  = str(row[2]).strip() if len(row) > 2 and row[2] else None
+        ships    = row[3] if len(row) > 3 else 0
+        try:
+            ships = int(ships) if ships and not (isinstance(ships, float) and math.isnan(ships)) else 0
+        except (TypeError, ValueError):
+            ships = 0
+
+        if not name or not product or not country:
+            continue
+
+        if name not in shipper_map:
+            shipper_map[name] = {"cv": {}, "products": set()}
+        s = shipper_map[name]
+        s["cv"][country]    = s["cv"].get(country, 0) + ships
+        s["products"].add(product)
+        country_totals[country] = country_totals.get(country, 0) + ships
+        product_set.add(product)
+        row_count += 1
+
+    wb.close()
+    print(f"    OK {row_count} rows -> {len(shipper_map)} unique shippers")
+
+    shippers = []
+    for i, (name, data) in enumerate(
+            sorted(shipper_map.items(), key=lambda x: -sum(x[1]["cv"].values()))):
+        prods   = sorted(data["products"])
+        cv      = data["cv"]
+        total   = sum(cv.values())
+        countries_sorted = sorted(cv.keys(), key=lambda c: -cv[c])
+        cat     = _cat_from_products(prods)
+        shippers.append({
+            "id":       f"m{i+1:03d}",
+            "name":     name,
+            "nameTh":   None,
+            "cat":      cat,
+            "products": prods,
+            "cv":       cv,
+            "countries": countries_sorted,
+            "totalTeu": total,
+        })
+
+    countries = [
+        {"country": c, "shipments": v}
+        for c, v in sorted(country_totals.items(), key=lambda x: -x[1])
+    ]
+
+    return {
+        "SHIPPERS":  shippers,
+        "COUNTRIES": countries,
+        "PRODUCTS":  sorted(product_set),
+        "isMock":    False,
+    }
+
+
+# =====================================================================
 # STATUS FILE  (used by --fallback mode)
 # =====================================================================
 
@@ -885,7 +994,55 @@ def _last_run_ok():
 # MAIN
 # =====================================================================
 
+def _market_only():
+    """Update just the MARKET section of an existing data.json without touching SharePoint."""
+    print("\n=== Market Intelligence update (--market-only) ===\n")
+    market = read_market_intelligence(MARKET_PATH)
+    if not market:
+        print("ERROR Market file not found — nothing written.")
+        sys.exit(1)
+
+    existing = {}
+    if os.path.isfile(OUTPUT_PATH):
+        with open(OUTPUT_PATH, "r", encoding="utf-8") as fh:
+            existing = json.load(fh)
+
+    existing["MARKET"] = market
+    existing["generated_at"] = datetime.utcnow().isoformat() + "Z"
+
+    out_dir = os.path.dirname(OUTPUT_PATH)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as fh:
+        json.dump(existing, fh, ensure_ascii=False, indent=2, default=str)
+
+    print(f"\nDONE  MARKET section updated  ->  {OUTPUT_PATH}")
+    print(f"      Shippers : {len(market['SHIPPERS'])}")
+    print(f"      Countries: {len(market['COUNTRIES'])}")
+    print(f"      Products : {market['PRODUCTS']}")
+
+    if AUTO_GIT_PUSH:
+        print("\nPushing to GitHub…")
+        cmds = [
+            ["git", "-C", _REPO_ROOT, "add", "data.json"],
+            ["git", "-C", _REPO_ROOT, "commit", "-m",
+             f"data: update market intelligence {datetime.utcnow().strftime('%Y-%m-%d')}"],
+            ["git", "-C", _REPO_ROOT, "push"],
+        ]
+        for cmd in cmds:
+            r = subprocess.run(cmd, capture_output=True, text=True)
+            if r.returncode != 0:
+                print(f"  WARN git: {r.stderr.strip()}")
+            else:
+                print(f"  OK  {' '.join(cmd[2:])}")
+    print("\nDone.\n")
+
+
 def main():
+    if "--market-only" in sys.argv:
+        _market_only()
+        return
+
     # --fallback mode: skip if last sync was already successful this week
     if "--fallback" in sys.argv:
         if _last_run_ok():
@@ -908,6 +1065,10 @@ def main():
         # ── Step 2 : Read all Oversea monthly files ───────────────────────
         ovs_sps, ovs_wk, ovs_custs = read_all_oversea(OVS_BASE, max_seq)
 
+        # ── Step 2b : Market Intelligence ─────────────────────────────────
+        print("\n--- Market Intelligence ---")
+        market_data = read_market_intelligence(MARKET_PATH)
+
         # ── Step 3 : Merge & write ────────────────────────────────────────
         all_sps   = bp_mai_sps + ovs_sps
         all_custs = finalise_customers(bp_mai_custs + ovs_custs)
@@ -921,6 +1082,7 @@ def main():
             "ACTIVITY":    activity,
             "STAGES":      STAGES,
             "CUSTOMERS":   all_custs,
+            "MARKET":      market_data,
             "generated_at": datetime.utcnow().isoformat() + "Z",
         }
 

@@ -2,11 +2,21 @@
 
 const { useState: useStateMI, useMemo: useMemoMI } = React;
 
+// Returns real MARKET data from SalesData if available, else falls back to mock.
+// Called at render time — after onSalesDataReady fires — so SalesData is populated.
+function getM() {
+  const real = window.SalesData && window.SalesData.MARKET;
+  if (real && !real.isMock && real.SHIPPERS && real.SHIPPERS.length > 0) {
+    return { CATEGORIES: window.MarketData.CATEGORIES, ...real };
+  }
+  return window.MarketData;
+}
+
 // ─────────────────────────────────────────────────────────────────────
 // Shared: Category summary pill bar (matches "Total Shippers / Chicken / ..." strip)
 // ─────────────────────────────────────────────────────────────────────
 function MarketCategoryBar({ activeCat, onChange, filteredCounts }) {
-  const M = window.MarketData;
+  const M = getM();
   const totalFiltered = Object.values(filteredCounts).reduce((a, b) => a + b, 0);
   return (
     <div className="mkt-cats">
@@ -65,7 +75,7 @@ function MarketFilters({ search, setSearch, product, setProduct, country, setCou
 // Hook: shared filter logic for both market views
 // ─────────────────────────────────────────────────────────────────────
 function useMarketFiltered() {
-  const M = window.MarketData;
+  const M = getM();
   const [activeCat, setActiveCat] = useStateMI("total");
   const [search,    setSearch]    = useStateMI("");
   const [product,   setProduct]   = useStateMI("all");
@@ -117,7 +127,7 @@ function useMarketFiltered() {
 // VIEW 1 — Customer List
 // ─────────────────────────────────────────────────────────────────────
 function MarketCustomersView() {
-  const M = window.MarketData;
+  const M = getM();
   const F = useMarketFiltered();
   const allCountries = useMemoMI(() => M.COUNTRIES.map((c) => c.country), []);
 
@@ -205,7 +215,7 @@ function MarketCustomersView() {
 // VIEW 2 — Market Dashboard
 // ─────────────────────────────────────────────────────────────────────
 function MarketDashboardView() {
-  const M = window.MarketData;
+  const M = getM();
   const F = useMarketFiltered();
   const allCountries = useMemoMI(() => M.COUNTRIES.map((c) => c.country), []);
 

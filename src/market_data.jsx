@@ -92,7 +92,16 @@
   ];
 
   // -----------------------------------------------------------------
-  // Derive aggregates
+  // Use real data from Excel sync if available, otherwise mock
+  // -----------------------------------------------------------------
+  const real = window.SalesData && window.SalesData.MARKET;
+  if (real && !real.isMock && real.SHIPPERS && real.SHIPPERS.length > 0) {
+    window.MarketData = { CATEGORIES, ...real };
+    return;
+  }
+
+  // -----------------------------------------------------------------
+  // Fallback: derive aggregates from mock SHIPPERS
   // -----------------------------------------------------------------
   const withTotals = SHIPPERS.map((s) => ({
     ...s,
@@ -102,9 +111,7 @@
 
   const byCategory = { chicken: 0, seafood: 0, rice: 0, sugar: 0, multi: 0 };
   withTotals.forEach((s) => { byCategory[s.cat] = (byCategory[s.cat] || 0) + 1; });
-  const totalShippers = withTotals.length;
 
-  // Country aggregates: { country: { volume, shippers: Set, products: Set } }
   const countryAgg = {};
   withTotals.forEach((s) => {
     Object.entries(s.cv).forEach(([country, vol]) => {
@@ -118,17 +125,16 @@
     .map((c) => ({ ...c, products: [...c.productSet] }))
     .sort((a, b) => b.volume - a.volume);
 
-  // Distinct products (flat list for filter dropdown)
   const productSet = new Set();
   withTotals.forEach((s) => s.products.forEach((p) => productSet.add(p)));
 
   window.MarketData = {
     CATEGORIES,
-    SHIPPERS:   withTotals,
-    BY_CATEGORY: byCategory,
-    TOTAL_SHIPPERS: totalShippers,
-    COUNTRIES:  countries,
-    PRODUCTS:   [...productSet].sort(),
-    isMock:     true,    // flip to false once wired to real Excel
+    SHIPPERS:        withTotals,
+    BY_CATEGORY:     byCategory,
+    TOTAL_SHIPPERS:  withTotals.length,
+    COUNTRIES:       countries,
+    PRODUCTS:        [...productSet].sort(),
+    isMock:          true,
   };
 })();
