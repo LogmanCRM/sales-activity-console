@@ -1,5 +1,6 @@
 # Downloaded / cached Excel files and auth tokens — never commit these
 sync/.cache/
+sync/*.xlsx
 
 # Python cache
 sync/__pycache__/
