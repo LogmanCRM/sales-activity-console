@@ -114,6 +114,38 @@ TEAMS = [
 STAGE_PRIORITY = {s["id"]: i for i, s in enumerate(STAGES)}
 
 # =====================================================================
+# SALESPERSON NAME RULES
+# =====================================================================
+
+# Names to exclude entirely (case-insensitive match on first word or full name)
+SP_EXCLUDE = {"pond"}
+
+# Canonical name mapping: any variant -> canonical name (team-aware key: "team:variant")
+SP_NORMALIZE = {
+    "bp:pilng":  "Ping",
+    "bp:piilng": "Ping",
+    "bp:piing":  "Ping",
+    "mai:pun":   "Pan",
+    "mai:pan":   "Pan",
+}
+
+
+def normalize_sp_name(team_id, raw_name):
+    """
+    Returns (canonical_name, excluded).
+    excluded=True means this row should be skipped entirely.
+    """
+    name = str(raw_name).strip()
+    first_word = name.split()[0].lower() if name else ""
+    if first_word in SP_EXCLUDE or name.lower() in SP_EXCLUDE:
+        return name, True
+    key = f"{team_id}:{name.lower()}"
+    if key in SP_NORMALIZE:
+        return SP_NORMALIZE[key], False
+    return name, False
+
+
+# =====================================================================
 # DATE HELPERS
 # =====================================================================
 
@@ -446,6 +478,9 @@ def read_team_file(filepath, team_id, preferred_sheets,
             continue
         sales_name = str(sales_name).strip()
         if not sales_name or sales_name.lower() == "sales name":
+            continue
+        sales_name, excluded = normalize_sp_name(team_id, sales_name)
+        if excluded:
             continue
 
         # Register salesperson
