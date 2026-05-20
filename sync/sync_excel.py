@@ -122,11 +122,13 @@ SP_EXCLUDE = {"pond"}
 
 # Canonical name mapping: any variant -> canonical name (team-aware key: "team:variant")
 SP_NORMALIZE = {
-    "bp:pilng":  "Ping",
-    "bp:piilng": "Ping",
-    "bp:piing":  "Ping",
-    "mai:pun":   "Pan",
-    "mai:pan":   "Pan",
+    "bp:ping":   "PING",
+    "bp:pilng":  "PING",
+    "bp:piilng": "PING",
+    "bp:piing":  "PING",
+    "bp:piiing": "PING",   # covers 'PiiING'
+    "mai:pun":   "PAN",
+    "mai:pan":   "PAN",
 }
 
 
