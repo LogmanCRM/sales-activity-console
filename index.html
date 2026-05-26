@@ -394,6 +394,90 @@
 
   /* ============ KPI GRID ============ */
   .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi-grid-6 { grid-template-columns: repeat(6, 1fr); }
+  .kpi-card.kpi-below { border-color: #fecaca; background: #fff7f7; }
+  .kpi-expect { font-size: 11px; font-weight: 600; font-family: var(--font-display); }
+  .kpi-expect.ok { color: #10b981; }
+  .kpi-expect.below { color: #dc2626; }
+
+  /* ============ WEEK / MONTH SELECTOR (two-row) ============ */
+  .ws-two-row { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+  .ws-two-row .ws-label { margin-bottom: 4px; }
+  .ws-row {
+    display: flex; align-items: center; gap: 10px;
+    flex-wrap: wrap;
+  }
+  .ws-row-label {
+    font-family: var(--font-display); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-4); font-weight: 700;
+    min-width: 52px;
+  }
+  .ws-pill-month {
+    min-width: 76px; display: flex; flex-direction: column; gap: 2px;
+    padding: 7px 12px; align-items: flex-start;
+  }
+  .ws-pill-main { font-size: 13px; font-weight: 700; }
+  .ws-pill-sub { font-size: 9px; color: var(--ink-4); font-weight: 500; letter-spacing: 0.04em; }
+  .ws-pill.active .ws-pill-sub { color: rgba(255,255,255,0.75); }
+  .ws-pill.in-month {
+    background: color-mix(in oklab, var(--brand-orange) 14%, transparent);
+    border-color: color-mix(in oklab, var(--brand-orange) 25%, transparent);
+  }
+
+  /* ============ LEADERBOARD V2 (8 cols + below indicator + team groups) ============ */
+  .leaderboard-v2 .lb-head,
+  .leaderboard-v2 .lb-row {
+    grid-template-columns: 1.6fr 0.7fr 0.75fr 0.7fr 0.7fr 0.8fr 0.85fr 0.85fr 0.9fr;
+    gap: 8px;
+  }
+  .lb-expect { display: inline-block; font-size: 9px; color: #dc2626; font-weight: 600; font-family: var(--font-mono); }
+  .lb-below { color: #dc2626 !important; font-weight: 700 !important; }
+  .lb-below::after { content: " ▼"; font-size: 10px; }
+
+  .lb-team-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 10px 10px;
+    margin-top: 8px;
+    border-top: 2px solid var(--c, var(--ink-3));
+    background: color-mix(in oklab, var(--c, #888) 4%, transparent);
+  }
+  .lb-team-header:first-child { margin-top: 0; }
+  .lb-team-badge {
+    width: 34px; height: 34px; border-radius: 8px;
+    color: #fff; font-family: var(--font-display); font-size: 16px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lb-team-text { flex: 1; }
+  .lb-team-name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink); }
+  .lb-team-thai { font-size: 11px; color: var(--ink-3); }
+  .lb-team-totals { font-size: 12px; color: var(--ink-2); display: flex; gap: 6px; }
+
+  /* ============ TEAM COMPARE SMALL MULTIPLES ============ */
+  .tcc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 8px 4px 4px;
+  }
+  @media (max-width: 1200px) { .tcc-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 700px)  { .tcc-grid { grid-template-columns: 1fr; } }
+  .tcc-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 12px 12px 6px;
+  }
+  .tcc-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
+  }
+  .tcc-icon {
+    width: 28px; height: 28px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+  }
+  .tcc-title { font-family: var(--font-display); font-weight: 700; font-size: 13px; }
+  .tcc-thai { font-size: 10.5px; color: var(--ink-4); }
+  .tcc-svg { display: block; }
   .kpi-card {
     background: var(--surface);
     border: 1px solid var(--line);

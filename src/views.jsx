@@ -33,38 +33,133 @@ function CustomerTypeFilter({ value, onChange, counts }) {
 
 }
 
-// ---------- Week Selector ----------
-function WeekSelector({ weeks, value, onChange }) {
-  const isAll = value === -1;
-  const isLast = value === weeks.length - 1;
-  const isFirst = value === 0;
-  return (
-    <div className="week-selector">
-      <div className="ws-label">
-        <span className="ws-eyebrow">Reporting week</span>
-        <span className="ws-title">
-          {isAll
-            ? <>All Weeks <span className="ws-tag-current ws-tag-all">12W TOTAL</span></>
-            : <>Week {weeks[value].replace("W", "")}, 2026 {isLast && <span className="ws-tag-current">CURRENT</span>}</>
-          }
-        </span>
-      </div>
-      <div className="ws-controls">
-        <button className="ws-arrow" disabled={isAll || isFirst} onClick={() => onChange(Math.max(0, value - 1))}>◀</button>
-        <button className={`ws-pill ws-pill-all ${isAll ? "active" : ""}`} onClick={() => onChange(-1)}>ALL</button>
-        <div className="ws-pills">
-          {weeks.map((w, i) =>
-          <button key={w}
-          className={`ws-pill ${i === value ? "active" : ""} ${i === weeks.length - 1 ? "is-current" : ""}`}
-          onClick={() => onChange(i)}>
-              {w.replace("W", "")}
-            </button>
-          )}
-        </div>
-        <button className="ws-arrow" disabled={isAll || isLast} onClick={() => onChange(Math.min(weeks.length - 1, value + 1))}>▶</button>
-      </div>
-    </div>);
+// ---------- Week → ISO date helpers ----------
+function isoWeekMonday(weekLabel, year = 2026) {
+  const wk = parseInt(weekLabel.replace("W", ""), 10);
+  const jan4 = new Date(Date.UTC(year, 0, 4));
+  const dow = jan4.getUTCDay() || 7;
+  const monday = new Date(jan4);
+  monday.setUTCDate(jan4.getUTCDate() - dow + 1 + (wk - 1) * 7);
+  return monday;
+}
+function weekToMonthKey(weekLabel) {
+  const monday = isoWeekMonday(weekLabel);
+  const thursday = new Date(monday);
+  thursday.setUTCDate(monday.getUTCDate() + 3);
+  const m = thursday.toLocaleString("en-US", { month: "short" });
+  const y = thursday.getUTCFullYear();
+  return `${m} ${y}`;
+}
+function buildMonthGroups(weeks) {
+  const groups = [];
+  const map = {};
+  weeks.forEach((w, i) => {
+    const k = weekToMonthKey(w);
+    if (!(k in map)) { map[k] = groups.length; groups.push({ key: k, weeks: [], weekIdxs: [] }); }
+    groups[map[k]].weeks.push(w);
+    groups[map[k]].weekIdxs.push(i);
+  });
+  return groups;
+}
 
+// ---------- Time Selector — two rows: Month (top), Week (bottom) ----------
+function TimeSelector({ weeks, mode, setMode, weekIdx, setWeekIdx, monthIdx, setMonthIdx, monthGroups }) {
+  const isAllW = mode === "week" && weekIdx === -1;
+  const isAllM = mode === "month" && monthIdx === -1;
+  // Which month's weeks should be highlighted in the bottom row?
+  // - In month mode with a specific month: that month's weeks
+  // - In week mode with a specific week: the month containing that week
+  const highlightMonthKey = mode === "month"
+    ? (monthIdx === -1 ? null : monthGroups[monthIdx].key)
+    : (weekIdx === -1  ? null : weekToMonthKey(weeks[weekIdx]));
+
+  const title = mode === "month"
+    ? (isAllM ? "All Months · Year Total"
+              : `${monthGroups[monthIdx].key} · ${monthGroups[monthIdx].weeks.length} weeks`)
+    : (isAllW ? `All Weeks · ${weeks.length}W Total`
+              : `Week ${weeks[weekIdx].replace("W", "")}, 2026${weekIdx === weeks.length - 1 ? " · Current" : ""}`);
+
+  return (
+    <div className="week-selector ws-two-row">
+      <div className="ws-label">
+        <span className="ws-eyebrow">Reporting period</span>
+        <span className="ws-title">{title}</span>
+      </div>
+
+      {/* Top row: months */}
+      <div className="ws-row">
+        <span className="ws-row-label">Month</span>
+        <button className={`ws-pill ws-pill-all ${isAllM ? "active" : ""}`}
+                onClick={() => { setMode("month"); setMonthIdx(-1); }}>ALL</button>
+        <div className="ws-pills">
+          {monthGroups.map((g, i) => {
+            const active = mode === "month" && i === monthIdx;
+            const highlighted = mode === "week" && g.key === highlightMonthKey;
+            return (
+              <button key={g.key}
+                      className={`ws-pill ws-pill-month ${active ? "active" : ""} ${highlighted ? "in-month" : ""}`}
+                      onClick={() => { setMode("month"); setMonthIdx(i); }}>
+                <span className="ws-pill-main">{g.key.split(" ")[0]}</span>
+                <span className="ws-pill-sub">W{g.weeks.map(w => w.replace("W","")).join(",")}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Bottom row: weeks */}
+      <div className="ws-row">
+        <span className="ws-row-label">Week</span>
+        <button className={`ws-pill ws-pill-all ${isAllW ? "active" : ""}`}
+                onClick={() => { setMode("week"); setWeekIdx(-1); }}>ALL</button>
+        <div className="ws-pills">
+          {weeks.map((w, i) => {
+            const active = mode === "week" && i === weekIdx;
+            const inHighlightedMonth = weekToMonthKey(w) === highlightMonthKey;
+            const isCurrent = i === weeks.length - 1;
+            return (
+              <button key={w}
+                      className={`ws-pill ${active ? "active" : ""} ${isCurrent ? "is-current" : ""} ${inHighlightedMonth && !active ? "in-month" : ""}`}
+                      onClick={() => { setMode("week"); setWeekIdx(i); }}>
+                {w.replace("W", "")}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------- Activity field defs (with expectations per week) ----------
+const ACTIVITY_FIELDS = [
+  { key: "contacts",   label: "Contacts",         thai: "การติดต่อลูกค้า", icon: "✉", color: "#0a1628", expect: 10 },
+  { key: "visits",     label: "Customer Visits",  thai: "การไปหาลูกค้า",   icon: "◉", color: "#0891b2", expect: 2  },
+  { key: "quotations", label: "Quotations Sent",  thai: "ส่ง Quotation",   icon: "◧", color: "#d97706", expect: null },
+  { key: "problems",   label: "Problem Calls",    thai: "โทรแก้ปัญหา",     icon: "⚠", color: "#dc2626", expect: null },
+  { key: "newClients", label: "New Pipeline",     thai: "ลูกค้าใหม่เข้า pipeline", icon: "★", color: "#7c3aed", expect: null },
+  { key: "wonDeals",   label: "Confirm Shipment", thai: "ปิดดีล / Won Deal", icon: "✓", color: "#10b981", expect: null },
+];
+
+// "wonDeals" is a synthetic field — count of confirmed shipments per week.
+// Currently it's the same data as newClients (which counts status="confirm" rows).
+// "newClients" is being repurposed here as "New Pipeline" (count of week's pipeline entries).
+// We use CUSTOMERS.sinceWeek to derive a true New Pipeline count.
+function valueForField(D, teamId, fieldKey, weekIdxs, ctype) {
+  // weekIdxs = array of week indices (1 for single week, multiple for month, all for ALL)
+  if (fieldKey === "newClients") {
+    // New Pipeline = count of customers whose firstContactDate (sinceWeek) falls in these weeks
+    const weekLabels = weekIdxs.map(i => D.WEEKS[i]);
+    return D.CUSTOMERS.filter(c =>
+      (teamId === "all" || c.team === teamId) &&
+      weekLabels.includes(c.sinceWeek)
+    ).length;
+  }
+  if (fieldKey === "wonDeals") {
+    // Won Deals = original newClients sum (status="confirm" rows per week)
+    return weekIdxs.reduce((sum, i) => sum + D.totalForTeam(teamId, i, "newClients", ctype), 0);
+  }
+  return weekIdxs.reduce((sum, i) => sum + D.totalForTeam(teamId, i, fieldKey, ctype), 0);
 }
 
 // ---------- Dashboard View ----------
@@ -72,55 +167,59 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
   const D = window.SalesData;
   const team = D.TEAMS.find((t) => t.id === teamId);
   const accent = team.color;
-  const [ctype, setCtype] = useState("all"); // "all" | "existing" | "new"
+  const [ctype, setCtype] = useState("all");
+  const [mode, setMode] = useState("week");  // "week" | "month"
   const [weekIdx, setWeekIdx] = useState(D.WEEKS.length - 1);
+  const monthGroups = useMemo(() => buildMonthGroups(D.WEEKS), [D.WEEKS]);
+  const [monthIdx, setMonthIdx] = useState(monthGroups.length - 1);
 
-  const fields = [
-  { key: "contacts", label: "Contacts", thai: "การติดต่อลูกค้า", icon: "✉", color: "#0a1628" },
-  { key: "visits", label: "Customer Visits", thai: "การไปหาลูกค้า", icon: "◉", color: "#0891b2" },
-  { key: "quotations", label: "Quotations Sent", thai: "ส่ง Quotation", icon: "◧", color: "#d97706" },
-  { key: "problems", label: "Problem Calls", thai: "โทรแก้ปัญหา", icon: "⚠", color: "#dc2626" },
-  { key: "newClients", label: "New Customers", thai: "ลูกค้าใหม่", icon: "★", color: "#10b981" }];
+  const isAllW = weekIdx === -1;
+  const isAllM = monthIdx === -1;
+  const isAllPeriod = (mode === "week" && isAllW) || (mode === "month" && isAllM);
 
+  // Active week indices for current selection
+  const activeWeekIdxs = useMemo(() => {
+    if (mode === "month") return isAllM ? D.WEEKS.map((_, i) => i) : monthGroups[monthIdx].weekIdxs;
+    return isAllW ? D.WEEKS.map((_, i) => i) : [weekIdx];
+  }, [mode, weekIdx, monthIdx, isAllW, isAllM, monthGroups]);
 
-  const weekly = fields.map((f) => ({ ...f, series: D.weeklyTotals(teamId, f.key, ctype) }));
-  const teuPotential = D.weeklyTotals(teamId, "potentialTeu", ctype);
-  const teuWon = D.weeklyTotals(teamId, "wonTeu", ctype);
-
-  const currentIdx = weekIdx;
-  const prevIdx = Math.max(0, currentIdx - 1);
-  const isLatest = currentIdx === D.WEEKS.length - 1;
-  const isAllWeeks = weekIdx === -1;
+  const periodLabel = mode === "month"
+    ? (isAllM ? "Year-to-Date" : monthGroups[monthIdx].key)
+    : (isAllW ? `${D.WEEKS.length}-Week Summary` : `Week ${D.WEEKS[weekIdx].replace("W", "")}`);
 
   // People for this team
   const people = teamId === "all" ? D.SALESPEOPLE : D.SALESPEOPLE.filter((s) => s.team === teamId);
 
-  // Sum a field across all 12 weeks (used in All-Weeks mode)
-  const sumAllWeeks = (field, ct) => D.weeklyTotals(teamId, field, ct).reduce((a, b) => a + b, 0);
+  // Helper: value for the current period
+  const valueFor = (field, ct = ctype) => valueForField(D, teamId, field, activeWeekIdxs, ct);
+  const valueForTeam = (tid, field, ct = ctype) => valueForField(D, tid, field, activeWeekIdxs, ct);
+  // Sparkline series (always full WEEKS regardless of mode)
+  const sparkSeries = (field) => D.WEEKS.map((_, i) => valueForField(D, teamId, field, [i], ctype));
 
-  // Returns the value for the selected week, or the 12-week sum if "All Weeks" is on
-  const valueFor = (field, ct) => isAllWeeks
-    ? sumAllWeeks(field, ct)
-    : D.totalForTeam(teamId, currentIdx, field, ct);
-
-  // Counts for the filter chips
+  // Counts for the customer type filter chips
   const counts = {
     all:      valueFor("contacts", "all"),
     existing: valueFor("contacts", "existing"),
     new:      valueFor("contacts", "new"),
   };
 
+  // Weeks count in the current period (for expectation thresholds)
+  const periodWeeks = activeWeekIdxs.length;
+
+  // Team comparison data — only meaningful when teamId === "all"
+  const teamsForChart = D.TEAMS.filter(t => t.id !== "all");
+
   return (
     <div className="view dashboard-view" data-ctype={ctype}>
       {/* Page header */}
       <div className="page-header">
         <div>
-          <div className="page-eyebrow">SALES ACTIVITY · {isAllWeeks ? "12-WEEK SUMMARY · 2026" : <>WEEK {D.WEEKS[currentIdx].replace("W", "")} · 2026 {!isLatest && <span className="eyebrow-hist">· HISTORICAL VIEW</span>}</>}</div>
+          <div className="page-eyebrow">SALES ACTIVITY · {periodLabel.toUpperCase()} · 2026</div>
           <h1 className="page-title">
             {team.name} <span className="page-title-en">/ {team.thai}</span>
           </h1>
           <div className="page-sub">
-            {people.length} sales reps · {D.customerCount(teamId)} active customers · last sync 2 min ago
+            {people.length} sales reps · {D.customerCount(teamId)} active customers
           </div>
         </div>
         <div className="header-actions">
@@ -129,211 +228,183 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
         </div>
       </div>
 
-      {/* Week + Customer type filter */}
-      <WeekSelector weeks={D.WEEKS} value={weekIdx} onChange={setWeekIdx} />
+      {/* Time selector (Week or Month) + Customer type filter */}
+      <TimeSelector weeks={D.WEEKS} mode={mode} setMode={setMode}
+                    weekIdx={weekIdx} setWeekIdx={setWeekIdx}
+                    monthIdx={monthIdx} setMonthIdx={setMonthIdx}
+                    monthGroups={monthGroups} />
       <CustomerTypeFilter value={ctype} onChange={setCtype} counts={counts} />
 
-      {/* KPI Row */}
-      <div className="kpi-grid" key={`kpi-${ctype}-${weekIdx}`}>
-        {weekly.map((f) => {
-          const cur = isAllWeeks ? f.series.reduce((a, b) => a + b, 0) : f.series[currentIdx];
-          const prev = isAllWeeks ? null : f.series[prevIdx];
-          const delta = isAllWeeks ? null : (prev ? Math.round((cur - prev) / prev * 100) : 0);
-          // Existing/New split shown beneath value when filter is "all"
-          const split = ctype === "all" ? {
+      {/* KPI Row — 6 cards, no target comparison */}
+      <div className="kpi-grid kpi-grid-6" key={`kpi-${ctype}-${mode}-${weekIdx}-${monthIdx}`}>
+        {ACTIVITY_FIELDS.map((f) => {
+          const cur = valueFor(f.key);
+          const series = sparkSeries(f.key);
+          const split = (ctype === "all" && f.key !== "newClients" && f.key !== "wonDeals") ? {
             existing: valueFor(f.key, "existing"),
             new:      valueFor(f.key, "new"),
           } : null;
           return (
             <KpiCard key={f.key}
-            label={f.label} thai={f.thai} value={cur} delta={delta}
-            icon={f.icon} accent={f.color} series={f.series}
-            split={split} />);
-
+                     label={f.label} thai={f.thai} value={cur}
+                     icon={f.icon} accent={f.color} series={series}
+                     split={split}
+                     periodWeeks={periodWeeks} />
+          );
         })}
       </div>
 
-      {/* Main row: Potential TEU + Conversion */}
-      <div className="row-2">
-        <div className="card chart-card" style={{ color: "rgb(10, 22, 40)", backgroundColor: "rgb(255, 255, 255)", borderColor: "rgb(237, 231, 214)" }}>
-          <div className="card-head">
-            <div>
-              <div className="card-title">Potential Volume (TEU) · Weekly</div>
-              <div className="card-sub">Potential vs Won — ตู้สินค้า 20 ฟุต ต่ออาทิตย์</div>
+      {/* Team activity comparison — only when viewing ALL teams.
+          When a single team is selected, show per-salesperson comparison instead. */}
+      <div className="card chart-card">
+        <div className="card-head">
+          <div>
+            <div className="card-title">
+              {teamId === "all"
+                ? `Team Activity Comparison · ${periodLabel}`
+                : `${team.name} — Salesperson Activity · ${periodLabel}`}
             </div>
-            <div className="legend">
-              <span className="legend-item"><i style={{ background: accent }} />Potential</span>
-              <span className="legend-item"><i style={{ color: "rgb(255, 255, 255)", background: "rgb(10, 22, 40)" }} />Won</span>
-            </div>
-          </div>
-          <BarChart weeks={D.WEEKS} values={teuPotential} valuesB={teuWon} color={accent} colorB="#0a1628" />
-          <div className="chart-foot">
-            <div className="stat-pair">
-              <span className="stat-key">{isAllWeeks ? "Potential (12 weeks)" : "Potential this week"}</span>
-              <span className="stat-val" style={{ color: accent }}>{(isAllWeeks ? teuPotential.reduce((a, b) => a + b, 0) : teuPotential[currentIdx]).toLocaleString()} TEU</span>
-            </div>
-            <div className="stat-pair">
-              <span className="stat-key">{isAllWeeks ? "Won (12 weeks)" : "Won this week"}</span>
-              <span className="stat-val">{(isAllWeeks ? teuWon.reduce((a, b) => a + b, 0) : teuWon[currentIdx]).toLocaleString()} TEU</span>
-            </div>
-            <div className="stat-pair">
-              <span className="stat-key">Hit rate</span>
-              <span className="stat-val">{(() => {
-                const p = isAllWeeks ? teuPotential.reduce((a,b)=>a+b,0) : teuPotential[currentIdx];
-                const w = isAllWeeks ? teuWon.reduce((a,b)=>a+b,0) : teuWon[currentIdx];
-                return p ? Math.round(w / p * 100) : 0;
-              })()}%</span>
+            <div className="card-sub">
+              {teamId === "all"
+                ? "กราฟแยกตาม activity — เปรียบเทียบทีมในที่เดียว"
+                : "เปรียบเทียบเซลล์แต่ละคนในทีม"}
             </div>
           </div>
         </div>
-
-        <div className="card gauge-card">
-          <div className="card-head">
-            <div>
-              <div className="card-title">Team Conversion Rate</div>
-              <div className="card-sub">Quotations → New Customers</div>
-            </div>
-          </div>
-          <div className="gauge-wrap">
-            <RadialGauge value={D.teamConversionRate(teamId, ctype)} color={accent} size={180} label="conversion" />
-          </div>
-          <div className="gauge-stats">
-            {teamId === "all" ?
-            D.TEAMS.filter((t) => t.id !== "all").map((t) =>
-            <div key={t.id} className="mini-team-row">
-                  <span className="mini-team-dot" style={{ background: t.color }} />
-                  <span className="mini-team-name">{t.name}</span>
-                  <span className="mini-team-val">{D.teamConversionRate(t.id, ctype)}%</span>
-                </div>
-            ) :
-
-            <>
-                <div className="mini-stat"><div className="mini-label">Quotations sent (12w)</div><div className="mini-val">{
-                  people.reduce((s, p) => s + D.ACTIVITY[p.id].reduce((a, w) => a + D.pickVal(w.quotations, ctype), 0), 0)
-                  }</div></div>
-                <div className="mini-stat"><div className="mini-label">Customers won (12w)</div><div className="mini-val">{
-                  people.reduce((s, p) => s + D.ACTIVITY[p.id].reduce((a, w) => a + D.pickVal(w.newClients, ctype), 0), 0)
-                  }</div></div>
-              </>
-            }
-          </div>
-        </div>
+        {teamId === "all" ? (
+          <TeamCompareChart
+            teams={teamsForChart}
+            fields={ACTIVITY_FIELDS}
+            valueOf={(tid, fk) => valueForTeam(tid, fk)}
+          />
+        ) : (
+          <TeamCompareChart
+            teams={people.map(sp => ({
+              id: sp.id,
+              name: sp.name,
+              thai: sp.thai,
+              color: team.color,
+            }))}
+            fields={ACTIVITY_FIELDS}
+            valueOf={(spId, fk) => {
+              if (fk === "newClients") {
+                return D.CUSTOMERS.filter(c => c.owner === spId &&
+                  activeWeekIdxs.map(i => D.WEEKS[i]).includes(c.sinceWeek)).length;
+              }
+              const realKey = fk === "wonDeals" ? "newClients" : fk;
+              return activeWeekIdxs.reduce((s, i) =>
+                s + D.pickVal(D.ACTIVITY[spId][i][realKey], ctype), 0);
+            }}
+          />
+        )}
       </div>
 
-      {/* Sales rep leaderboard */}
+      {/* Salesperson breakdown */}
       <div className="card">
         <div className="card-head">
           <div>
             <div className="card-title">
-              {teamId === "all" ? "Team Performance" : "Sales Performance"} · {isAllWeeks ? "12-Week Total" : `Week ${D.WEEKS[currentIdx].replace("W", "")}`}
+              {teamId === "all" ? "Sales Performance — All Teams" : "Sales Performance"} · {periodLabel}
             </div>
             <div className="card-sub">
-              {teamId === "all" ? "สรุปผลงานต่อทีม" : "ผลงานของเซลล์รายคน"}
+              {teamId === "all" ? "เบรคผลงานเซลล์รายคน ทุกทีม" : "ผลงานของเซลล์รายคน"}
             </div>
           </div>
           <div className="card-toolbar">
-            <span className="pill-toggle active">{isAllWeeks ? "All Weeks" : `Week ${D.WEEKS[currentIdx].replace("W", "")}`}</span>
+            <span className="pill-toggle active">{periodLabel}</span>
           </div>
         </div>
-        <div className="leaderboard">
+        <div className="leaderboard leaderboard-v2">
           <div className="lb-head">
-            <div>{teamId === "all" ? "Team" : "Sales Rep"}</div>
-            <div>{teamId === "all" ? "Members" : "Team"}</div>
-            <div className="num">Contacts</div>
-            <div className="num">Visits</div>
+            <div>Sales Rep</div>
+            <div>Team</div>
+            <div className="num" title="≥ 10 calls / week">Contacts<br/><span className="lb-expect">≥10/wk</span></div>
+            <div className="num" title="≥ 2 visits / week">Visits<br/><span className="lb-expect">≥2/wk</span></div>
             <div className="num">Quotes</div>
             <div className="num">Problems</div>
-            <div className="num">New</div>
+            <div className="num">New Pipeline</div>
+            <div className="num">Won Deal</div>
             <div className="num">Potential TEU</div>
-            <div className="num">Conv %</div>
           </div>
-          {teamId === "all" ?
-          D.TEAMS.filter((t) => t.id !== "all").map((t) => {
-            const tPeople = D.SALESPEOPLE.filter((s) => s.team === t.id);
-            const conv = D.teamConversionRate(t.id, ctype);
-            const v = (field) => isAllWeeks
-              ? D.weeklyTotals(t.id, field, ctype).reduce((a, b) => a + b, 0)
-              : D.totalForTeam(t.id, currentIdx, field, ctype);
-            return (
-              <div key={t.id} className="lb-row lb-row-team">
-                <div className="lb-name">
-                  <div className="team-badge-lg" style={{ background: t.color }}>{t.name.replace("TEAM ", "").charAt(0)}</div>
-                  <div>
-                    <div className="name-en">{t.name}</div>
-                    <div className="name-th">{t.thai}</div>
-                  </div>
-                </div>
-                <div className="lb-members mono">{tPeople.length} reps</div>
-                <div className="num mono lb-big">{v("contacts")}</div>
-                <div className="num mono lb-big">{v("visits")}</div>
-                <div className="num mono lb-big">{v("quotations")}</div>
-                <div className="num mono lb-big">{v("problems")}</div>
-                <div className="num mono lb-big">{v("newClients")}</div>
-                <div className="num mono lb-big">{v("potentialTeu")}</div>
-                <div className="num mono">
-                  <div className="conv-cell">
-                    <span style={{ color: t.color, fontWeight: 600, fontSize: 15 }}>{conv}%</span>
-                    <ProgressBar value={conv} max={50} color={t.color} height={4} />
-                  </div>
-                </div>
-              </div>);
-          }) :
-          people.map((sp) => {
-            const teamMeta = D.TEAMS.find((t) => t.id === sp.team);
-            const conv = D.personConversionRate(sp.id, ctype);
-            const v = (field) => isAllWeeks
-              ? D.ACTIVITY[sp.id].reduce((a, w) => a + D.pickVal(w[field], ctype), 0)
-              : D.pickVal(D.ACTIVITY[sp.id][currentIdx][field], ctype);
-            return (
-              <div key={sp.id} className="lb-row">
-                    <div className="lb-name">
-                      <Avatar initials={sp.avatar} color={teamMeta.color} size={32} />
-                      <div>
-                        <div className="name-en">{sp.name}</div>
-                        <div className="name-th">{sp.thai}</div>
-                      </div>
-                    </div>
-                    <div><span className="team-chip" style={{ "--c": teamMeta.color }}>{teamMeta.name.replace("TEAM ", "")}</span></div>
-                    <div className="num mono">{v("contacts")}</div>
-                    <div className="num mono">{v("visits")}</div>
-                    <div className="num mono">{v("quotations")}</div>
-                    <div className="num mono">{v("problems")}</div>
-                    <div className="num mono">{v("newClients")}</div>
-                    <div className="num mono">{v("potentialTeu")}</div>
-                    <div className="num mono">
-                      <div className="conv-cell">
-                        <span style={{ color: teamMeta.color, fontWeight: 600 }}>{conv}%</span>
-                        <ProgressBar value={conv} max={50} color={teamMeta.color} height={4} />
-                      </div>
-                    </div>
-                  </div>);
 
-          })}
+          {/* Group people by team when teamId === "all", else just one block */}
+          {(() => {
+            const teamsToShow = teamId === "all"
+              ? D.TEAMS.filter(t => t.id !== "all").filter(t => D.SALESPEOPLE.some(s => s.team === t.id))
+              : [team];
+            return teamsToShow.map(t => {
+              const tPeople = D.SALESPEOPLE.filter(s => s.team === t.id);
+              if (tPeople.length === 0) return null;
+
+              const vp = (sp, field) => {
+                if (field === "newClients") {
+                  return D.CUSTOMERS.filter(c => c.owner === sp.id &&
+                    activeWeekIdxs.map(i => D.WEEKS[i]).includes(c.sinceWeek)).length;
+                }
+                if (field === "wonDeals") {
+                  return activeWeekIdxs.reduce((s, i) =>
+                    s + D.pickVal(D.ACTIVITY[sp.id][i].newClients, ctype), 0);
+                }
+                return activeWeekIdxs.reduce((s, i) =>
+                  s + D.pickVal(D.ACTIVITY[sp.id][i][field], ctype), 0);
+              };
+              // Team totals row
+              const sumField = (field) => tPeople.reduce((s, sp) => s + vp(sp, field), 0);
+
+              return (
+                <React.Fragment key={t.id}>
+                  {teamId === "all" && (
+                    <div className="lb-team-header" style={{ "--c": t.color }}>
+                      <div className="lb-team-badge" style={{ background: t.color }}>{t.name.replace("TEAM ", "").charAt(0)}</div>
+                      <div className="lb-team-text">
+                        <div className="lb-team-name">{t.name}</div>
+                        <div className="lb-team-thai">{t.thai} · {tPeople.length} reps</div>
+                      </div>
+                      <div className="lb-team-totals num mono">
+                        <span title="Total contacts">{sumField("contacts")} contacts</span>
+                        <span title="Total visits">· {sumField("visits")} visits</span>
+                        <span title="Total won deals" style={{ color: "#10b981" }}>· {sumField("wonDeals")} won</span>
+                      </div>
+                    </div>
+                  )}
+                  {tPeople.map(sp => {
+                    const contacts = vp(sp, "contacts");
+                    const visits   = vp(sp, "visits");
+                    const contactsBelow = contacts < 10 * periodWeeks;
+                    const visitsBelow   = visits   < 2  * periodWeeks;
+                    return (
+                      <div key={sp.id} className="lb-row">
+                        <div className="lb-name">
+                          <Avatar initials={sp.avatar} color={t.color} size={32} />
+                          <div>
+                            <div className="name-en">{sp.name}</div>
+                            <div className="name-th">{sp.thai}</div>
+                          </div>
+                        </div>
+                        <div><span className="team-chip" style={{ "--c": t.color }}>{t.name.replace("TEAM ", "")}</span></div>
+                        <div className={`num mono ${contactsBelow ? "lb-below" : ""}`}>{contacts}</div>
+                        <div className={`num mono ${visitsBelow ? "lb-below" : ""}`}>{visits}</div>
+                        <div className="num mono">{vp(sp, "quotations")}</div>
+                        <div className="num mono">{vp(sp, "problems")}</div>
+                        <div className="num mono">{vp(sp, "newClients")}</div>
+                        <div className="num mono lb-big" style={{ color: "#10b981" }}>{vp(sp, "wonDeals")}</div>
+                        <div className="num mono">{vp(sp, "potentialTeu")}</div>
+                      </div>
+                    );
+                  })}
+                </React.Fragment>
+              );
+            });
+          })()}
         </div>
       </div>
 
-      {/* Activity trend */}
-      <div className="card chart-card">
-        <div className="card-head">
-          <div>
-            <div className="card-title">Activity Trend · 12 Weeks</div>
-            <div className="card-sub">Contacts, visits, quotations, problem calls, new customers</div>
-          </div>
-          <div className="legend">
-            {weekly.map((f) =>
-            <span key={f.key} className="legend-item"><i style={{ background: f.color }} />{f.label}</span>
-            )}
-          </div>
-        </div>
-        <LineChart weeks={D.WEEKS} series={weekly.map((f) => ({ name: f.label, values: f.series, color: f.color }))} />
-      </div>
-
-      {/* Recent customers / next steps */}
+      {/* Recent pipeline */}
       <div className="card">
         <div className="card-head">
           <div>
-            <div className="card-title">New Customers Picked Up Recently</div>
-            <div className="card-sub">ลูกค้าใหม่จากอาทิตย์ก่อนๆ ที่เริ่มติดต่อ</div>
+            <div className="card-title">Recent Pipeline Customers</div>
+            <div className="card-sub">ลูกค้าใหม่ที่เข้ามาใน pipeline ล่าสุด</div>
           </div>
           <button className="btn-link" onClick={() => onNavigate("customers")}>View all customers →</button>
         </div>

@@ -52,8 +52,7 @@ function Sparkline({ data, color = "#0a1628", height = 36, width = 120, fill = t
 }
 
 // ---------- KPI Card ----------
-function KpiCard({ label, thai, value, delta, icon, accent, series, split }) {
-  const isPositive = delta >= 0;
+function KpiCard({ label, thai, value, icon, accent, series, split, periodWeeks }) {
   const total = split ? (split.existing + split.new) : value;
   const exPct = split && total > 0 ? (split.existing / total) * 100 : 0;
   return (
@@ -81,19 +80,72 @@ function KpiCard({ label, thai, value, delta, icon, accent, series, split }) {
         </div>
       )}
       <div className="kpi-foot">
-        {delta != null ? (
-          <>
-            <span className={`kpi-delta ${isPositive ? "up" : "down"}`}>
-              <span className="arrow">{isPositive ? "▲" : "▼"}</span>
-              {Math.abs(delta)}%
-            </span>
-            <span className="kpi-foot-meta">vs last week</span>
-          </>
-        ) : (
-          <span className="kpi-foot-meta">12-week total</span>
-        )}
+        <span className="kpi-foot-meta">{periodWeeks > 1 ? `${periodWeeks}-week total` : "this period"}</span>
       </div>
       <div className="kpi-accent-bar" style={{ background: accent }} />
+    </div>
+  );
+}
+
+// ---------- Team Compare Chart (small multiples — one chart per activity) ----------
+function TeamCompareChart({ teams, fields, valueOf }) {
+  return (
+    <div className="tcc-grid">
+      {fields.map(f => (
+        <TeamCompareMiniChart key={f.key} field={f} teams={teams} valueOf={valueOf} />
+      ))}
+    </div>
+  );
+}
+
+function TeamCompareMiniChart({ field, teams, valueOf }) {
+  const data = teams.map(t => ({ team: t, value: valueOf(t.id, field.key) }));
+  const max = Math.max(...data.map(d => d.value), 1) * 1.25;
+  // Make chart wider when more items (e.g. 7 salespeople vs 3 teams) and a bit taller
+  // so tall bars + value labels never get clipped.
+  const n = teams.length;
+  const w = Math.max(280, 60 + n * 36);
+  const h = 210;
+  const padL = 10, padR = 10, padT = 36, padB = 38;
+  const innerW = w - padL - padR;
+  const innerH = h - padT - padB;
+  const groupW = innerW / n;
+  const barW = Math.min(28, groupW * 0.6);
+
+  return (
+    <div className="tcc-card">
+      <div className="tcc-head">
+        <div className="tcc-icon" style={{ background: field.color + "18", color: field.color }}>{field.icon}</div>
+        <div>
+          <div className="tcc-title">{field.label}</div>
+          <div className="tcc-thai">{field.thai}</div>
+        </div>
+      </div>
+      <svg viewBox={`0 0 ${w} ${h}`} className="tcc-svg" width="100%" preserveAspectRatio="xMidYMid meet">
+        {/* Baseline */}
+        <line x1={padL} x2={w - padR} y1={padT + innerH} y2={padT + innerH} stroke="#e7e5df" />
+        {data.map((d, gi) => {
+          const groupCx = padL + groupW * gi + groupW / 2;
+          const barX = groupCx - barW / 2;
+          const rawH = (d.value / max) * innerH;
+          const barH = d.value > 0 ? Math.max(3, rawH) : 0;
+          const barY = padT + innerH - barH;
+          // Clamp value label so it never escapes the chart area
+          const labelY = Math.max(padT - 2, barY - 6);
+          return (
+            <g key={d.team.id}>
+              {/* Bar — static, no SMIL animation */}
+              <rect x={barX} y={barY} width={barW} height={barH} fill={field.color} rx="3" />
+              {/* Value above bar */}
+              <text x={groupCx} y={labelY} textAnchor="middle" fontSize="13" fontWeight="700"
+                    fill="#0a1628" fontFamily="JetBrains Mono">{d.value}</text>
+              {/* Name below baseline — no colored dot anymore */}
+              <text x={groupCx} y={padT + innerH + 20} textAnchor="middle" fontSize="11" fontWeight="600"
+                    fill="#0a1628" fontFamily="Space Grotesk">{d.team.name.replace("TEAM ", "")}</text>
+            </g>
+          );
+        })}
+      </svg>
     </div>
   );
 }
@@ -255,6 +307,6 @@ function RadialGauge({ value, max = 100, color = "#d97706", size = 110, label = 
 }
 
 Object.assign(window, {
-  AnimatedNumber, Sparkline, KpiCard, BarChart, LineChart,
+  AnimatedNumber, Sparkline, KpiCard, BarChart, LineChart, TeamCompareChart, TeamCompareMiniChart,
   StageBadge, Avatar, ProgressBar, RadialGauge,
 });
