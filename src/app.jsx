@@ -63,11 +63,11 @@ function LoginScreen() {
             <div style={{ width:10, height:10, background:"#d97706", borderRadius:2, marginTop:4 }}/>
             <div style={{ width:10, height:10, background:"#0891b2", borderRadius:2 }}/>
           </div>
-          <div style={{ fontFamily:"Space Grotesk,sans-serif", fontWeight:800, fontSize:20, color:"#0a1628", letterSpacing:2 }}>
+          <div style={{ fontFamily:"Arial,sans-serif", fontWeight:800, fontSize:20, color:"#0a1628", letterSpacing:2 }}>
             SALES OPS
           </div>
         </div>
-        <div style={{ fontFamily:"Space Grotesk,sans-serif", fontSize:12, color:"#86807a", letterSpacing:1 }}>
+        <div style={{ fontFamily:"Arial,sans-serif", fontSize:12, color:"#86807a", letterSpacing:1 }}>
           ACTIVITY CONSOLE
         </div>
       </div>
@@ -77,10 +77,10 @@ function LoginScreen() {
         padding:"32px 36px", width:300,
         boxShadow:"0 4px 32px rgba(10,22,40,0.08)",
       }}>
-        <div style={{ fontFamily:"Space Grotesk,sans-serif", fontWeight:600, fontSize:15, color:"#0a1628", marginBottom:6 }}>
+        <div style={{ fontFamily:"Arial,sans-serif", fontWeight:600, fontSize:15, color:"#0a1628", marginBottom:6 }}>
           Sign in
         </div>
-        <div style={{ fontFamily:"Space Grotesk,sans-serif", fontSize:12, color:"#86807a", marginBottom:20 }}>
+        <div style={{ fontFamily:"Arial,sans-serif", fontSize:12, color:"#86807a", marginBottom:20 }}>
           กรอก access code ของทีมคุณ
         </div>
         <form onSubmit={handleSubmit}>
@@ -95,7 +95,7 @@ function LoginScreen() {
                 width:"100%", padding:"10px 40px 10px 14px",
                 borderRadius:8, boxSizing:"border-box",
                 border: error ? "1.5px solid #ef4444" : "1.5px solid #e5e1d8",
-                fontFamily:"Space Grotesk,sans-serif", fontSize:14,
+                fontFamily:"Arial,sans-serif", fontSize:14,
                 outline:"none", color:"#0a1628", background:"#fafaf9",
               }}
             />
@@ -109,7 +109,7 @@ function LoginScreen() {
           </div>
           {error && (
             <div style={{ color:"#ef4444", fontSize:12, marginBottom:12,
-                          fontFamily:"Space Grotesk,sans-serif" }}>
+                          fontFamily:"Arial,sans-serif" }}>
               Access code ไม่ถูกต้อง
             </div>
           )}
@@ -117,7 +117,7 @@ function LoginScreen() {
             width:"100%", padding:"11px",
             background:"#0a1628", color:"#fff", border:"none",
             borderRadius:8, cursor:"pointer",
-            fontFamily:"Space Grotesk,sans-serif", fontWeight:600, fontSize:14,
+            fontFamily:"Arial,sans-serif", fontWeight:600, fontSize:14,
             transition:"opacity 0.15s",
           }}>
             Sign In
@@ -125,7 +125,7 @@ function LoginScreen() {
         </form>
       </div>
 
-      <div style={{ fontFamily:"Space Grotesk,sans-serif", fontSize:11, color:"#c4bfb9" }}>
+      <div style={{ fontFamily:"Arial,sans-serif", fontSize:11, color:"#c4bfb9" }}>
         ติดต่อ admin หาก access code ไม่ทำงาน
       </div>
     </div>
@@ -147,7 +147,7 @@ function LoadingScreen() {
         animation:"spin 0.9s linear infinite",
       }}/>
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
-      <div style={{ fontFamily:"Space Grotesk,sans-serif", fontWeight:600, color:"#0a1628", fontSize:16 }}>
+      <div style={{ fontFamily:"Arial,sans-serif", fontWeight:600, color:"#0a1628", fontSize:16 }}>
         Loading sales data…
       </div>
     </div>
@@ -161,20 +161,20 @@ function ErrorScreen({ message }) {
       minHeight:"100vh", background:"#f6f4ef", gap:16, padding:40,
     }}>
       <div style={{ fontSize:32 }}>⚠️</div>
-      <div style={{ fontFamily:"Space Grotesk,sans-serif", fontWeight:700, fontSize:20, color:"#dc2626" }}>
+      <div style={{ fontFamily:"Arial,sans-serif", fontWeight:700, fontSize:20, color:"#dc2626" }}>
         Data not loaded
       </div>
       <div style={{
         background:"#fff", border:"1px solid #e5e1d8", borderRadius:12,
         padding:"18px 28px", maxWidth:520, textAlign:"center", lineHeight:1.7,
-        fontFamily:"Space Grotesk,sans-serif", color:"#2d2f36", fontSize:14,
+        fontFamily:"Arial,sans-serif", color:"#2d2f36", fontSize:14,
       }}>
         <p style={{margin:"0 0 12px"}}>{message}</p>
       </div>
       <button onClick={() => window.location.reload()} style={{
         marginTop:8, padding:"10px 24px", background:"#0a1628", color:"#fff",
         border:"none", borderRadius:8, cursor:"pointer",
-        fontFamily:"Space Grotesk,sans-serif", fontWeight:600, fontSize:13,
+        fontFamily:"Arial,sans-serif", fontWeight:600, fontSize:13,
       }}>
         Retry
       </button>

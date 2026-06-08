@@ -138,10 +138,10 @@ function TeamCompareMiniChart({ field, teams, valueOf }) {
               <rect x={barX} y={barY} width={barW} height={barH} fill={field.color} rx="3" />
               {/* Value above bar */}
               <text x={groupCx} y={labelY} textAnchor="middle" fontSize="13" fontWeight="700"
-                    fill="#0a1628" fontFamily="JetBrains Mono">{d.value}</text>
+                    fill="#0a1628" fontFamily="Arial">{d.value}</text>
               {/* Name below baseline — no colored dot anymore */}
               <text x={groupCx} y={padT + innerH + 20} textAnchor="middle" fontSize="11" fontWeight="600"
-                    fill="#0a1628" fontFamily="Space Grotesk">{d.team.name.replace("TEAM ", "")}</text>
+                    fill="#0a1628" fontFamily="Arial">{d.team.name.replace("TEAM ", "")}</text>
             </g>
           );
         })}
@@ -171,7 +171,7 @@ function BarChart({ weeks, values, valuesB, color = "#d97706", colorB = "#0a1628
         return (
           <g key={i}>
             <line x1={padL} x2={w - padR} y1={y} y2={y} stroke="#e7e5df" strokeDasharray={i === 0 ? "0" : "2 4"} />
-            <text x={padL - 6} y={y + 3} textAnchor="end" fontSize="10" fill="#86807a" fontFamily="JetBrains Mono">{t}</text>
+            <text x={padL - 6} y={y + 3} textAnchor="end" fontSize="10" fill="#86807a" fontFamily="Arial">{t}</text>
           </g>
         );
       })}
@@ -196,7 +196,7 @@ function BarChart({ weeks, values, valuesB, color = "#d97706", colorB = "#0a1628
                 <animate attributeName="y" from={padT + innerH} to={padT + innerH - hb} dur="0.6s" fill="freeze" begin={`${i * 0.04 + 0.1}s`} />
               </rect>
             )}
-            <text x={cx} y={h - 10} textAnchor="middle" fontSize="10" fill="#86807a" fontFamily="JetBrains Mono">{wk}</text>
+            <text x={cx} y={h - 10} textAnchor="middle" fontSize="10" fill="#86807a" fontFamily="Arial">{wk}</text>
           </g>
         );
       })}
@@ -224,12 +224,12 @@ function LineChart({ weeks, series }) {
         return (
           <g key={i}>
             <line x1={padL} x2={w - padR} y1={y} y2={y} stroke="#e7e5df" strokeDasharray={i === 0 ? "0" : "2 4"} />
-            <text x={padL - 6} y={y + 3} textAnchor="end" fontSize="10" fill="#86807a" fontFamily="JetBrains Mono">{t}</text>
+            <text x={padL - 6} y={y + 3} textAnchor="end" fontSize="10" fill="#86807a" fontFamily="Arial">{t}</text>
           </g>
         );
       })}
       {weeks.map((wk, i) => (
-        <text key={wk} x={padL + stepX * i} y={h - 10} textAnchor="middle" fontSize="10" fill="#86807a" fontFamily="JetBrains Mono">{wk}</text>
+        <text key={wk} x={padL + stepX * i} y={h - 10} textAnchor="middle" fontSize="10" fill="#86807a" fontFamily="Arial">{wk}</text>
       ))}
       {series.map((s, si) => {
         const pts = s.values.map((v, i) => [padL + stepX * i, padT + innerH - (v / max) * innerH]);
