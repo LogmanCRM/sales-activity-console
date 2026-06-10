@@ -52,17 +52,22 @@ function Sparkline({ data, color = "#0a1628", height = 36, width = 120, fill = t
 }
 
 // ---------- KPI Card ----------
-function KpiCard({ label, thai, value, icon, accent, series, split, periodWeeks }) {
+function KpiCard({ label, thai, value, icon, accent, series, split, periodWeeks, onClick }) {
   const total = split ? (split.existing + split.new) : value;
   const exPct = split && total > 0 ? (split.existing / total) * 100 : 0;
+  const clickable = typeof onClick === "function" && value > 0;
   return (
-    <div className="kpi-card">
+    <div className={`kpi-card ${clickable ? "kpi-clickable" : ""}`}
+         onClick={clickable ? onClick : undefined}
+         role={clickable ? "button" : undefined}
+         tabIndex={clickable ? 0 : undefined}>
       <div className="kpi-head">
         <div className="kpi-icon" style={{ background: accent + "14", color: accent }}>{icon}</div>
         <div className="kpi-label">
           <div className="kpi-en">{label}</div>
           <div className="kpi-th">{thai}</div>
         </div>
+        {clickable && <span className="kpi-open">›</span>}
       </div>
       <div className="kpi-value">
         <AnimatedNumber value={value} />
@@ -306,7 +311,55 @@ function RadialGauge({ value, max = 100, color = "#d97706", size = 110, label = 
   );
 }
 
+// ---------- Activity Detail Drawer (drill-down from KPI cards) ----------
+function ActivityDetailDrawer({ open, onClose, title, subtitle, items, columns, emptyMessage }) {
+  if (!open) return null;
+  return (
+    <div className="ad-overlay" onClick={onClose}>
+      <div className="ad-drawer" onClick={(e) => e.stopPropagation()}>
+        <div className="ad-head">
+          <div>
+            <div className="ad-title">{title}</div>
+            {subtitle && <div className="ad-sub">{subtitle}</div>}
+          </div>
+          <button className="ad-close" onClick={onClose}>✕</button>
+        </div>
+        <div className="ad-body">
+          {(!items || items.length === 0) ? (
+            <div className="ad-empty">{emptyMessage || "No items to show."}</div>
+          ) : (
+            <table className="ad-table">
+              <thead>
+                <tr>
+                  <th style={{width: 40}}>#</th>
+                  {columns.map(c => <th key={c.key} style={c.style}>{c.label}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((it, i) => (
+                  <tr key={i}>
+                    <td className="ad-i">{i + 1}</td>
+                    {columns.map(c => (
+                      <td key={c.key} className={c.cellClass}>
+                        {c.render ? c.render(it) : it[c.key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+        <div className="ad-foot">
+          <span>{items?.length || 0} item{items?.length === 1 ? "" : "s"}</span>
+          <button className="ad-foot-close" onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 Object.assign(window, {
   AnimatedNumber, Sparkline, KpiCard, BarChart, LineChart, TeamCompareChart, TeamCompareMiniChart,
-  StageBadge, Avatar, ProgressBar, RadialGauge,
+  StageBadge, Avatar, ProgressBar, RadialGauge, ActivityDetailDrawer,
 });

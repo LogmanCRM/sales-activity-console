@@ -426,10 +426,10 @@ def ensure_file(sp_url, local_path, label=""):
 # =====================================================================
 
 def read_team_file(filepath, team_id, preferred_sheets,
-                   sps_map, wk_data, cust_map, sp_seq):
+                   sps_map, wk_data, cust_map, sp_seq, events):
     """
     Read one team's BP-format Excel file and accumulate results into the
-    caller's shared dicts (sps_map, wk_data, cust_map).
+    caller's shared dicts (sps_map, wk_data, cust_map) and events list.
 
     preferred_sheets : list of sheet names to try, in order.
                        Falls back to the first sheet that looks like data.
@@ -522,6 +522,21 @@ def read_team_file(filepath, team_id, preferred_sheets,
         else:
             add_split(wk["potentialTeu"], existing, teu)
 
+        # Row-level event (for drill-down on the dashboard)
+        cust_for_event = str(customer).strip() if customer else "(no customer)"
+        events.append({
+            "team":     team_id,
+            "spId":     sp_id,
+            "customer": cust_for_event,
+            "week":     wk_label,
+            "date":     d.isoformat(),
+            "type":     bucket,
+            "stage":    stage,
+            "teu":      teu,
+            "existing": existing,
+            "notes":    (str(details).strip() if details else "")[:140],
+        })
+
         # Customer record
         if customer:
             cust_str = str(customer).strip()
@@ -569,16 +584,17 @@ def read_team_file(filepath, team_id, preferred_sheets,
 def read_bp_mai(bp_path, mai_path):
     """
     Read Team BP (sheet '2026') and Team MAI ('Sales Log' file).
-    Returns (sps_list, wk_data_dict, customers_list).
+    Returns (sps_list, wk_data_dict, customers_list, events_list).
     """
     sps_map  = {}
     wk_data  = {}
     cust_map = {}
     sp_seq   = [0]
+    events   = []
 
     if bp_path:
         read_team_file(bp_path, "bp", ["2026"],
-                       sps_map, wk_data, cust_map, sp_seq)
+                       sps_map, wk_data, cust_map, sp_seq, events)
     else:
         print("  WARN Team BP file unavailable — skipping")
 
@@ -586,7 +602,7 @@ def read_bp_mai(bp_path, mai_path):
         yr = str(datetime.today().year)
         read_team_file(mai_path, "mai",
                        [f"Sales Log {yr}", yr, "Sales Log 2026", "Sales Log", "MAI"],
-                       sps_map, wk_data, cust_map, sp_seq)
+                       sps_map, wk_data, cust_map, sp_seq, events)
     else:
         print("  WARN Team MAI file unavailable — skipping")
 
@@ -597,7 +613,7 @@ def read_bp_mai(bp_path, mai_path):
         c["quotationsSent"]    = acts.count("quotations")
         custs.append(c)
 
-    return list(sps_map.values()), wk_data, custs
+    return list(sps_map.values()), wk_data, custs, events
 
 
 # =====================================================================
@@ -657,12 +673,13 @@ def find_oversea_files(base_dir):
     return files
 
 
-def _read_oversea_file(filepath, sps_registry, wk_accum, cust_accum, sp_seq):
+def _read_oversea_file(filepath, sps_registry, wk_accum, cust_accum, sp_seq, events):
     """
     Process one Oversea xlsx file.  Accumulates into shared dicts:
       sps_registry : {sp_name → sp_dict}
       wk_accum     : {sp_name → {wk_label → week_dict}}
       cust_accum   : {"oversea_<name>" → customer_dict}
+      events       : flat list of row-level activity events
     """
     rel = os.path.join(
         os.path.basename(os.path.dirname(filepath)),
@@ -771,6 +788,21 @@ def _read_oversea_file(filepath, sps_registry, wk_accum, cust_accum, sp_seq):
             elif stage != "lost":
                 add_split(wk["potentialTeu"], existing, teu)
 
+            # Row-level event (Oversea always counts as 'contacts'; if won → also wonDeals)
+            ev_type = "newClients" if stage == "won" else "contacts"
+            events.append({
+                "team":     "oversea",
+                "spId":     sp_id,
+                "customer": cust_name,
+                "week":     wk_label,
+                "date":     d.isoformat(),
+                "type":     ev_type,
+                "stage":    stage,
+                "teu":      teu,
+                "existing": existing,
+                "notes":    (notes or "")[:140],
+            })
+
             # Customer record
             cust_key = f"oversea_{cust_name}"
             date_str = d.isoformat()
@@ -814,18 +846,19 @@ def read_all_oversea(base_dir, sp_id_start):
     files = find_oversea_files(base_dir)
     if not files:
         print(f"  WARN No Oversea xlsx files found in:\n    {base_dir}")
-        return [], {}, []
+        return [], {}, [], []
 
     print(f"\n--- Team OVERSEA ({len(files)} file(s)) ---")
 
     sps_registry = {}   # sp_name → sp_dict
     wk_accum     = {}   # sp_name → {wk_label → week_dict}
     cust_accum   = {}   # "oversea_<name>" → customer_dict
+    events       = []
     sp_seq       = [sp_id_start]
 
     for filepath in files:
         try:
-            _read_oversea_file(filepath, sps_registry, wk_accum, cust_accum, sp_seq)
+            _read_oversea_file(filepath, sps_registry, wk_accum, cust_accum, sp_seq, events)
         except Exception as exc:
             print(f"    WARN {os.path.basename(filepath)}: {exc}")
 
@@ -833,7 +866,7 @@ def read_all_oversea(base_dir, sp_id_start):
     sps     = list(sps_registry.values())
     wk_data = {sp["id"]: wk_accum.get(sp["name"], {}) for sp in sps}
     custs   = list(cust_accum.values())
-    return sps, wk_data, custs
+    return sps, wk_data, custs, events
 
 
 # =====================================================================
@@ -1096,11 +1129,11 @@ def main():
         bp_path  = ensure_file(BP_SHAREPOINT_URL,  BP_PATH,  "Team BP")
         mai_path = ensure_file(MAI_SHAREPOINT_URL, MAI_PATH, "Team MAI")
 
-        bp_mai_sps, bp_mai_wk, bp_mai_custs = read_bp_mai(bp_path, mai_path)
+        bp_mai_sps, bp_mai_wk, bp_mai_custs, bp_mai_events = read_bp_mai(bp_path, mai_path)
         max_seq = max((int(sp["id"][1:]) for sp in bp_mai_sps), default=0)
 
         # ── Step 2 : Read all Oversea monthly files ───────────────────────
-        ovs_sps, ovs_wk, ovs_custs = read_all_oversea(OVS_BASE, max_seq)
+        ovs_sps, ovs_wk, ovs_custs, ovs_events = read_all_oversea(OVS_BASE, max_seq)
 
         # ── Step 2b : Market Intelligence ─────────────────────────────────
         print("\n--- Market Intelligence ---")
@@ -1112,6 +1145,15 @@ def main():
 
         sorted_weeks, activity = build_all_weeks(all_sps, bp_mai_wk, ovs_wk)
 
+        # Events: keep only those that fall in the displayed weeks (matches WEEKS array).
+        weeks_set = set(sorted_weeks)
+        all_events = [
+            e for e in (bp_mai_events + ovs_events)
+            if e.get("week") in weeks_set
+        ]
+        # Sort newest first for nicer drill-down lists
+        all_events.sort(key=lambda e: (e.get("date") or "", e.get("week") or ""), reverse=True)
+
         data = {
             "TEAMS":       TEAMS,
             "SALESPEOPLE": all_sps,
@@ -1119,6 +1161,7 @@ def main():
             "ACTIVITY":    activity,
             "STAGES":      STAGES,
             "CUSTOMERS":   all_custs,
+            "EVENTS":      all_events,
             "MARKET":      market_data,
             "generated_at": datetime.utcnow().isoformat() + "Z",
         }
@@ -1132,6 +1175,7 @@ def main():
         print(f"\nDONE  data.json written  ->  {OUTPUT_PATH}")
         print(f"      Salespeople : {len(all_sps)}")
         print(f"      Customers   : {len(all_custs)}")
+        print(f"      Events      : {len(all_events)}")
         print(f"      Weeks       : {sorted_weeks}")
         print(f"      Generated   : {data['generated_at']}")
 

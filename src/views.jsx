@@ -133,7 +133,7 @@ function TimeSelector({ weeks, mode, setMode, weekIdx, setWeekIdx, monthIdx, set
 
 // ---------- Activity field defs (with expectations per week) ----------
 const ACTIVITY_FIELDS = [
-  { key: "contacts",   label: "Contacts",         thai: "การติดต่อลูกค้า", icon: "✉", color: "#0a1628", expect: 10 },
+  { key: "contacts",   label: "Call",             thai: "การโทร / ติดต่อลูกค้า", icon: "✉", color: "#0a1628", expect: 10 },
   { key: "visits",     label: "Customer Visits",  thai: "การไปหาลูกค้า",   icon: "◉", color: "#0891b2", expect: 2  },
   { key: "quotations", label: "Quotations Sent",  thai: "ส่ง Quotation",   icon: "◧", color: "#d97706", expect: null },
   { key: "problems",   label: "Problem Calls",    thai: "โทรแก้ปัญหา",     icon: "⚠", color: "#dc2626", expect: null },
@@ -172,6 +172,7 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
   const [weekIdx, setWeekIdx] = useState(D.WEEKS.length - 1);
   const monthGroups = useMemo(() => buildMonthGroups(D.WEEKS), [D.WEEKS]);
   const [monthIdx, setMonthIdx] = useState(monthGroups.length - 1);
+  const [drillField, setDrillField] = useState(null);  // drill-down target field
 
   const isAllW = weekIdx === -1;
   const isAllM = monthIdx === -1;
@@ -208,6 +209,60 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
 
   // Team comparison data — only meaningful when teamId === "all"
   const teamsForChart = D.TEAMS.filter(t => t.id !== "all");
+
+  // ---------- Drill-down: compute items for the selected KPI ----------
+  const spMap = useMemo(() => {
+    const m = {};
+    D.SALESPEOPLE.forEach(s => { m[s.id] = s; });
+    return m;
+  }, []);
+  const teamNameMap = useMemo(() => {
+    const m = {};
+    D.TEAMS.forEach(t => { m[t.id] = t.name.replace("TEAM ", ""); });
+    return m;
+  }, []);
+
+  const drillItems = useMemo(() => {
+    if (!drillField) return [];
+    const weekLabels = activeWeekIdxs.map(i => D.WEEKS[i]);
+    const inTeam = (t) => teamId === "all" || t === teamId;
+    const ctypeMatch = (ev) => ctype === "all"
+      || (ctype === "existing" &&  ev.existing)
+      || (ctype === "new"      && !ev.existing);
+
+    // New Pipeline → derived from CUSTOMERS.sinceWeek
+    if (drillField.key === "newClients") {
+      return D.CUSTOMERS
+        .filter(c => inTeam(c.team) && weekLabels.includes(c.sinceWeek))
+        .sort((a, b) => (b.firstContactDate || "").localeCompare(a.firstContactDate || ""))
+        .map(c => ({
+          customer: c.name,
+          team:     teamNameMap[c.team] || c.team,
+          sp:       spMap[c.owner]?.name || "—",
+          date:     c.firstContactDate,
+          week:     c.sinceWeek,
+          stage:    c.stage,
+          notes:    c.notes,
+        }));
+    }
+    // Won Deal → events with type "newClients" (rows where stage="won")
+    const evType = drillField.key === "wonDeals" ? "newClients" : drillField.key;
+    return (D.EVENTS || [])
+      .filter(ev => ev.type === evType
+                 && inTeam(ev.team)
+                 && weekLabels.includes(ev.week)
+                 && ctypeMatch(ev))
+      .map(ev => ({
+        customer: ev.customer,
+        team:     teamNameMap[ev.team] || ev.team,
+        sp:       spMap[ev.spId]?.name || "—",
+        date:     ev.date,
+        week:     ev.week,
+        stage:    ev.stage,
+        notes:    ev.notes,
+        existing: ev.existing,
+      }));
+  }, [drillField, teamId, ctype, activeWeekIdxs]);
 
   return (
     <div className="view dashboard-view" data-ctype={ctype}>
@@ -249,7 +304,8 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                      label={f.label} thai={f.thai} value={cur}
                      icon={f.icon} accent={f.color} series={series}
                      split={split}
-                     periodWeeks={periodWeeks} />
+                     periodWeeks={periodWeeks}
+                     onClick={() => setDrillField(f)} />
           );
         })}
       </div>
@@ -318,7 +374,7 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
           <div className="lb-head">
             <div>Sales Rep</div>
             <div>Team</div>
-            <div className="num" title="≥ 10 calls / week">Contacts<br/><span className="lb-expect">≥10/wk</span></div>
+            <div className="num" title="≥ 10 calls / week">Call<br/><span className="lb-expect">≥10/wk</span></div>
             <div className="num" title="≥ 2 visits / week">Visits<br/><span className="lb-expect">≥2/wk</span></div>
             <div className="num">Quotes</div>
             <div className="num">Problems</div>
@@ -440,6 +496,36 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
           })}
         </div>
       </div>
+
+      {/* Drill-down drawer */}
+      <ActivityDetailDrawer
+        open={!!drillField}
+        onClose={() => setDrillField(null)}
+        title={drillField ? `${drillField.label} · ${periodLabel}` : ""}
+        subtitle={drillField
+          ? `${teamId === "all" ? "ALL TEAMS" : (D.TEAMS.find(t => t.id === teamId)?.name || "")}` +
+            (ctype !== "all" ? ` · ${ctype === "existing" ? "Existing" : "New"} customers` : "")
+          : ""}
+        items={drillItems}
+        emptyMessage="ไม่มีรายการในช่วงเวลาที่เลือก"
+        columns={[
+          { key: "customer", label: "Customer", style: {minWidth: 200},
+            render: (it) => (
+              <div className="ad-cust">
+                <div className="ad-cust-name">{it.customer}</div>
+                {it.notes && <div className="ad-cust-note">"{it.notes}"</div>}
+              </div>
+            ) },
+          { key: "sp",   label: "Sales Rep",
+            render: (it) => <span className="ad-sp">{it.sp}</span> },
+          { key: "team", label: "Team",
+            render: (it) => <span className="ad-team-tag">{it.team}</span> },
+          { key: "date", label: "Date",
+            render: (it) => <span className="mono ad-date">{it.date}<span className="ad-wk">{it.week}</span></span> },
+          { key: "stage", label: "Stage",
+            render: (it) => <span className="ad-stage">{it.stage || "—"}</span> },
+        ]}
+      />
     </div>);
 
 }
