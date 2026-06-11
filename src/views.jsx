@@ -297,7 +297,7 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                      label={f.label} thai={f.thai} value={cur}
                      icon={f.icon} accent={f.color}
                      breakdown={breakdown}
-                     target={f.expect != null ? f.expect * expectMult : null}
+                     target={(teamId !== "all" && f.expect != null) ? f.expect * expectMult : null}
                      onClick={() => setDrillField(f)} />
           );
         })}
