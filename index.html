@@ -175,6 +175,34 @@
   .btn-link:hover { color: var(--amber); }
 
   /* ============ WEEK SELECTOR ============ */
+  /* ============ COMBINED CONTROL BAR (view + month + week) ============ */
+  .controls {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow-sm);
+    padding: 14px 18px; margin-bottom: 18px;
+  }
+  .ctl-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .ctl-row + .ctl-row { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .ctl-label {
+    font-family: var(--font-display); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4);
+    width: 52px; flex: none;
+  }
+  .ctl-seg { display: inline-flex; background: var(--bg-2); border-radius: 11px; padding: 4px; gap: 3px; }
+  .ctl-seg button {
+    padding: 7px 15px; border-radius: 8px; font-family: var(--font-display);
+    font-size: 13px; font-weight: 600; color: var(--ink-2); transition: all 0.15s;
+    display: flex; flex-direction: column; line-height: 1.25;
+  }
+  .ctl-seg button:hover { color: var(--ink); }
+  .ctl-seg button.active { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+  .ctl-seg-th { font-size: 10px; color: var(--ink-4); font-weight: 500; }
+  .ctl-seg button.active .ctl-seg-th { color: var(--ink-3); }
+  .period-tag {
+    margin-left: auto; font-family: var(--font-display); font-weight: 700;
+    font-size: 13px; color: var(--ink); letter-spacing: -0.005em;
+  }
+
   .week-selector {
     background: var(--surface);
     border: 1px solid var(--line);
@@ -457,11 +485,17 @@
     box-shadow: 0 8px 24px rgba(10,22,40,0.10);
     border-color: var(--ink-3);
   }
+  .kpi-target {
+    margin-left: auto; flex: none;
+    font-family: var(--font-display); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.02em; padding: 3px 8px; border-radius: 999px;
+  }
   .kpi-open {
-    margin-left: auto;
-    font-size: 22px; font-weight: 400; color: var(--ink-4); line-height: 1;
+    position: absolute; top: 14px; right: 14px;
+    font-size: 18px; font-weight: 400; color: var(--ink-4); line-height: 1;
     opacity: 0; transition: opacity 0.15s, transform 0.15s;
   }
+  .kpi-card { position: relative; }
   .kpi-clickable:hover .kpi-open { opacity: 1; transform: translateX(2px); }
 
   /* In-card team / salesperson breakdown bars */

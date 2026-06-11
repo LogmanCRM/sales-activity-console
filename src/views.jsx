@@ -2,34 +2,78 @@
 
 const { useState, useMemo } = React;
 
-// ---------- Customer Type Filter ----------
-function CustomerTypeFilter({ value, onChange }) {
-  const opts = [
-  { id: "all", label: "All Customers", thai: "ลูกค้าทั้งหมด", icon: "◎" },
-  { id: "existing", label: "Existing", thai: "ลูกค้าเดิม", icon: "▲" },
-  { id: "new", label: "New Pipeline", thai: "ลูกค้าใหม่", icon: "✦" }];
+// ---------- Control Bar (customer-type segmented + month/week pills, one card) ----------
+function ControlBar({ weeks, mode, setMode, weekIdx, setWeekIdx, monthIdx, setMonthIdx, monthGroups, ctype, setCtype }) {
+  const isAllW = mode === "week" && weekIdx === -1;
+  const isAllM = mode === "month" && monthIdx === -1;
+  const highlightMonthKey = mode === "month"
+    ? (monthIdx === -1 ? null : monthGroups[monthIdx].key)
+    : (weekIdx === -1 ? null : weekToMonthKey(weeks[weekIdx]));
+  const periodTag = mode === "month"
+    ? (isAllM ? "All Months · Year" : `${monthGroups[monthIdx].key} · ${monthGroups[monthIdx].weeks.length}w`)
+    : (isAllW ? `All Weeks · ${weeks.length}w` : `Week ${weeks[weekIdx].replace("W", "")} · 2026`);
+
+  const CT = [
+    { id: "all", label: "All Customers", thai: "ลูกค้าทั้งหมด" },
+    { id: "existing", label: "Existing", thai: "ลูกค้าเดิม" },
+    { id: "new", label: "New Pipeline", thai: "ลูกค้าใหม่" },
+  ];
 
   return (
-    <div className="ctype-filter">
-      <div className="ctype-label">
-        <span className="ctype-eyebrow">Filter activities by</span>
-        <span className="ctype-title">Customer type</span>
+    <div className="controls">
+      <div className="ctl-row">
+        <span className="ctl-label">View</span>
+        <div className="ctl-seg">
+          {CT.map((o) => (
+            <button key={o.id} className={ctype === o.id ? "active" : ""} onClick={() => setCtype(o.id)}>
+              {o.label}<span className="ctl-seg-th">{o.thai}</span>
+            </button>
+          ))}
+        </div>
+        <span className="period-tag">{periodTag}</span>
       </div>
-      <div className="ctype-tabs">
-        {opts.map((o) =>
-        <button key={o.id}
-        className={`ctype-tab ${value === o.id ? "active" : ""}`}
-        onClick={() => onChange(o.id)}>
-            <span className="ctype-tab-icon">{o.icon}</span>
-            <div className="ctype-tab-text">
-              <span className="ctype-tab-label">{o.label}</span>
-              <span className="ctype-tab-thai">{o.thai}</span>
-            </div>
-          </button>
-        )}
-      </div>
-    </div>);
 
+      <div className="ctl-row">
+        <span className="ctl-label">Month</span>
+        <button className={`ws-pill ws-pill-all ${isAllM ? "active" : ""}`}
+                onClick={() => { setMode("month"); setMonthIdx(-1); }}>ALL</button>
+        <div className="ws-pills">
+          {monthGroups.map((g, i) => {
+            const active = mode === "month" && i === monthIdx;
+            const hi = mode === "week" && g.key === highlightMonthKey;
+            return (
+              <button key={g.key}
+                      className={`ws-pill ws-pill-month ${active ? "active" : ""} ${hi ? "in-month" : ""}`}
+                      onClick={() => { setMode("month"); setMonthIdx(i); }}>
+                <span className="ws-pill-main">{g.key.split(" ")[0]}</span>
+                <span className="ws-pill-sub">{g.weeks.length}w</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="ctl-row">
+        <span className="ctl-label">Week</span>
+        <button className={`ws-pill ws-pill-all ${isAllW ? "active" : ""}`}
+                onClick={() => { setMode("week"); setWeekIdx(-1); }}>ALL</button>
+        <div className="ws-pills">
+          {weeks.map((w, i) => {
+            const active = mode === "week" && i === weekIdx;
+            const hi = weekToMonthKey(w) === highlightMonthKey && !active;
+            const isCurrent = i === weeks.length - 1;
+            return (
+              <button key={w}
+                      className={`ws-pill ${active ? "active" : ""} ${isCurrent ? "is-current" : ""} ${hi ? "in-month" : ""}`}
+                      onClick={() => { setMode("week"); setWeekIdx(i); }}>
+                {w.replace("W", "")}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // ---------- Week → ISO date helpers ----------
@@ -59,75 +103,6 @@ function buildMonthGroups(weeks) {
     groups[map[k]].weekIdxs.push(i);
   });
   return groups;
-}
-
-// ---------- Time Selector — two rows: Month (top), Week (bottom) ----------
-function TimeSelector({ weeks, mode, setMode, weekIdx, setWeekIdx, monthIdx, setMonthIdx, monthGroups }) {
-  const isAllW = mode === "week" && weekIdx === -1;
-  const isAllM = mode === "month" && monthIdx === -1;
-  // Which month's weeks should be highlighted in the bottom row?
-  // - In month mode with a specific month: that month's weeks
-  // - In week mode with a specific week: the month containing that week
-  const highlightMonthKey = mode === "month"
-    ? (monthIdx === -1 ? null : monthGroups[monthIdx].key)
-    : (weekIdx === -1  ? null : weekToMonthKey(weeks[weekIdx]));
-
-  const title = mode === "month"
-    ? (isAllM ? "All Months · Year Total"
-              : `${monthGroups[monthIdx].key} · ${monthGroups[monthIdx].weeks.length} weeks`)
-    : (isAllW ? `All Weeks · ${weeks.length}W Total`
-              : `Week ${weeks[weekIdx].replace("W", "")}, 2026${weekIdx === weeks.length - 1 ? " · Current" : ""}`);
-
-  return (
-    <div className="week-selector ws-two-row">
-      <div className="ws-label">
-        <span className="ws-eyebrow">Reporting period</span>
-        <span className="ws-title">{title}</span>
-      </div>
-
-      {/* Top row: months */}
-      <div className="ws-row">
-        <span className="ws-row-label">Month</span>
-        <button className={`ws-pill ws-pill-all ${isAllM ? "active" : ""}`}
-                onClick={() => { setMode("month"); setMonthIdx(-1); }}>ALL</button>
-        <div className="ws-pills">
-          {monthGroups.map((g, i) => {
-            const active = mode === "month" && i === monthIdx;
-            const highlighted = mode === "week" && g.key === highlightMonthKey;
-            return (
-              <button key={g.key}
-                      className={`ws-pill ws-pill-month ${active ? "active" : ""} ${highlighted ? "in-month" : ""}`}
-                      onClick={() => { setMode("month"); setMonthIdx(i); }}>
-                <span className="ws-pill-main">{g.key.split(" ")[0]}</span>
-                <span className="ws-pill-sub">W{g.weeks.map(w => w.replace("W","")).join(",")}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Bottom row: weeks */}
-      <div className="ws-row">
-        <span className="ws-row-label">Week</span>
-        <button className={`ws-pill ws-pill-all ${isAllW ? "active" : ""}`}
-                onClick={() => { setMode("week"); setWeekIdx(-1); }}>ALL</button>
-        <div className="ws-pills">
-          {weeks.map((w, i) => {
-            const active = mode === "week" && i === weekIdx;
-            const inHighlightedMonth = weekToMonthKey(w) === highlightMonthKey;
-            const isCurrent = i === weeks.length - 1;
-            return (
-              <button key={w}
-                      className={`ws-pill ${active ? "active" : ""} ${isCurrent ? "is-current" : ""} ${inHighlightedMonth && !active ? "in-month" : ""}`}
-                      onClick={() => { setMode("week"); setWeekIdx(i); }}>
-                {w.replace("W", "")}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
 }
 
 // ---------- Activity field defs ----------
@@ -293,12 +268,12 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
         </div>
       </div>
 
-      {/* Time selector (Week or Month) + Customer type filter */}
-      <TimeSelector weeks={D.WEEKS} mode={mode} setMode={setMode}
-                    weekIdx={weekIdx} setWeekIdx={setWeekIdx}
-                    monthIdx={monthIdx} setMonthIdx={setMonthIdx}
-                    monthGroups={monthGroups} />
-      <CustomerTypeFilter value={ctype} onChange={setCtype} />
+      {/* Control bar — customer-type segmented + month/week pills in one card */}
+      <ControlBar weeks={D.WEEKS} mode={mode} setMode={setMode}
+                  weekIdx={weekIdx} setWeekIdx={setWeekIdx}
+                  monthIdx={monthIdx} setMonthIdx={setMonthIdx}
+                  monthGroups={monthGroups}
+                  ctype={ctype} setCtype={setCtype} />
 
       {/* KPI Row — each card shows the metric broken down by team (ALL view)
           or by salesperson (single-team view) as horizontal bars. */}
@@ -322,6 +297,7 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                      label={f.label} thai={f.thai} value={cur}
                      icon={f.icon} accent={f.color}
                      breakdown={breakdown}
+                     target={f.expect != null ? f.expect * expectMult : null}
                      onClick={() => setDrillField(f)} />
           );
         })}
@@ -343,9 +319,10 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
           </div>
         </div>
         {(() => {
-          // Columns = the active customer-type fields (Potential TEU removed)
+          // Columns = the active customer-type fields (Team & Potential TEU removed —
+          // team is already shown in the sidebar + the row's avatar/header color)
           const lbCols = fields;
-          const gridCols = `1.6fr 0.7fr ${lbCols.map(() => "1fr").join(" ")}`;
+          const gridCols = `1.8fr ${lbCols.map(() => "1fr").join(" ")}`;
           const vp = (sp, fk) => metricValue(D, fk, { teamId: sp.team, spId: sp.id, weekSet, ctype });
 
           const teamsToShow = teamId === "all"
@@ -356,7 +333,6 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
             <div className="leaderboard leaderboard-v2">
               <div className="lb-head" style={{ gridTemplateColumns: gridCols }}>
                 <div>Sales Rep</div>
-                <div>Team</div>
                 {lbCols.map(c => (
                   <div key={c.key} className="num">
                     {c.label}
@@ -396,7 +372,6 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                               <div className="name-th">{sp.thai}</div>
                             </div>
                           </div>
-                          <div><span className="team-chip" style={{ "--c": t.color }}>{t.name.replace("TEAM ", "")}</span></div>
                           {lbCols.map(c => {
                             const val = vp(sp, c.key);
                             // Below target if the metric has a threshold and falls short
@@ -420,48 +395,6 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
             </div>
           );
         })()}
-      </div>
-
-      {/* Recent pipeline */}
-      <div className="card">
-        <div className="card-head">
-          <div>
-            <div className="card-title">Recent Pipeline Customers</div>
-            <div className="card-sub">ลูกค้าใหม่ที่เข้ามาใน pipeline ล่าสุด</div>
-          </div>
-          <button className="btn-link" onClick={() => onNavigate("customers")}>View all customers →</button>
-        </div>
-        <div className="new-customers">
-          {D.CUSTOMERS.
-          filter((c) => teamId === "all" || c.team === teamId).
-          filter((c) => ["lead", "contact", "visit"].includes(c.stage)).
-          slice(0, 6).
-          map((c) => {
-            const sp = D.SALESPEOPLE.find((s) => s.id === c.owner);
-            const teamMeta = D.TEAMS.find((t) => t.id === c.team);
-            return (
-              <div key={c.id} className="nc-card" onClick={() => onSelectCustomer(c)}>
-                  <div className="nc-head">
-                    <div className="nc-name">{c.name}</div>
-                    <StageBadge stage={c.stage} />
-                  </div>
-                  <div className="nc-meta">
-                    <span>{c.industry}</span><span className="dot">·</span>
-                    <span>{c.location}</span><span className="dot">·</span>
-                    <span className="mono">{c.potentialTeu} TEU</span>
-                  </div>
-                  <div className="nc-foot">
-                    <div className="nc-owner">
-                      <Avatar initials={sp.avatar} color={teamMeta.color} size={22} />
-                      <span>{sp.name}</span>
-                    </div>
-                    <div className="nc-since mono">since {c.sinceWeek}</div>
-                  </div>
-                  <div className="nc-note">"{c.notes}"</div>
-                </div>);
-
-          })}
-        </div>
       </div>
 
       {/* Drill-down drawer */}

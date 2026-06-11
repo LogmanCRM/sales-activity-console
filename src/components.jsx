@@ -54,7 +54,8 @@ function Sparkline({ data, color = "#0a1628", height = 36, width = 120, fill = t
 // ---------- KPI Card ----------
 // `breakdown` = [{ label, value, color }] → horizontal bars inside the card
 // (split by team when viewing ALL teams, by salesperson for a single team).
-function KpiCard({ label, thai, value, icon, accent, breakdown, onClick }) {
+// `target` = numeric goal for the period → shown as a "≥ N" badge.
+function KpiCard({ label, thai, value, icon, accent, breakdown, target, onClick }) {
   const clickable = typeof onClick === "function" && value > 0;
   const bd = breakdown || [];
   const bdMax = Math.max(...bd.map((b) => b.value), 1);
@@ -69,7 +70,7 @@ function KpiCard({ label, thai, value, icon, accent, breakdown, onClick }) {
           <div className="kpi-en">{label}</div>
           <div className="kpi-th">{thai}</div>
         </div>
-        {clickable && <span className="kpi-open">›</span>}
+        {target != null && <span className="kpi-target" style={{ background: accent + "14", color: accent }}>≥ {target}</span>}
       </div>
       <div className="kpi-value">
         <AnimatedNumber value={value} />
