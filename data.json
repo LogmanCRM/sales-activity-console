@@ -414,8 +414,8 @@
       {
         "contacts": {
           "existing": 0,
-          "new": 0,
-          "total": 0
+          "new": 15,
+          "total": 15
         },
         "visits": {
           "existing": 0,
@@ -424,8 +424,8 @@
         },
         "quotations": {
           "existing": 3,
-          "new": 40,
-          "total": 43
+          "new": 25,
+          "total": 28
         },
         "problems": {
           "existing": 0,
@@ -3314,8 +3314,8 @@
       {
         "contacts": {
           "existing": 0,
-          "new": 1,
-          "total": 1
+          "new": 2,
+          "total": 2
         },
         "visits": {
           "existing": 0,
@@ -3339,8 +3339,8 @@
         },
         "potentialTeu": {
           "existing": 0,
-          "new": 0,
-          "total": 0
+          "new": 40,
+          "total": 40
         },
         "wonTeu": {
           "existing": 0,
@@ -4697,9 +4697,9 @@
           "total": 0
         },
         "quotations": {
-          "existing": 3,
+          "existing": 4,
           "new": 0,
-          "total": 3
+          "total": 4
         },
         "problems": {
           "existing": 0,
@@ -4712,9 +4712,9 @@
           "total": 2
         },
         "potentialTeu": {
-          "existing": 5,
+          "existing": 7,
           "new": 6,
-          "total": 11
+          "total": 13
         },
         "wonTeu": {
           "existing": 2,
@@ -5155,9 +5155,9 @@
           "total": 0
         },
         "quotations": {
-          "existing": 2,
+          "existing": 3,
           "new": 3,
-          "total": 5
+          "total": 6
         },
         "problems": {
           "existing": 0,
@@ -5170,9 +5170,9 @@
           "total": 3
         },
         "potentialTeu": {
-          "existing": 10,
+          "existing": 12,
           "new": 12,
-          "total": 22
+          "total": 24
         },
         "wonTeu": {
           "existing": 14,
@@ -5490,8 +5490,8 @@
       {
         "contacts": {
           "existing": 1,
-          "new": 3,
-          "total": 4
+          "new": 4,
+          "total": 5
         },
         "visits": {
           "existing": 0,
@@ -5642,8 +5642,8 @@
       {
         "contacts": {
           "existing": 0,
-          "new": 1,
-          "total": 1
+          "new": 0,
+          "total": 0
         },
         "visits": {
           "existing": 0,
@@ -13647,7 +13647,7 @@
     {
       "name": "SCG JWD",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-11",
@@ -13656,15 +13656,15 @@
       "potentialTeu": 0,
       "notes": "",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 31,
       "id": "C251"
     },
     {
       "name": "THAI SHIMADA CO.,LTD.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-12",
@@ -13673,8 +13673,8 @@
       "potentialTeu": 0,
       "notes": "Sent Company Profile",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 30,
       "id": "C252"
     },
@@ -13732,7 +13732,7 @@
     {
       "name": "ATXEL INDUSTRIAL CO., LTD.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-12",
@@ -13741,15 +13741,15 @@
       "potentialTeu": 0,
       "notes": "Sent Company Profile",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 30,
       "id": "C256"
     },
     {
       "name": "TECHNOTIC CO.,LTD.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-12",
@@ -13758,8 +13758,8 @@
       "potentialTeu": 0,
       "notes": "Sent Company Profile",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 30,
       "id": "C257"
     },
@@ -13775,15 +13775,15 @@
       "potentialTeu": 0,
       "notes": "Export FOB เสนอค่าหัวลาก+Shipping",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 3,
+      "contactsThisMonth": 2,
+      "quotationsSent": 1,
       "daysSinceFirstContact": 30,
       "id": "C258"
     },
     {
       "name": "NISSEI INTERNATIONAL (THAILAND) CO.,LTD.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-13",
@@ -13792,15 +13792,15 @@
       "potentialTeu": 0,
       "notes": "Sent Company Profile",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 29,
       "id": "C259"
     },
     {
       "name": "Global Food Trading Co., Ltd.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-13",
@@ -13809,8 +13809,8 @@
       "potentialTeu": 0,
       "notes": "ปิดกั้น",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 29,
       "id": "C260"
     },
@@ -13834,7 +13834,7 @@
     {
       "name": "Handy International (Thailand) Co., Ltd.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-13",
@@ -13843,15 +13843,15 @@
       "potentialTeu": 0,
       "notes": "Sent Company Profile",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 29,
       "id": "C262"
     },
     {
       "name": "Hic (Thailand) Co., Ltd.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-13",
@@ -13860,8 +13860,8 @@
       "potentialTeu": 0,
       "notes": "ปิดกั้น",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 29,
       "id": "C263"
     },
@@ -13902,7 +13902,7 @@
     {
       "name": "WINNER GROUP ENTERPRISE PUBLIC COMPANY LIMITED",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-14",
@@ -13911,15 +13911,15 @@
       "potentialTeu": 0,
       "notes": "Sent Company Profile",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 28,
       "id": "C266"
     },
     {
       "name": "THE NANYANG MARKETING LIMITED",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-14",
@@ -13928,15 +13928,15 @@
       "potentialTeu": 0,
       "notes": "",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 28,
       "id": "C267"
     },
     {
       "name": "THAI ONONO PUBLIC COMPANY LIMITED",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-14",
@@ -13945,15 +13945,15 @@
       "potentialTeu": 0,
       "notes": "",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 28,
       "id": "C268"
     },
     {
       "name": "FANCY WORLD COMPANY LIMITED",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-14",
@@ -13962,8 +13962,8 @@
       "potentialTeu": 0,
       "notes": "Sent Company Profile",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 28,
       "id": "C269"
     },
@@ -14004,7 +14004,7 @@
     {
       "name": "THAI BURAPHA PRODUCT CO., LTD.",
       "team": "bp",
-      "stage": "quote",
+      "stage": "contact",
       "location": "",
       "industry": "",
       "lastActivity": "2026-05-15",
@@ -14013,8 +14013,8 @@
       "potentialTeu": 0,
       "notes": "ปิดกั้น ไม่รับเฟรทเจ้าใหม่เพิ่ม",
       "sinceWeek": "W20",
-      "contactsThisMonth": 0,
-      "quotationsSent": 1,
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
       "daysSinceFirstContact": 27,
       "id": "C272"
     },
@@ -15345,6 +15345,23 @@
       "id": "C350"
     },
     {
+      "name": "FES INTERNATIONAL CO.,LTD",
+      "team": "bp",
+      "stage": "contact",
+      "location": "Losangeles",
+      "industry": "electronic",
+      "lastActivity": "2026-06-11",
+      "firstContactDate": "2026-06-11",
+      "owner": "s7",
+      "potentialTeu": 40,
+      "notes": "nominate แต่ ขอเสนอราคารถหัวลากไป",
+      "sinceWeek": "W24",
+      "contactsThisMonth": 1,
+      "quotationsSent": 0,
+      "daysSinceFirstContact": 0,
+      "id": "C351"
+    },
+    {
       "name": "Casali ABM CO.,LTD",
       "team": "mai",
       "stage": "visit",
@@ -15359,7 +15376,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 150,
-      "id": "C351"
+      "id": "C352"
     },
     {
       "name": "KL Healthcare Co., Ltd.",
@@ -15376,7 +15393,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 149,
-      "id": "C352"
+      "id": "C353"
     },
     {
       "name": "Taniobis Co.,Ltd.",
@@ -15393,7 +15410,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 148,
-      "id": "C353"
+      "id": "C354"
     },
     {
       "name": "FARM TO PLATE PROCESSOR CO.,LTD.",
@@ -15410,7 +15427,7 @@
       "contactsThisMonth": 22,
       "quotationsSent": 2,
       "daysSinceFirstContact": 149,
-      "id": "C354"
+      "id": "C355"
     },
     {
       "name": "EW NUTRITION (THAILAND) CO.,LTD.",
@@ -15427,7 +15444,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 4,
       "daysSinceFirstContact": 148,
-      "id": "C355"
+      "id": "C356"
     },
     {
       "name": "Siam Shine Co.,Ltd.",
@@ -15444,7 +15461,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 147,
-      "id": "C356"
+      "id": "C357"
     },
     {
       "name": "Chonburi LC",
@@ -15461,7 +15478,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 3,
       "daysSinceFirstContact": 149,
-      "id": "C357"
+      "id": "C358"
     },
     {
       "name": "I-CY Chaya",
@@ -15478,7 +15495,7 @@
       "contactsThisMonth": 4,
       "quotationsSent": 7,
       "daysSinceFirstContact": 148,
-      "id": "C358"
+      "id": "C359"
     },
     {
       "name": "Smile heart food",
@@ -15495,7 +15512,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 148,
-      "id": "C359"
+      "id": "C360"
     },
     {
       "name": "ASIAN SEAFOOD",
@@ -15512,7 +15529,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 143,
-      "id": "C360"
+      "id": "C361"
     },
     {
       "name": "OCEAN GLASS PLC.",
@@ -15529,7 +15546,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 142,
-      "id": "C361"
+      "id": "C362"
     },
     {
       "name": "BST",
@@ -15546,7 +15563,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 3,
       "daysSinceFirstContact": 141,
-      "id": "C362"
+      "id": "C363"
     },
     {
       "name": "C.I.G",
@@ -15563,7 +15580,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 141,
-      "id": "C363"
+      "id": "C364"
     },
     {
       "name": "DEESTONE CORPORATION PUBLIC COMPANY LIMITED",
@@ -15580,7 +15597,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 139,
-      "id": "C364"
+      "id": "C365"
     },
     {
       "name": "MALEE GROUP PUBLIC COMPANY LIMITED",
@@ -15597,7 +15614,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 139,
-      "id": "C365"
+      "id": "C366"
     },
     {
       "name": "SIGMA MACHINERY",
@@ -15614,7 +15631,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 5,
       "daysSinceFirstContact": 134,
-      "id": "C366"
+      "id": "C367"
     },
     {
       "name": "K.S.I.",
@@ -15631,7 +15648,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 134,
-      "id": "C367"
+      "id": "C368"
     },
     {
       "name": "MCP",
@@ -15648,7 +15665,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 132,
-      "id": "C368"
+      "id": "C369"
     },
     {
       "name": "RAYA",
@@ -15665,7 +15682,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 12,
       "daysSinceFirstContact": 133,
-      "id": "C369"
+      "id": "C370"
     },
     {
       "name": "C.I.G.",
@@ -15682,7 +15699,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 132,
-      "id": "C370"
+      "id": "C371"
     },
     {
       "name": "Global Mind Co.,Ltd.",
@@ -15699,7 +15716,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 133,
-      "id": "C371"
+      "id": "C372"
     },
     {
       "name": "CIG",
@@ -15716,7 +15733,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 2,
       "daysSinceFirstContact": 127,
-      "id": "C372"
+      "id": "C373"
     },
     {
       "name": "Vilak Pharma Co.,Ltd.",
@@ -15733,7 +15750,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 128,
-      "id": "C373"
+      "id": "C374"
     },
     {
       "name": "Thai aviation industries co. ltd",
@@ -15750,7 +15767,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 128,
-      "id": "C374"
+      "id": "C375"
     },
     {
       "name": "P.Y. & P AUTO",
@@ -15767,7 +15784,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 127,
-      "id": "C375"
+      "id": "C376"
     },
     {
       "name": "ADITYA BIRLA CHEMICALS",
@@ -15784,7 +15801,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 127,
-      "id": "C376"
+      "id": "C377"
     },
     {
       "name": "INNO STORIES COMPANY LIMITED",
@@ -15801,7 +15818,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 127,
-      "id": "C377"
+      "id": "C378"
     },
     {
       "name": "SEAFRESH INDUSTRY PUBLIC COMPANY LIMITED",
@@ -15818,7 +15835,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 128,
-      "id": "C378"
+      "id": "C379"
     },
     {
       "name": "Steelheads Comercial Ltd.",
@@ -15835,7 +15852,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 127,
-      "id": "C379"
+      "id": "C380"
     },
     {
       "name": "TROPICAL GREEN",
@@ -15852,7 +15869,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 3,
       "daysSinceFirstContact": 101,
-      "id": "C380"
+      "id": "C381"
     },
     {
       "name": "Lucky Union",
@@ -15869,7 +15886,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 1,
       "daysSinceFirstContact": 99,
-      "id": "C381"
+      "id": "C382"
     },
     {
       "name": "Siam Canadian",
@@ -15886,7 +15903,7 @@
       "contactsThisMonth": 4,
       "quotationsSent": 11,
       "daysSinceFirstContact": 99,
-      "id": "C382"
+      "id": "C383"
     },
     {
       "name": "Raya Green",
@@ -15903,7 +15920,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 92,
-      "id": "C383"
+      "id": "C384"
     },
     {
       "name": "FREEDOM TRADING 2019",
@@ -15920,7 +15937,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 101,
-      "id": "C384"
+      "id": "C385"
     },
     {
       "name": "Syaqua",
@@ -15937,7 +15954,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 99,
-      "id": "C385"
+      "id": "C386"
     },
     {
       "name": "Pacific marine",
@@ -15954,7 +15971,7 @@
       "contactsThisMonth": 4,
       "quotationsSent": 1,
       "daysSinceFirstContact": 101,
-      "id": "C386"
+      "id": "C387"
     },
     {
       "name": "JAPAN PULP",
@@ -15971,7 +15988,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 101,
-      "id": "C387"
+      "id": "C388"
     },
     {
       "name": "King huat",
@@ -15988,7 +16005,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 101,
-      "id": "C388"
+      "id": "C389"
     },
     {
       "name": "ALPHA MARINE CO.,LTD.",
@@ -16005,7 +16022,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 98,
-      "id": "C389"
+      "id": "C390"
     },
     {
       "name": "KF FOOD",
@@ -16022,7 +16039,7 @@
       "contactsThisMonth": 7,
       "quotationsSent": 2,
       "daysSinceFirstContact": 97,
-      "id": "C390"
+      "id": "C391"
     },
     {
       "name": "thai summit",
@@ -16039,7 +16056,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 97,
-      "id": "C391"
+      "id": "C392"
     },
     {
       "name": "Surint Omya Chemicals (Thailand) Co.,Ltd.",
@@ -16056,7 +16073,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 2,
       "daysSinceFirstContact": 99,
-      "id": "C392"
+      "id": "C393"
     },
     {
       "name": "SEAFOOD INDUSTRIAL GROUP CO.,LTD.​​",
@@ -16073,7 +16090,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 97,
-      "id": "C393"
+      "id": "C394"
     },
     {
       "name": "VANDAPAC",
@@ -16090,7 +16107,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 5,
       "daysSinceFirstContact": 93,
-      "id": "C394"
+      "id": "C395"
     },
     {
       "name": "OTT Logistics (Thailand) Co.,Ltd.",
@@ -16107,7 +16124,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 91,
-      "id": "C395"
+      "id": "C396"
     },
     {
       "name": "BIg food group",
@@ -16124,7 +16141,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 90,
-      "id": "C396"
+      "id": "C397"
     },
     {
       "name": "SRIVATTANA INTERPRINT",
@@ -16141,7 +16158,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 90,
-      "id": "C397"
+      "id": "C398"
     },
     {
       "name": "SV POLYMER",
@@ -16158,7 +16175,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 90,
-      "id": "C398"
+      "id": "C399"
     },
     {
       "name": "ENERGREENASIA",
@@ -16175,7 +16192,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 90,
-      "id": "C399"
+      "id": "C400"
     },
     {
       "name": "FADNUMCHOK",
@@ -16192,7 +16209,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 4,
       "daysSinceFirstContact": 86,
-      "id": "C400"
+      "id": "C401"
     },
     {
       "name": "HWA FONG RUBBER",
@@ -16209,7 +16226,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 3,
       "daysSinceFirstContact": 86,
-      "id": "C401"
+      "id": "C402"
     },
     {
       "name": "Teppitak",
@@ -16226,7 +16243,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 87,
-      "id": "C402"
+      "id": "C403"
     },
     {
       "name": "Thai summit",
@@ -16243,7 +16260,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 86,
-      "id": "C403"
+      "id": "C404"
     },
     {
       "name": "Lucky unoin",
@@ -16260,7 +16277,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 87,
-      "id": "C404"
+      "id": "C405"
     },
     {
       "name": "Tropical green",
@@ -16268,16 +16285,16 @@
       "stage": "negotiate",
       "location": "Qinzhou",
       "industry": "Fruit",
-      "lastActivity": "2026-06-09",
+      "lastActivity": "2026-06-11",
       "firstContactDate": "2026-03-17",
       "owner": "s10",
       "potentialTeu": 2,
       "notes": "",
       "sinceWeek": "W12",
       "contactsThisMonth": 5,
-      "quotationsSent": 1,
+      "quotationsSent": 2,
       "daysSinceFirstContact": 86,
-      "id": "C405"
+      "id": "C406"
     },
     {
       "name": "BIG FOOD GROUP",
@@ -16294,7 +16311,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 86,
-      "id": "C406"
+      "id": "C407"
     },
     {
       "name": "ANUSORN MAHACHAI SUREMI",
@@ -16311,7 +16328,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 93,
-      "id": "C407"
+      "id": "C408"
     },
     {
       "name": "Srup Anan Plastic Co.,Ltd",
@@ -16328,7 +16345,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 84,
-      "id": "C408"
+      "id": "C409"
     },
     {
       "name": "New Star Frozen Foods (Thailand)",
@@ -16345,7 +16362,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 86,
-      "id": "C409"
+      "id": "C410"
     },
     {
       "name": "BLACKROCK AUTO CO., LTD.",
@@ -16362,7 +16379,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 84,
-      "id": "C410"
+      "id": "C411"
     },
     {
       "name": "IRONMAN 4 BY 4 (THAILAND) COMPANY LIMITED",
@@ -16379,7 +16396,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 84,
-      "id": "C411"
+      "id": "C412"
     },
     {
       "name": "AL Jawhara Co.,Ltd.",
@@ -16396,7 +16413,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 85,
-      "id": "C412"
+      "id": "C413"
     },
     {
       "name": "Swift",
@@ -16413,7 +16430,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 4,
       "daysSinceFirstContact": 86,
-      "id": "C413"
+      "id": "C414"
     },
     {
       "name": "A.S.P.INTERNATION HERBAL SOAP CO.,LTD.",
@@ -16430,7 +16447,7 @@
       "contactsThisMonth": 10,
       "quotationsSent": 1,
       "daysSinceFirstContact": 79,
-      "id": "C414"
+      "id": "C415"
     },
     {
       "name": "ANUSORN MAHACHAI",
@@ -16447,7 +16464,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 79,
-      "id": "C415"
+      "id": "C416"
     },
     {
       "name": "AIR RADIATORS",
@@ -16464,7 +16481,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 80,
-      "id": "C416"
+      "id": "C417"
     },
     {
       "name": "SOKEN CHEMICAL ASIA CO.,LTD.",
@@ -16481,7 +16498,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 79,
-      "id": "C417"
+      "id": "C418"
     },
     {
       "name": "Smile heart foods",
@@ -16498,7 +16515,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 2,
       "daysSinceFirstContact": 79,
-      "id": "C418"
+      "id": "C419"
     },
     {
       "name": "FREEDOM TRADING 2019 COMPANY LIMITED",
@@ -16515,7 +16532,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 80,
-      "id": "C419"
+      "id": "C420"
     },
     {
       "name": "Sigma machinery co., ltd.",
@@ -16532,7 +16549,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 3,
       "daysSinceFirstContact": 79,
-      "id": "C420"
+      "id": "C421"
     },
     {
       "name": "Y.S.S (THAILAND) Public Company Limited",
@@ -16549,7 +16566,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 79,
-      "id": "C421"
+      "id": "C422"
     },
     {
       "name": "THAI AVIATION INDUSTRIES COMPANY LIMITED",
@@ -16566,7 +16583,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 78,
-      "id": "C422"
+      "id": "C423"
     },
     {
       "name": "BS TOOLS CO., LTD.",
@@ -16583,7 +16600,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 77,
-      "id": "C423"
+      "id": "C424"
     },
     {
       "name": "GOLD KAL CO., LTD.",
@@ -16600,7 +16617,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 79,
-      "id": "C424"
+      "id": "C425"
     },
     {
       "name": "Thai Engineering Products Co., Ltd.",
@@ -16617,7 +16634,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 76,
-      "id": "C425"
+      "id": "C426"
     },
     {
       "name": "VOLLMER ASIA PACIFIC CO., LTD.",
@@ -16634,7 +16651,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 76,
-      "id": "C426"
+      "id": "C427"
     },
     {
       "name": "KODANMAL GROUP",
@@ -16651,7 +16668,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 76,
-      "id": "C427"
+      "id": "C428"
     },
     {
       "name": "V. I. INTERNATIONAL",
@@ -16668,7 +16685,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 76,
-      "id": "C428"
+      "id": "C429"
     },
     {
       "name": "GRACE FOOD",
@@ -16685,7 +16702,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 76,
-      "id": "C429"
+      "id": "C430"
     },
     {
       "name": "Food Ingredient Technology Co., Ltd.",
@@ -16702,7 +16719,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 72,
-      "id": "C430"
+      "id": "C431"
     },
     {
       "name": "SMILE HEART FOODS",
@@ -16719,7 +16736,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 1,
       "daysSinceFirstContact": 71,
-      "id": "C431"
+      "id": "C432"
     },
     {
       "name": "Lucky union",
@@ -16736,7 +16753,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 71,
-      "id": "C432"
+      "id": "C433"
     },
     {
       "name": "sea-tech intertrade",
@@ -16753,7 +16770,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 65,
-      "id": "C433"
+      "id": "C434"
     },
     {
       "name": "VEE RUBBER",
@@ -16770,7 +16787,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 64,
-      "id": "C434"
+      "id": "C435"
     },
     {
       "name": "Asian Seafood",
@@ -16787,7 +16804,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 3,
       "daysSinceFirstContact": 64,
-      "id": "C435"
+      "id": "C436"
     },
     {
       "name": "K Fresh",
@@ -16804,7 +16821,7 @@
       "contactsThisMonth": 5,
       "quotationsSent": 1,
       "daysSinceFirstContact": 63,
-      "id": "C436"
+      "id": "C437"
     },
     {
       "name": "PRIMAHAM",
@@ -16821,7 +16838,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 63,
-      "id": "C437"
+      "id": "C438"
     },
     {
       "name": "SWEES PLANT",
@@ -16838,7 +16855,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 63,
-      "id": "C438"
+      "id": "C439"
     },
     {
       "name": "Processing Technology (Thailand) Co., Ltd.",
@@ -16855,7 +16872,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 63,
-      "id": "C439"
+      "id": "C440"
     },
     {
       "name": "Smile heart",
@@ -16872,7 +16889,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 1,
       "daysSinceFirstContact": 64,
-      "id": "C440"
+      "id": "C441"
     },
     {
       "name": "J-SUMMIT",
@@ -16889,7 +16906,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 56,
-      "id": "C441"
+      "id": "C442"
     },
     {
       "name": "THAI RESOURCES AND REPUTATION",
@@ -16906,7 +16923,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 55,
-      "id": "C442"
+      "id": "C443"
     },
     {
       "name": "P.Y. & .P AUTO",
@@ -16923,7 +16940,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 49,
-      "id": "C443"
+      "id": "C444"
     },
     {
       "name": "360 Degrees Solutions Co. Ltd.",
@@ -16940,7 +16957,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 49,
-      "id": "C444"
+      "id": "C445"
     },
     {
       "name": "Air radiators",
@@ -16957,7 +16974,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 3,
       "daysSinceFirstContact": 50,
-      "id": "C445"
+      "id": "C446"
     },
     {
       "name": "K-Fresh",
@@ -16974,7 +16991,7 @@
       "contactsThisMonth": 5,
       "quotationsSent": 0,
       "daysSinceFirstContact": 52,
-      "id": "C446"
+      "id": "C447"
     },
     {
       "name": "Mckey",
@@ -16991,7 +17008,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 51,
-      "id": "C447"
+      "id": "C448"
     },
     {
       "name": "SEAWIN FOOD & INGREDIENTS",
@@ -17008,7 +17025,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 1,
       "daysSinceFirstContact": 50,
-      "id": "C448"
+      "id": "C449"
     },
     {
       "name": "ABS FOOD",
@@ -17025,7 +17042,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 52,
-      "id": "C449"
+      "id": "C450"
     },
     {
       "name": "Pick and Peel Thai",
@@ -17042,7 +17059,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 2,
       "daysSinceFirstContact": 49,
-      "id": "C450"
+      "id": "C451"
     },
     {
       "name": "J FRESH SEIKA COMPANY LIMITED",
@@ -17059,7 +17076,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 44,
-      "id": "C451"
+      "id": "C452"
     },
     {
       "name": "HUAYI GROUP (THAILAND) COMPANY LIMITED",
@@ -17076,7 +17093,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 3,
       "daysSinceFirstContact": 45,
-      "id": "C452"
+      "id": "C453"
     },
     {
       "name": "RAYA GREEN",
@@ -17084,16 +17101,16 @@
       "stage": "won",
       "location": "Shanghai",
       "industry": "Forzen fruit",
-      "lastActivity": "2026-06-10",
+      "lastActivity": "2026-06-11",
       "firstContactDate": "2026-04-27",
       "owner": "s11",
       "potentialTeu": 6,
       "notes": "",
       "sinceWeek": "W18",
       "contactsThisMonth": 0,
-      "quotationsSent": 2,
+      "quotationsSent": 3,
       "daysSinceFirstContact": 45,
-      "id": "C453"
+      "id": "C454"
     },
     {
       "name": "McKey",
@@ -17110,7 +17127,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 3,
       "daysSinceFirstContact": 45,
-      "id": "C454"
+      "id": "C455"
     },
     {
       "name": "BENTOLI AGRINUTRITION CO.,LTD.",
@@ -17127,7 +17144,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 44,
-      "id": "C455"
+      "id": "C456"
     },
     {
       "name": "S2K Marine Product Co.,Ltd.",
@@ -17144,7 +17161,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 1,
       "daysSinceFirstContact": 44,
-      "id": "C456"
+      "id": "C457"
     },
     {
       "name": "SUNSHINE INTERNATIONAL (TH) LTD.",
@@ -17161,7 +17178,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 44,
-      "id": "C457"
+      "id": "C458"
     },
     {
       "name": "FongYin",
@@ -17178,7 +17195,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 3,
       "daysSinceFirstContact": 44,
-      "id": "C458"
+      "id": "C459"
     },
     {
       "name": "KL",
@@ -17195,7 +17212,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C459"
+      "id": "C460"
     },
     {
       "name": "HINO",
@@ -17212,7 +17229,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 46,
-      "id": "C460"
+      "id": "C461"
     },
     {
       "name": "LUCKY IUNION",
@@ -17229,7 +17246,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C461"
+      "id": "C462"
     },
     {
       "name": "THAI COCONUT PUBLIC COMPANY LIMITED",
@@ -17246,7 +17263,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C462"
+      "id": "C463"
     },
     {
       "name": "NONG NOOCH LANDSCAPE & GARDEN DESIGN COMPANY LIMITED",
@@ -17263,7 +17280,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C463"
+      "id": "C464"
     },
     {
       "name": "Sea Bonanza Foods Co.,Ltd.",
@@ -17280,7 +17297,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 44,
-      "id": "C464"
+      "id": "C465"
     },
     {
       "name": "Tropical Green",
@@ -17297,7 +17314,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 3,
       "daysSinceFirstContact": 43,
-      "id": "C465"
+      "id": "C466"
     },
     {
       "name": "Kong Phop",
@@ -17314,7 +17331,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 42,
-      "id": "C466"
+      "id": "C467"
     },
     {
       "name": "Freedom trading 2019",
@@ -17331,7 +17348,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 45,
-      "id": "C467"
+      "id": "C468"
     },
     {
       "name": "thai aviation industries co. ltd",
@@ -17348,7 +17365,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C468"
+      "id": "C469"
     },
     {
       "name": "AG WORLD INTERTRADE CO.,LTD",
@@ -17365,7 +17382,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C469"
+      "id": "C470"
     },
     {
       "name": "P.Y. & P. AUTO",
@@ -17382,7 +17399,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 2,
       "daysSinceFirstContact": 43,
-      "id": "C470"
+      "id": "C471"
     },
     {
       "name": "New Star Frozen Foods",
@@ -17399,7 +17416,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 42,
-      "id": "C471"
+      "id": "C472"
     },
     {
       "name": "TTA",
@@ -17416,7 +17433,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 42,
-      "id": "C472"
+      "id": "C473"
     },
     {
       "name": "Latto Food And Drink Co., Ltd.",
@@ -17433,7 +17450,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C473"
+      "id": "C474"
     },
     {
       "name": "Leeyahalalfoods Co., Ltd.",
@@ -17450,7 +17467,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C474"
+      "id": "C475"
     },
     {
       "name": "Lengheng Agrifoods Co.,Ltd",
@@ -17467,7 +17484,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C475"
+      "id": "C476"
     },
     {
       "name": "CARABAO TAWAN DAENG",
@@ -17484,7 +17501,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C476"
+      "id": "C477"
     },
     {
       "name": "S.M.C FOOD",
@@ -17501,7 +17518,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C477"
+      "id": "C478"
     },
     {
       "name": "ABS Foods (Thai) Co., Ltd.",
@@ -17518,7 +17535,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C478"
+      "id": "C479"
     },
     {
       "name": "Kodanmal",
@@ -17535,7 +17552,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C479"
+      "id": "C480"
     },
     {
       "name": "Covernut Intertrade Co., Ltd.",
@@ -17552,7 +17569,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C480"
+      "id": "C481"
     },
     {
       "name": "P.T. Foodstuffs",
@@ -17569,7 +17586,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C481"
+      "id": "C482"
     },
     {
       "name": "Pick and peel thai",
@@ -17586,7 +17603,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 42,
-      "id": "C482"
+      "id": "C483"
     },
     {
       "name": "Thai Chim Ltd.",
@@ -17603,7 +17620,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C483"
+      "id": "C484"
     },
     {
       "name": "GRACE FOOD CO., LTD.",
@@ -17620,7 +17637,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C484"
+      "id": "C485"
     },
     {
       "name": "SMART FRUITS AND FOODS",
@@ -17637,7 +17654,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C485"
+      "id": "C486"
     },
     {
       "name": "APEX INTER TRADING CO., LTD.",
@@ -17654,7 +17671,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C486"
+      "id": "C487"
     },
     {
       "name": "Thaveevong Industry Co., Ltd.",
@@ -17671,7 +17688,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C487"
+      "id": "C488"
     },
     {
       "name": "P&F TECHOLOGY",
@@ -17688,7 +17705,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C488"
+      "id": "C489"
     },
     {
       "name": "Sea-Tech Intertrade Co., Ltd.",
@@ -17705,7 +17722,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C489"
+      "id": "C490"
     },
     {
       "name": "SUNFLAG CO,LTD.",
@@ -17722,7 +17739,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C490"
+      "id": "C491"
     },
     {
       "name": "KIANG HUAT",
@@ -17739,7 +17756,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 2,
       "daysSinceFirstContact": 37,
-      "id": "C491"
+      "id": "C492"
     },
     {
       "name": "ALPHA",
@@ -17756,7 +17773,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 37,
-      "id": "C492"
+      "id": "C493"
     },
     {
       "name": "TEPPITAK",
@@ -17773,7 +17790,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 37,
-      "id": "C493"
+      "id": "C494"
     },
     {
       "name": "PACIFIC MARINE",
@@ -17790,7 +17807,7 @@
       "contactsThisMonth": 4,
       "quotationsSent": 2,
       "daysSinceFirstContact": 37,
-      "id": "C494"
+      "id": "C495"
     },
     {
       "name": "THAI SUMMIT",
@@ -17807,7 +17824,7 @@
       "contactsThisMonth": 5,
       "quotationsSent": 1,
       "daysSinceFirstContact": 36,
-      "id": "C495"
+      "id": "C496"
     },
     {
       "name": "DALIY PLUS",
@@ -17824,7 +17841,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C496"
+      "id": "C497"
     },
     {
       "name": "LUCKY UNION",
@@ -17841,7 +17858,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 35,
-      "id": "C497"
+      "id": "C498"
     },
     {
       "name": "Carabao tawan daeng",
@@ -17858,7 +17875,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C498"
+      "id": "C499"
     },
     {
       "name": "SMC FOOD",
@@ -17875,7 +17892,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 1,
       "daysSinceFirstContact": 35,
-      "id": "C499"
+      "id": "C500"
     },
     {
       "name": "sunflag",
@@ -17892,7 +17909,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C500"
+      "id": "C501"
     },
     {
       "name": "THAI PET RESIN CO.,LTD.",
@@ -17909,7 +17926,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 37,
-      "id": "C501"
+      "id": "C502"
     },
     {
       "name": "Srup Anan Plastic Co.,Ltd.",
@@ -17926,7 +17943,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 36,
-      "id": "C502"
+      "id": "C503"
     },
     {
       "name": "Procare",
@@ -17943,7 +17960,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 35,
-      "id": "C503"
+      "id": "C504"
     },
     {
       "name": "A.E.C. Canning Co., Ltd.",
@@ -17960,7 +17977,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C504"
+      "id": "C505"
     },
     {
       "name": "TANGYINGWATTANA",
@@ -17977,7 +17994,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 34,
-      "id": "C505"
+      "id": "C506"
     },
     {
       "name": "Smile Heart Foods",
@@ -17994,7 +18011,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 34,
-      "id": "C506"
+      "id": "C507"
     },
     {
       "name": "SEAFOOD INDUSTRIAL GROUP CO.,LTD.",
@@ -18011,7 +18028,7 @@
       "contactsThisMonth": 5,
       "quotationsSent": 0,
       "daysSinceFirstContact": 31,
-      "id": "C507"
+      "id": "C508"
     },
     {
       "name": "Japan Pulp",
@@ -18028,7 +18045,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 29,
-      "id": "C508"
+      "id": "C509"
     },
     {
       "name": "KSN",
@@ -18045,7 +18062,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 2,
       "daysSinceFirstContact": 31,
-      "id": "C509"
+      "id": "C510"
     },
     {
       "name": "NC COCONUT CO., LTD.",
@@ -18062,7 +18079,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 30,
-      "id": "C510"
+      "id": "C511"
     },
     {
       "name": "RUIHUA",
@@ -18079,7 +18096,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 29,
-      "id": "C511"
+      "id": "C512"
     },
     {
       "name": "Chiang Mai Healthy Product Co.,Ltd",
@@ -18096,7 +18113,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 30,
-      "id": "C512"
+      "id": "C513"
     },
     {
       "name": "Processing Technology (Thailand)",
@@ -18113,7 +18130,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 30,
-      "id": "C513"
+      "id": "C514"
     },
     {
       "name": "OITA COMPANY LIMITED",
@@ -18130,7 +18147,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 29,
-      "id": "C514"
+      "id": "C515"
     },
     {
       "name": "KAMONRATRUNGRAUNG FOODS",
@@ -18147,7 +18164,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 30,
-      "id": "C515"
+      "id": "C516"
     },
     {
       "name": "LILY TOBEKA",
@@ -18164,7 +18181,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 29,
-      "id": "C516"
+      "id": "C517"
     },
     {
       "name": "YU NIRAN PHUET PHON",
@@ -18181,7 +18198,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 29,
-      "id": "C517"
+      "id": "C518"
     },
     {
       "name": "GENERAL BEVERAGE",
@@ -18198,7 +18215,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C518"
+      "id": "C519"
     },
     {
       "name": "PHUTOEIWATANAKASATPUN",
@@ -18215,7 +18232,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 28,
-      "id": "C519"
+      "id": "C520"
     },
     {
       "name": "Dutch Mill",
@@ -18232,7 +18249,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C520"
+      "id": "C521"
     },
     {
       "name": "Sinnansan CO.,Ltd.",
@@ -18249,7 +18266,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 24,
-      "id": "C521"
+      "id": "C522"
     },
     {
       "name": "Delta Compressor (Asia) Co.,Ltd.",
@@ -18266,7 +18283,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 23,
-      "id": "C522"
+      "id": "C523"
     },
     {
       "name": "GIS Co., Ltd.",
@@ -18283,7 +18300,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 23,
-      "id": "C523"
+      "id": "C524"
     },
     {
       "name": "AZGA ELECTRIC CO.,LTD.",
@@ -18300,7 +18317,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 23,
-      "id": "C524"
+      "id": "C525"
     },
     {
       "name": "Cleverlab Co., Ltd.",
@@ -18317,7 +18334,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 23,
-      "id": "C525"
+      "id": "C526"
     },
     {
       "name": "Ocean fishery",
@@ -18334,7 +18351,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 23,
-      "id": "C526"
+      "id": "C527"
     },
     {
       "name": "Japan pulp",
@@ -18351,7 +18368,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C527"
+      "id": "C528"
     },
     {
       "name": "ROBOT OUTSOURCING PROVIDER Co.,Ltd",
@@ -18368,7 +18385,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 2,
       "daysSinceFirstContact": 23,
-      "id": "C528"
+      "id": "C529"
     },
     {
       "name": "SAB Plastmach Co.,Ltd.",
@@ -18385,7 +18402,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 23,
-      "id": "C529"
+      "id": "C530"
     },
     {
       "name": "I-CY CHAYA",
@@ -18402,7 +18419,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 23,
-      "id": "C530"
+      "id": "C531"
     },
     {
       "name": "NINE STAR FARM",
@@ -18419,7 +18436,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 3,
       "daysSinceFirstContact": 23,
-      "id": "C531"
+      "id": "C532"
     },
     {
       "name": "Lakeside",
@@ -18436,7 +18453,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 23,
-      "id": "C532"
+      "id": "C533"
     },
     {
       "name": "V.S. FRESHCO",
@@ -18453,7 +18470,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 23,
-      "id": "C533"
+      "id": "C534"
     },
     {
       "name": "DUCTH MILL",
@@ -18470,7 +18487,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 2,
       "daysSinceFirstContact": 23,
-      "id": "C534"
+      "id": "C535"
     },
     {
       "name": "CP",
@@ -18487,7 +18504,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 23,
-      "id": "C535"
+      "id": "C536"
     },
     {
       "name": "Aviatec Ltd.",
@@ -18504,7 +18521,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C536"
+      "id": "C537"
     },
     {
       "name": "Peerapat Technology Public Company Limited",
@@ -18521,7 +18538,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C537"
+      "id": "C538"
     },
     {
       "name": "New Star Frozen Foods (Thailand) Co.,Ltd.",
@@ -18538,7 +18555,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 3,
       "daysSinceFirstContact": 22,
-      "id": "C538"
+      "id": "C539"
     },
     {
       "name": "URC Thailand",
@@ -18555,7 +18572,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C539"
+      "id": "C540"
     },
     {
       "name": "Tomy Intertrade",
@@ -18572,7 +18589,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C540"
+      "id": "C541"
     },
     {
       "name": "THAI AVIATION INDUSTRIES CO., LTD.",
@@ -18589,7 +18606,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 21,
-      "id": "C541"
+      "id": "C542"
     },
     {
       "name": "THE SELECTIVE CO., LTD.",
@@ -18606,7 +18623,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 21,
-      "id": "C542"
+      "id": "C543"
     },
     {
       "name": "PRIME FOOD",
@@ -18623,7 +18640,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 21,
-      "id": "C543"
+      "id": "C544"
     },
     {
       "name": "Ducth Mill",
@@ -18640,7 +18657,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 21,
-      "id": "C544"
+      "id": "C545"
     },
     {
       "name": "Chonburi lc",
@@ -18657,7 +18674,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 21,
-      "id": "C545"
+      "id": "C546"
     },
     {
       "name": "E CHAN FOODS",
@@ -18674,7 +18691,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 21,
-      "id": "C546"
+      "id": "C547"
     },
     {
       "name": "OITA",
@@ -18691,7 +18708,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 21,
-      "id": "C547"
+      "id": "C548"
     },
     {
       "name": "UNITED MACHING",
@@ -18708,7 +18725,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 22,
-      "id": "C548"
+      "id": "C549"
     },
     {
       "name": "SUNFLAG",
@@ -18725,7 +18742,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 21,
-      "id": "C549"
+      "id": "C550"
     },
     {
       "name": "CHILLING TON TOOL",
@@ -18742,7 +18759,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 23,
-      "id": "C550"
+      "id": "C551"
     },
     {
       "name": "Klongluang Utility Co., Ltd.",
@@ -18759,7 +18776,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 21,
-      "id": "C551"
+      "id": "C552"
     },
     {
       "name": "Grace Food",
@@ -18776,7 +18793,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 23,
-      "id": "C552"
+      "id": "C553"
     },
     {
       "name": "PARIS BANGKOK BAKERY",
@@ -18793,7 +18810,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 23,
-      "id": "C553"
+      "id": "C554"
     },
     {
       "name": "REA SEA (THAILAND)",
@@ -18810,7 +18827,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 22,
-      "id": "C554"
+      "id": "C555"
     },
     {
       "name": "STANDARD CAN",
@@ -18827,7 +18844,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C555"
+      "id": "C556"
     },
     {
       "name": "Z TO A BEVERAGE",
@@ -18844,7 +18861,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 20,
-      "id": "C556"
+      "id": "C557"
     },
     {
       "name": "VENTE TRADE",
@@ -18861,7 +18878,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 20,
-      "id": "C557"
+      "id": "C558"
     },
     {
       "name": "Nitera Asia Co., Ltd.",
@@ -18878,7 +18895,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 21,
-      "id": "C558"
+      "id": "C559"
     },
     {
       "name": "Smile herat foods",
@@ -18895,7 +18912,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 2,
       "daysSinceFirstContact": 20,
-      "id": "C559"
+      "id": "C560"
     },
     {
       "name": "Haitong supplychain management",
@@ -18912,7 +18929,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 20,
-      "id": "C560"
+      "id": "C561"
     },
     {
       "name": "A.E.C. CANNING CO., LTD",
@@ -18929,7 +18946,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 17,
-      "id": "C561"
+      "id": "C562"
     },
     {
       "name": "Chusilp Group Trading Co., Ltd.",
@@ -18946,7 +18963,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 16,
-      "id": "C562"
+      "id": "C563"
     },
     {
       "name": "ALOFT LADDER CO",
@@ -18963,7 +18980,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 16,
-      "id": "C563"
+      "id": "C564"
     },
     {
       "name": "THAIFEX",
@@ -18980,7 +18997,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 15,
-      "id": "C564"
+      "id": "C565"
     },
     {
       "name": "sigma machinery co. ltd",
@@ -18997,7 +19014,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 3,
       "daysSinceFirstContact": 14,
-      "id": "C565"
+      "id": "C566"
     },
     {
       "name": "T N D FOODS INDUSTRY",
@@ -19014,7 +19031,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 17,
-      "id": "C566"
+      "id": "C567"
     },
     {
       "name": "OCTA FOODS",
@@ -19031,7 +19048,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 17,
-      "id": "C567"
+      "id": "C568"
     },
     {
       "name": "R.S.DOMESTIC TRADING CO.,LTD",
@@ -19048,7 +19065,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 14,
-      "id": "C568"
+      "id": "C569"
     },
     {
       "name": "Dana Spicer (Thailand) Co., Ltd.",
@@ -19065,7 +19082,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 14,
-      "id": "C569"
+      "id": "C570"
     },
     {
       "name": "Amazing Tuna Co., Ltd.",
@@ -19082,7 +19099,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 15,
-      "id": "C570"
+      "id": "C571"
     },
     {
       "name": "SIAM INTERSEA",
@@ -19099,7 +19116,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 16,
-      "id": "C571"
+      "id": "C572"
     },
     {
       "name": "Ruihua",
@@ -19116,7 +19133,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 15,
-      "id": "C572"
+      "id": "C573"
     },
     {
       "name": "KL Interfood",
@@ -19133,7 +19150,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 15,
-      "id": "C573"
+      "id": "C574"
     },
     {
       "name": "FongYing",
@@ -19150,7 +19167,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 14,
-      "id": "C574"
+      "id": "C575"
     },
     {
       "name": "Harmless Harvest (thailand)",
@@ -19167,7 +19184,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 14,
-      "id": "C575"
+      "id": "C576"
     },
     {
       "name": "Thaivana",
@@ -19184,7 +19201,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 14,
-      "id": "C576"
+      "id": "C577"
     },
     {
       "name": "T.M.THAIRICE",
@@ -19201,7 +19218,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 16,
-      "id": "C577"
+      "id": "C578"
     },
     {
       "name": "NEW CONCEPT PRODUCT",
@@ -19218,7 +19235,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 16,
-      "id": "C578"
+      "id": "C579"
     },
     {
       "name": "SIRIMONGKOL CORPORATE",
@@ -19226,16 +19243,16 @@
       "stage": "contact",
       "location": "",
       "industry": "",
-      "lastActivity": "2026-06-22",
-      "firstContactDate": "2026-06-22",
+      "lastActivity": "2026-05-22",
+      "firstContactDate": "2026-05-22",
       "owner": "s12",
       "potentialTeu": 0,
       "notes": "",
-      "sinceWeek": "W26",
+      "sinceWeek": "W21",
       "contactsThisMonth": 1,
       "quotationsSent": 0,
-      "daysSinceFirstContact": 0,
-      "id": "C579"
+      "daysSinceFirstContact": 20,
+      "id": "C580"
     },
     {
       "name": "FRESH POINT",
@@ -19252,7 +19269,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 14,
-      "id": "C580"
+      "id": "C581"
     },
     {
       "name": "AMERICAN FOOD",
@@ -19269,7 +19286,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 14,
-      "id": "C581"
+      "id": "C582"
     },
     {
       "name": "KODANMAL",
@@ -19286,7 +19303,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 16,
-      "id": "C582"
+      "id": "C583"
     },
     {
       "name": "MAXXIS INTERNATIONAL (THAILAND) COMPANY LIMITED",
@@ -19303,7 +19320,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 9,
-      "id": "C583"
+      "id": "C584"
     },
     {
       "name": "ALOFT LADDER CO.,LTD",
@@ -19320,7 +19337,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 9,
-      "id": "C584"
+      "id": "C585"
     },
     {
       "name": "DO FOOD COMPANY",
@@ -19337,7 +19354,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 9,
-      "id": "C585"
+      "id": "C586"
     },
     {
       "name": "BENTOLI AGRINUTRITION Co.,Ltd.",
@@ -19354,7 +19371,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 6,
-      "id": "C586"
+      "id": "C587"
     },
     {
       "name": "JD FOOD",
@@ -19371,7 +19388,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 6,
-      "id": "C587"
+      "id": "C588"
     },
     {
       "name": "Blue Jay",
@@ -19388,7 +19405,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 6,
-      "id": "C588"
+      "id": "C589"
     },
     {
       "name": "Plus Coconut",
@@ -19405,7 +19422,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 1,
       "daysSinceFirstContact": 6,
-      "id": "C589"
+      "id": "C590"
     },
     {
       "name": "Sumitomo Rubber (Thailand) Co., Ltd.",
@@ -19422,7 +19439,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 6,
-      "id": "C590"
+      "id": "C591"
     },
     {
       "name": "Dow Chemical Thailand Co., Ltd.",
@@ -19439,7 +19456,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 2,
-      "id": "C591"
+      "id": "C592"
     },
     {
       "name": "I COCO",
@@ -19456,7 +19473,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 3,
-      "id": "C592"
+      "id": "C593"
     },
     {
       "name": "HARMLESS HARVEST",
@@ -19473,7 +19490,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 1,
       "daysSinceFirstContact": 2,
-      "id": "C593"
+      "id": "C594"
     },
     {
       "name": "ED&F Man Sugar Ltd",
@@ -19490,7 +19507,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 4,
       "daysSinceFirstContact": 2,
-      "id": "C594"
+      "id": "C595"
     },
     {
       "name": "P.Y. & P. Auto",
@@ -19507,7 +19524,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 2,
-      "id": "C595"
+      "id": "C596"
     },
     {
       "name": "JIRAPORNFOOD CO.,LTD",
@@ -19524,7 +19541,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 0,
-      "id": "C596"
+      "id": "C597"
     },
     {
       "name": "SGI International",
@@ -19541,7 +19558,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 1,
-      "id": "C597"
+      "id": "C598"
     },
     {
       "name": "Sun Sweet",
@@ -19558,7 +19575,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 1,
-      "id": "C598"
+      "id": "C599"
     },
     {
       "name": "Thai cargo",
@@ -19575,7 +19592,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 1,
-      "id": "C599"
+      "id": "C600"
     },
     {
       "name": "Belmex",
@@ -19592,7 +19609,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 1,
-      "id": "C600"
+      "id": "C601"
     },
     {
       "name": "Arcelik Hitachi",
@@ -19609,7 +19626,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 0,
       "daysSinceFirstContact": 1,
-      "id": "C601"
+      "id": "C602"
     },
     {
       "name": "Deestone corporation public company limited",
@@ -19626,7 +19643,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 1,
-      "id": "C602"
+      "id": "C603"
     },
     {
       "name": "KOR YONG CHIENG GROUP COMPANY LIMITED",
@@ -19643,7 +19660,7 @@
       "contactsThisMonth": 0,
       "quotationsSent": 1,
       "daysSinceFirstContact": 1,
-      "id": "C603"
+      "id": "C604"
     },
     {
       "name": "Ducth mill",
@@ -19660,7 +19677,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 1,
-      "id": "C604"
+      "id": "C605"
     },
     {
       "name": "BDP [Agent]",
@@ -19677,7 +19694,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C605"
+      "id": "C606"
     },
     {
       "name": "SFS [Agent]",
@@ -19694,7 +19711,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C606"
+      "id": "C607"
     },
     {
       "name": "PROXIMA [Agent]",
@@ -19711,7 +19728,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C607"
+      "id": "C608"
     },
     {
       "name": "GLOBWIN [Agent]",
@@ -19728,7 +19745,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 39,
-      "id": "C608"
+      "id": "C609"
     },
     {
       "name": "VERTEX [Agent]",
@@ -19745,7 +19762,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 39,
-      "id": "C609"
+      "id": "C610"
     },
     {
       "name": "AGEON SHIPPING [Agent]",
@@ -19762,7 +19779,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C610"
+      "id": "C611"
     },
     {
       "name": "FAMOUS [Agent]",
@@ -19779,7 +19796,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C611"
+      "id": "C612"
     },
     {
       "name": "LLP [Agent]",
@@ -19796,7 +19813,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C612"
+      "id": "C613"
     },
     {
       "name": "THAI WARASAP",
@@ -19813,7 +19830,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C613"
+      "id": "C614"
     },
     {
       "name": "HKS",
@@ -19830,7 +19847,7 @@
       "contactsThisMonth": 4,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C614"
+      "id": "C615"
     },
     {
       "name": "TTN",
@@ -19847,7 +19864,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C615"
+      "id": "C616"
     },
     {
       "name": "ROCKERS",
@@ -19864,7 +19881,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C616"
+      "id": "C617"
     },
     {
       "name": "NAKHON COLOMBO",
@@ -19881,7 +19898,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C617"
+      "id": "C618"
     },
     {
       "name": "BETIME",
@@ -19898,7 +19915,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 41,
-      "id": "C618"
+      "id": "C619"
     },
     {
       "name": "CHUSILP",
@@ -19915,7 +19932,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C619"
+      "id": "C620"
     },
     {
       "name": "KRUNGSIAM",
@@ -19932,7 +19949,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C620"
+      "id": "C621"
     },
     {
       "name": "RONI MOTORS",
@@ -19949,7 +19966,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C621"
+      "id": "C622"
     },
     {
       "name": "BDL [Agent]",
@@ -19966,7 +19983,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 40,
-      "id": "C622"
+      "id": "C623"
     },
     {
       "name": "SIAM AUTOMOBILE",
@@ -19983,7 +20000,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C623"
+      "id": "C624"
     },
     {
       "name": "CONCORDE [Agent]",
@@ -20000,7 +20017,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C624"
+      "id": "C625"
     },
     {
       "name": "GTL EUROPE [Agent]",
@@ -20017,7 +20034,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C625"
+      "id": "C626"
     },
     {
       "name": "TRANSGATE [Agent]",
@@ -20034,7 +20051,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C626"
+      "id": "C627"
     },
     {
       "name": "AFFINITY LOGISTICS [Agent]",
@@ -20051,7 +20068,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C627"
+      "id": "C628"
     },
     {
       "name": "THAI AGRI",
@@ -20068,7 +20085,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C628"
+      "id": "C629"
     },
     {
       "name": "Colombo Freight [Agent]",
@@ -20085,7 +20102,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 26,
-      "id": "C629"
+      "id": "C630"
     },
     {
       "name": "Power Export",
@@ -20102,7 +20119,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 31,
-      "id": "C630"
+      "id": "C631"
     },
     {
       "name": "NB Distribution",
@@ -20119,7 +20136,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C631"
+      "id": "C632"
     },
     {
       "name": "SA CARZ",
@@ -20136,7 +20153,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C632"
+      "id": "C633"
     },
     {
       "name": "KK BANGKOK",
@@ -20153,7 +20170,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C633"
+      "id": "C634"
     },
     {
       "name": "MBS LOGISTICS [Agent]",
@@ -20170,7 +20187,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C634"
+      "id": "C635"
     },
     {
       "name": "CHINA ENGINEERING CONSTRUCTION SUPPLY CHAIN（TIANJIN）CO.,LTD [Agent]",
@@ -20187,7 +20204,7 @@
       "contactsThisMonth": 6,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C635"
+      "id": "C636"
     },
     {
       "name": "SHANGHAI KINGHOM INTERNATIONAL FREIGHT FORWARDING CO.,LTD. [Agent]",
@@ -20204,7 +20221,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C636"
+      "id": "C637"
     },
     {
       "name": "TRANS TUNE INTERNATIONAL LOGISTICS LIMITED [Agent]",
@@ -20221,7 +20238,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C637"
+      "id": "C638"
     },
     {
       "name": "DOSEN SUPPLY CHAIN MANAGEMENT(BEIJING)CO.,LTD [Agent]",
@@ -20238,7 +20255,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C638"
+      "id": "C639"
     },
     {
       "name": "SHENZHEN FREE OCEAN INTERNATIONAL LOGISTICS CO.,LTD [Agent]",
@@ -20255,7 +20272,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 43,
-      "id": "C639"
+      "id": "C640"
     },
     {
       "name": "KUNAKORN CORPORATION LIMITED [Agent]",
@@ -20272,7 +20289,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 43,
-      "id": "C640"
+      "id": "C641"
     },
     {
       "name": "TIME LOGISTICS CO., LTD [Agent]",
@@ -20289,7 +20306,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C641"
+      "id": "C642"
     },
     {
       "name": "SHANGHAI HZD INTERNATIONAL LOGISTICS CO.,LTD. [Agent]",
@@ -20306,7 +20323,7 @@
       "contactsThisMonth": 5,
       "quotationsSent": 0,
       "daysSinceFirstContact": 27,
-      "id": "C642"
+      "id": "C643"
     },
     {
       "name": "OCEAN TRANS LOGISTICS CO., LTD [Agent]",
@@ -20323,7 +20340,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C643"
+      "id": "C644"
     },
     {
       "name": "CIMC FREIGHT LOGISTICS [Agent]",
@@ -20340,7 +20357,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 46,
-      "id": "C644"
+      "id": "C645"
     },
     {
       "name": "BARSAN GLOBAL LOGISTICS [Agent]",
@@ -20357,7 +20374,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C645"
+      "id": "C646"
     },
     {
       "name": "JIANSU SEASON INTER [Agent]",
@@ -20374,7 +20391,7 @@
       "contactsThisMonth": 5,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C646"
+      "id": "C647"
     },
     {
       "name": "SAMEDAY [Agent]",
@@ -20391,7 +20408,7 @@
       "contactsThisMonth": 7,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C647"
+      "id": "C648"
     },
     {
       "name": "GALAXY WORLD LOGISTICS [Agent]",
@@ -20408,7 +20425,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C648"
+      "id": "C649"
     },
     {
       "name": "VIJAY GLOBAL FORWARDER [Agent]",
@@ -20425,7 +20442,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 45,
-      "id": "C649"
+      "id": "C650"
     },
     {
       "name": "NGUYEN DANG VIET NAM [Agent]",
@@ -20442,7 +20459,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C650"
+      "id": "C651"
     },
     {
       "name": "MOBILITY FREIGHT [Agent]",
@@ -20459,7 +20476,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C651"
+      "id": "C652"
     },
     {
       "name": "AG CONSOLIDATION [Agent]",
@@ -20476,7 +20493,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C652"
+      "id": "C653"
     },
     {
       "name": "WEBLYTIC LOGISTICS PV [Agent]",
@@ -20493,7 +20510,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C653"
+      "id": "C654"
     },
     {
       "name": "EXCEL LOGISTICS [Agent]",
@@ -20510,7 +20527,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C654"
+      "id": "C655"
     },
     {
       "name": "ANKAFREIGHT HAVA DENIZ [Agent]",
@@ -20527,7 +20544,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 44,
-      "id": "C655"
+      "id": "C656"
     },
     {
       "name": "RYDER SHIPPING LINES [Agent]",
@@ -20544,7 +20561,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 43,
-      "id": "C656"
+      "id": "C657"
     },
     {
       "name": "HEBEI TONGXIN [Agent]",
@@ -20561,7 +20578,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 43,
-      "id": "C657"
+      "id": "C658"
     },
     {
       "name": "PIRAMID LOGISTICS [Agent]",
@@ -20578,7 +20595,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 43,
-      "id": "C658"
+      "id": "C659"
     },
     {
       "name": "TIANJIN MAESTRO INTER [Agent]",
@@ -20595,7 +20612,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 43,
-      "id": "C659"
+      "id": "C660"
     },
     {
       "name": "PINGYE [Agent]",
@@ -20612,7 +20629,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C660"
+      "id": "C661"
     },
     {
       "name": "LEON [Agent]",
@@ -20629,7 +20646,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 42,
-      "id": "C661"
+      "id": "C662"
     },
     {
       "name": "SUKHIN GLOBAL LOGISTICS [Agent]",
@@ -20646,7 +20663,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 37,
-      "id": "C662"
+      "id": "C663"
     },
     {
       "name": "EVERGREEN FREIGHT LIMITED [Agent]",
@@ -20663,7 +20680,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C663"
+      "id": "C664"
     },
     {
       "name": "WINTOP [Agent]",
@@ -20680,7 +20697,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C664"
+      "id": "C665"
     },
     {
       "name": "ROYAL LINE JSC [Agent]",
@@ -20697,7 +20714,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C665"
+      "id": "C666"
     },
     {
       "name": "TOTAL SUPPLY SOLUTION [Agent]",
@@ -20714,7 +20731,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C666"
+      "id": "C667"
     },
     {
       "name": "PRO IMPORTEX [Agent]",
@@ -20731,7 +20748,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C667"
+      "id": "C668"
     },
     {
       "name": "TICO INTERNATIONAL [Agent]",
@@ -20748,7 +20765,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C668"
+      "id": "C669"
     },
     {
       "name": "SOUTHERN SEASKY [Agent]",
@@ -20765,7 +20782,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C669"
+      "id": "C670"
     },
     {
       "name": "QINGDAO HARVEST [Agent]",
@@ -20782,7 +20799,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C670"
+      "id": "C671"
     },
     {
       "name": "BSL LOGISTICS CORP [Agent]",
@@ -20799,7 +20816,7 @@
       "contactsThisMonth": 2,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C671"
+      "id": "C672"
     },
     {
       "name": "CP WORLD LINE [Agent]",
@@ -20816,7 +20833,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 36,
-      "id": "C672"
+      "id": "C673"
     },
     {
       "name": "FINO LOGISTICS [Agent]",
@@ -20833,7 +20850,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 35,
-      "id": "C673"
+      "id": "C674"
     },
     {
       "name": "DOSEN SUPPLY CHAIN [Agent]",
@@ -20850,7 +20867,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 31,
-      "id": "C674"
+      "id": "C675"
     },
     {
       "name": "eCARGO WORLD TAIWAN [Agent]",
@@ -20867,7 +20884,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 30,
-      "id": "C675"
+      "id": "C676"
     },
     {
       "name": "CHIMON(BEIJING) INT [Agent]",
@@ -20884,7 +20901,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 30,
-      "id": "C676"
+      "id": "C677"
     },
     {
       "name": "CHOU YIN GROUP [Agent]",
@@ -20901,7 +20918,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 29,
-      "id": "C677"
+      "id": "C678"
     },
     {
       "name": "GANBARU GLOBAL [Agent]",
@@ -20918,7 +20935,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 29,
-      "id": "C678"
+      "id": "C679"
     },
     {
       "name": "BEIJING NOAH EXPRESS [Agent]",
@@ -20935,7 +20952,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C679"
+      "id": "C680"
     },
     {
       "name": "SBS LOGISTICS [Agent]",
@@ -20952,7 +20969,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C680"
+      "id": "C681"
     },
     {
       "name": "BONANZA INTERNATIONAL [Agent]",
@@ -20969,7 +20986,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C681"
+      "id": "C682"
     },
     {
       "name": "BLACKSTONE [Agent]",
@@ -20986,7 +21003,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 27,
-      "id": "C682"
+      "id": "C683"
     },
     {
       "name": "CHARTERING RORO [Agent]",
@@ -21003,7 +21020,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 27,
-      "id": "C683"
+      "id": "C684"
     },
     {
       "name": "MFLPL [Agent]",
@@ -21020,7 +21037,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 27,
-      "id": "C684"
+      "id": "C685"
     },
     {
       "name": "H&H INTERNATIONAL [Agent]",
@@ -21037,7 +21054,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 27,
-      "id": "C685"
+      "id": "C686"
     },
     {
       "name": "DRAGON LOGISTICS [Agent]",
@@ -21054,7 +21071,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 27,
-      "id": "C686"
+      "id": "C687"
     },
     {
       "name": "ANCARGO [Agent]",
@@ -21071,7 +21088,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 26,
-      "id": "C687"
+      "id": "C688"
     },
     {
       "name": "SARENS THAILAND",
@@ -21088,7 +21105,7 @@
       "contactsThisMonth": 4,
       "quotationsSent": 0,
       "daysSinceFirstContact": 38,
-      "id": "C688"
+      "id": "C689"
     },
     {
       "name": "TPIPL",
@@ -21105,7 +21122,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 37,
-      "id": "C689"
+      "id": "C690"
     },
     {
       "name": "LEON LLP [Agent]",
@@ -21122,7 +21139,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 37,
-      "id": "C690"
+      "id": "C691"
     },
     {
       "name": "ASIAN RAIL",
@@ -21139,7 +21156,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 31,
-      "id": "C691"
+      "id": "C692"
     },
     {
       "name": "Siam Kito",
@@ -21156,7 +21173,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 31,
-      "id": "C692"
+      "id": "C693"
     },
     {
       "name": "NDTT",
@@ -21173,7 +21190,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 30,
-      "id": "C693"
+      "id": "C694"
     },
     {
       "name": "Vertex Engineer",
@@ -21190,7 +21207,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 28,
-      "id": "C694"
+      "id": "C695"
     },
     {
       "name": "MDD",
@@ -21207,7 +21224,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 27,
-      "id": "C695"
+      "id": "C696"
     },
     {
       "name": "THE CRANE",
@@ -21224,7 +21241,7 @@
       "contactsThisMonth": 3,
       "quotationsSent": 0,
       "daysSinceFirstContact": 24,
-      "id": "C696"
+      "id": "C697"
     },
     {
       "name": "TCF [Agent]",
@@ -21241,7 +21258,7 @@
       "contactsThisMonth": 1,
       "quotationsSent": 0,
       "daysSinceFirstContact": 22,
-      "id": "C697"
+      "id": "C698"
     }
   ],
   "EVENTS": [
@@ -21277,21 +21294,6 @@
     },
     {
       "team": "mai",
-      "spId": "s12",
-      "customer": "SIRIMONGKOL CORPORATE",
-      "week": "W26",
-      "date": "2026-06-22",
-      "type": "contacts",
-      "stage": "contact",
-      "teu": 0,
-      "existing": false,
-      "notes": "",
-      "firstContact": true,
-      "customerType": "new",
-      "canonId": "k0482"
-    },
-    {
-      "team": "mai",
       "spId": "s8",
       "customer": "JIRAPORNFOOD CO.,LTD",
       "week": "W24",
@@ -21303,7 +21305,22 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0488"
+      "canonId": "k0489"
+    },
+    {
+      "team": "bp",
+      "spId": "s7",
+      "customer": "FES INTERNATIONAL CO.,LTD",
+      "week": "W24",
+      "date": "2026-06-11",
+      "type": "contacts",
+      "stage": "contact",
+      "teu": 40,
+      "existing": false,
+      "notes": "nominate แต่ ขอเสนอราคารถหัวลากไป",
+      "firstContact": true,
+      "customerType": "new",
+      "canonId": "k0430"
     },
     {
       "team": "mai",
@@ -21351,6 +21368,36 @@
       "canonId": "k0007"
     },
     {
+      "team": "mai",
+      "spId": "s11",
+      "customer": "RAYA GREEN",
+      "week": "W24",
+      "date": "2026-06-11",
+      "type": "quotations",
+      "stage": "quote",
+      "teu": 2,
+      "existing": true,
+      "notes": "",
+      "firstContact": false,
+      "customerType": "existing",
+      "canonId": "k0099"
+    },
+    {
+      "team": "mai",
+      "spId": "s10",
+      "customer": "Tropical green",
+      "week": "W24",
+      "date": "2026-06-11",
+      "type": "quotations",
+      "stage": "quote",
+      "teu": 2,
+      "existing": true,
+      "notes": "",
+      "firstContact": false,
+      "customerType": "existing",
+      "canonId": "k0063"
+    },
+    {
       "team": "bp",
       "spId": "s4",
       "customer": "YAMAHA ART CHINA (THAILAND) CO.,LTD",
@@ -21378,7 +21425,7 @@
       "notes": "ติดต่อใหม่",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0519"
+      "canonId": "k0520"
     },
     {
       "team": "bp",
@@ -21408,7 +21455,7 @@
       "notes": "มีเจ้าประจำ",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0511"
+      "canonId": "k0512"
     },
     {
       "team": "bp",
@@ -21423,7 +21470,7 @@
       "notes": "ส่ง company profile nittaya@wellgrowglass.co.th",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0440"
+      "canonId": "k0441"
     },
     {
       "team": "bp",
@@ -21453,7 +21500,7 @@
       "notes": "Nominate",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0512"
+      "canonId": "k0513"
     },
     {
       "team": "mai",
@@ -21498,7 +21545,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -21528,7 +21575,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0515"
+      "canonId": "k0516"
     },
     {
       "team": "mai",
@@ -21543,7 +21590,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0577"
+      "canonId": "k0578"
     },
     {
       "team": "mai",
@@ -21558,7 +21605,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0574"
+      "canonId": "k0575"
     },
     {
       "team": "mai",
@@ -21573,7 +21620,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0592"
+      "canonId": "k0593"
     },
     {
       "team": "mai",
@@ -21588,7 +21635,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0533"
+      "canonId": "k0534"
     },
     {
       "team": "mai",
@@ -21738,7 +21785,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0074"
+      "canonId": "k0075"
     },
     {
       "team": "bp",
@@ -21768,7 +21815,7 @@
       "notes": "ส่ง company profile แล้ว ลูกค้ามีใช้ทั้ง air freight , lcl, fcl,domestic รอลูกค้าส่ง inquries นัดพบลูกค้า อาทิตย์หน้า",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0527"
+      "canonId": "k0528"
     },
     {
       "team": "mai",
@@ -21888,7 +21935,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -21993,7 +22040,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -22068,7 +22115,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -22398,7 +22445,7 @@
       "notes": "ส่ง Company profile เมล nattakan.r@hmc.polymers.com",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0554"
+      "canonId": "k0555"
     },
     {
       "team": "bp",
@@ -22413,7 +22460,7 @@
       "notes": "ส่วนใหญ่เป็น FOBทั้งหมด ลูกค้าไห้ข้อมูลมาแค่ว่าส่งไปหลาย Port",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0539"
+      "canonId": "k0540"
     },
     {
       "team": "bp",
@@ -22503,7 +22550,7 @@
       "notes": "FOB100%",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0478"
+      "canonId": "k0479"
     },
     {
       "team": "bp",
@@ -22533,7 +22580,7 @@
       "notes": "FOB100%",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0492"
+      "canonId": "k0493"
     },
     {
       "team": "bp",
@@ -22683,7 +22730,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0586"
+      "canonId": "k0587"
     },
     {
       "team": "mai",
@@ -22998,7 +23045,7 @@
       "notes": "Offer rate 1-15 June 2026",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0502"
+      "canonId": "k0503"
     },
     {
       "team": "bp",
@@ -23313,7 +23360,7 @@
       "notes": "FOB100%",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0464"
+      "canonId": "k0465"
     },
     {
       "team": "mai",
@@ -23403,7 +23450,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -23478,7 +23525,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0064"
+      "canonId": "k0065"
     },
     {
       "team": "mai",
@@ -23508,7 +23555,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0064"
+      "canonId": "k0065"
     },
     {
       "team": "mai",
@@ -23868,7 +23915,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0532"
+      "canonId": "k0533"
     },
     {
       "team": "bp",
@@ -24063,7 +24110,7 @@
       "notes": "FOB100%",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0439"
+      "canonId": "k0440"
     },
     {
       "team": "bp",
@@ -24228,7 +24275,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -24258,7 +24305,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -24348,7 +24395,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0582"
+      "canonId": "k0583"
     },
     {
       "team": "mai",
@@ -24423,7 +24470,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0564"
+      "canonId": "k0565"
     },
     {
       "team": "mai",
@@ -24438,7 +24485,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0552"
+      "canonId": "k0553"
     },
     {
       "team": "bp",
@@ -24543,7 +24590,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0585"
+      "canonId": "k0586"
     },
     {
       "team": "mai",
@@ -24693,7 +24740,7 @@
       "notes": "ไม่มีส่งออก นำเข้าเป็น CIF ทั้งหมด ไม่ได้หาเฟรทเอง",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0438"
+      "canonId": "k0439"
     },
     {
       "team": "bp",
@@ -25068,7 +25115,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0551"
+      "canonId": "k0552"
     },
     {
       "team": "mai",
@@ -25083,7 +25130,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0560"
+      "canonId": "k0561"
     },
     {
       "team": "mai",
@@ -25098,7 +25145,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0497"
+      "canonId": "k0498"
     },
     {
       "team": "mai",
@@ -25113,7 +25160,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0540"
+      "canonId": "k0541"
     },
     {
       "team": "bp",
@@ -25578,7 +25625,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0442"
+      "canonId": "k0443"
     },
     {
       "team": "mai",
@@ -25668,7 +25715,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0573"
+      "canonId": "k0574"
     },
     {
       "team": "mai",
@@ -25968,7 +26015,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0531"
+      "canonId": "k0532"
     },
     {
       "team": "mai",
@@ -26136,6 +26183,21 @@
       "canonId": "k0359"
     },
     {
+      "team": "mai",
+      "spId": "s12",
+      "customer": "SIRIMONGKOL CORPORATE",
+      "week": "W21",
+      "date": "2026-05-22",
+      "type": "contacts",
+      "stage": "contact",
+      "teu": 0,
+      "existing": false,
+      "notes": "",
+      "firstContact": true,
+      "customerType": "new",
+      "canonId": "k0483"
+    },
+    {
       "team": "bp",
       "spId": "s3",
       "customer": "GOLDEN LIME PUBLIC COMPANY LIMITED",
@@ -26268,7 +26330,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0068"
+      "canonId": "k0069"
     },
     {
       "team": "bp",
@@ -26283,7 +26345,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0068"
+      "canonId": "k0069"
     },
     {
       "team": "bp",
@@ -26298,7 +26360,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0068"
+      "canonId": "k0069"
     },
     {
       "team": "bp",
@@ -26373,7 +26435,7 @@
       "notes": "Sent Company Profile",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0526"
+      "canonId": "k0527"
     },
     {
       "team": "bp",
@@ -26433,7 +26495,7 @@
       "notes": "FOB100%",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0463"
+      "canonId": "k0464"
     },
     {
       "team": "mai",
@@ -26463,7 +26525,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0451"
+      "canonId": "k0452"
     },
     {
       "team": "mai",
@@ -26478,7 +26540,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0572"
+      "canonId": "k0573"
     },
     {
       "team": "mai",
@@ -26538,7 +26600,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0558"
+      "canonId": "k0559"
     },
     {
       "team": "mai",
@@ -26568,7 +26630,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0487"
+      "canonId": "k0488"
     },
     {
       "team": "mai",
@@ -26598,7 +26660,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0529"
+      "canonId": "k0530"
     },
     {
       "team": "mai",
@@ -26838,7 +26900,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0556"
+      "canonId": "k0557"
     },
     {
       "team": "mai",
@@ -26973,7 +27035,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0557"
+      "canonId": "k0558"
     },
     {
       "team": "mai",
@@ -26988,7 +27050,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0530"
+      "canonId": "k0531"
     },
     {
       "team": "mai",
@@ -27033,7 +27095,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0542"
+      "canonId": "k0543"
     },
     {
       "team": "mai",
@@ -27048,7 +27110,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0506"
+      "canonId": "k0507"
     },
     {
       "team": "mai",
@@ -27063,7 +27125,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0559"
+      "canonId": "k0560"
     },
     {
       "team": "mai",
@@ -27093,7 +27155,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0065"
+      "canonId": "k0066"
     },
     {
       "team": "oversea",
@@ -27213,7 +27275,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0568"
+      "canonId": "k0569"
     },
     {
       "team": "bp",
@@ -27273,7 +27335,7 @@
       "notes": "แล้วแต่Shipment บางอันก็เป็นFOB CIF CRF แล้วแต่ว่าอันไหนถูกกว่ากัน*",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0068"
+      "canonId": "k0069"
     },
     {
       "team": "bp",
@@ -27288,7 +27350,7 @@
       "notes": "แล้วแต่Shipment บางอันก็เป็นFOB CIF CRF แล้วแต่ว่าอันไหนถูกกว่ากัน*",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0068"
+      "canonId": "k0069"
     },
     {
       "team": "bp",
@@ -27303,7 +27365,7 @@
       "notes": "แล้วแต่Shipment บางอันก็เป็นFOB CIF CRF แล้วแต่ว่าอันไหนถูกกว่ากัน*",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0068"
+      "canonId": "k0069"
     },
     {
       "team": "bp",
@@ -27363,7 +27425,7 @@
       "notes": "ติดต่อไม่ได้",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0462"
+      "canonId": "k0463"
     },
     {
       "team": "bp",
@@ -27438,7 +27500,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0550"
+      "canonId": "k0551"
     },
     {
       "team": "mai",
@@ -27453,7 +27515,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0467"
+      "canonId": "k0468"
     },
     {
       "team": "mai",
@@ -27468,7 +27530,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0496"
+      "canonId": "k0497"
     },
     {
       "team": "mai",
@@ -27573,7 +27635,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0468"
+      "canonId": "k0469"
     },
     {
       "team": "mai",
@@ -27633,7 +27695,7 @@
       "notes": "quote Cross Trade",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0581"
+      "canonId": "k0582"
     },
     {
       "team": "mai",
@@ -27663,7 +27725,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0555"
+      "canonId": "k0556"
     },
     {
       "team": "mai",
@@ -27708,7 +27770,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0601"
+      "canonId": "k0602"
     },
     {
       "team": "mai",
@@ -27768,7 +27830,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0514"
+      "canonId": "k0515"
     },
     {
       "team": "mai",
@@ -27828,7 +27890,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0065"
+      "canonId": "k0066"
     },
     {
       "team": "oversea",
@@ -28068,7 +28130,7 @@
       "notes": "Offer full loop export (Transportation + Shipping + Freight)",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0461"
+      "canonId": "k0462"
     },
     {
       "team": "bp",
@@ -28398,7 +28460,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0064"
+      "canonId": "k0065"
     },
     {
       "team": "mai",
@@ -28428,7 +28490,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0505"
+      "canonId": "k0506"
     },
     {
       "team": "mai",
@@ -28443,7 +28505,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -28533,7 +28595,7 @@
       "notes": "Quote",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0452"
+      "canonId": "k0453"
     },
     {
       "team": "oversea",
@@ -28548,7 +28610,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0536"
+      "canonId": "k0537"
     },
     {
       "team": "bp",
@@ -28608,7 +28670,7 @@
       "notes": "เป็นงาน FOB ทั้งหมดไปอเมริกา บริษัทแม่ที่จีนเป็นคนหา Freight",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0525"
+      "canonId": "k0526"
     },
     {
       "team": "bp",
@@ -28661,8 +28723,8 @@
       "customer": "DUNI (THAILAND) CO., LTD.",
       "week": "W20",
       "date": "2026-05-15",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "เดี่ยวลองดูราคาให้แต่มีเจ้าประจำแล้ว",
@@ -28751,12 +28813,12 @@
       "customer": "THAI BURAPHA PRODUCT CO., LTD.",
       "week": "W20",
       "date": "2026-05-15",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "ปิดกั้น ไม่รับเฟรทเจ้าใหม่เพิ่ม",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0351"
     },
@@ -28998,7 +29060,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0064"
+      "canonId": "k0065"
     },
     {
       "team": "mai",
@@ -29103,7 +29165,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0065"
+      "canonId": "k0066"
     },
     {
       "team": "oversea",
@@ -29133,7 +29195,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0508"
+      "canonId": "k0509"
     },
     {
       "team": "oversea",
@@ -29148,7 +29210,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0456"
+      "canonId": "k0457"
     },
     {
       "team": "oversea",
@@ -29163,7 +29225,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0553"
+      "canonId": "k0554"
     },
     {
       "team": "oversea",
@@ -29178,7 +29240,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0433"
+      "canonId": "k0434"
     },
     {
       "team": "oversea",
@@ -29193,7 +29255,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0445"
+      "canonId": "k0446"
     },
     {
       "team": "oversea",
@@ -29208,7 +29270,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0599"
+      "canonId": "k0600"
     },
     {
       "team": "bp",
@@ -29246,12 +29308,12 @@
       "customer": "WINNER GROUP ENTERPRISE PUBLIC COMPANY LIMITED",
       "week": "W20",
       "date": "2026-05-14",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Sent Company Profile",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0262"
     },
@@ -29276,12 +29338,12 @@
       "customer": "THE NANYANG MARKETING LIMITED",
       "week": "W20",
       "date": "2026-05-14",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0368"
     },
@@ -29291,12 +29353,12 @@
       "customer": "THAI ONONO PUBLIC COMPANY LIMITED",
       "week": "W20",
       "date": "2026-05-14",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0322"
     },
@@ -29306,12 +29368,12 @@
       "customer": "FANCY WORLD COMPANY LIMITED",
       "week": "W20",
       "date": "2026-05-14",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Sent Company Profile",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0404"
     },
@@ -29463,7 +29525,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -29493,7 +29555,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -29553,7 +29615,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0521"
+      "canonId": "k0522"
     },
     {
       "team": "mai",
@@ -29763,7 +29825,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0588"
+      "canonId": "k0589"
     },
     {
       "team": "oversea",
@@ -29793,7 +29855,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0575"
+      "canonId": "k0576"
     },
     {
       "team": "oversea",
@@ -29913,7 +29975,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0537"
+      "canonId": "k0538"
     },
     {
       "team": "bp",
@@ -30041,12 +30103,12 @@
       "customer": "DUNI (THAILAND) CO., LTD.",
       "week": "W20",
       "date": "2026-05-13",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Export FOB เสนอค่าหัวลาก+Shipping",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0160"
     },
@@ -30056,12 +30118,12 @@
       "customer": "NISSEI INTERNATIONAL (THAILAND) CO.,LTD.",
       "week": "W20",
       "date": "2026-05-13",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Sent Company Profile",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0279"
     },
@@ -30071,12 +30133,12 @@
       "customer": "Global Food Trading Co., Ltd.",
       "week": "W20",
       "date": "2026-05-13",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "ปิดกั้น",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0367"
     },
@@ -30131,12 +30193,12 @@
       "customer": "Handy International (Thailand) Co., Ltd.",
       "week": "W20",
       "date": "2026-05-13",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Sent Company Profile",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0280"
     },
@@ -30146,14 +30208,14 @@
       "customer": "Hic (Thailand) Co., Ltd.",
       "week": "W20",
       "date": "2026-05-13",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "ปิดกั้น",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
-      "canonId": "k0437"
+      "canonId": "k0438"
     },
     {
       "team": "bp",
@@ -30453,7 +30515,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0487"
+      "canonId": "k0488"
     },
     {
       "team": "mai",
@@ -30483,7 +30545,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0563"
+      "canonId": "k0564"
     },
     {
       "team": "mai",
@@ -30588,7 +30650,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0472"
+      "canonId": "k0473"
     },
     {
       "team": "bp",
@@ -30851,14 +30913,14 @@
       "customer": "THAI SHIMADA CO.,LTD.",
       "week": "W20",
       "date": "2026-05-12",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Sent Company Profile",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
-      "canonId": "k0477"
+      "canonId": "k0478"
     },
     {
       "team": "bp",
@@ -30888,7 +30950,7 @@
       "notes": "รอกลับมาสถาณะปกติก่อน ตอนนี้งดส่งเนื่องจาก Shipment ก่อนนห้านี้ยังเคลียไม่จบ",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0460"
+      "canonId": "k0461"
     },
     {
       "team": "bp",
@@ -30911,12 +30973,12 @@
       "customer": "ATXEL INDUSTRIAL CO., LTD.",
       "week": "W20",
       "date": "2026-05-12",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Sent Company Profile",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
       "canonId": "k0414"
     },
@@ -30926,14 +30988,14 @@
       "customer": "TECHNOTIC CO.,LTD.",
       "week": "W20",
       "date": "2026-05-12",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "Sent Company Profile",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
-      "canonId": "k0501"
+      "canonId": "k0502"
     },
     {
       "team": "bp",
@@ -31023,7 +31085,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -31158,7 +31220,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0450"
+      "canonId": "k0451"
     },
     {
       "team": "oversea",
@@ -31203,7 +31265,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0065"
+      "canonId": "k0066"
     },
     {
       "team": "oversea",
@@ -31278,7 +31340,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0596"
+      "canonId": "k0597"
     },
     {
       "team": "bp",
@@ -31293,7 +31355,7 @@
       "notes": "Offer rate for Full loop",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0524"
+      "canonId": "k0525"
     },
     {
       "team": "bp",
@@ -31361,14 +31423,14 @@
       "customer": "SCG JWD",
       "week": "W20",
       "date": "2026-05-11",
-      "type": "quotations",
-      "stage": "quote",
+      "type": "contacts",
+      "stage": "contact",
       "teu": 0,
       "existing": false,
       "notes": "",
-      "firstContact": false,
+      "firstContact": true,
       "customerType": "new",
-      "canonId": "k0583"
+      "canonId": "k0584"
     },
     {
       "team": "bp",
@@ -31608,7 +31670,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -31623,7 +31685,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "oversea",
@@ -31638,7 +31700,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0561"
+      "canonId": "k0562"
     },
     {
       "team": "oversea",
@@ -31653,7 +31715,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0065"
+      "canonId": "k0066"
     },
     {
       "team": "oversea",
@@ -31698,7 +31760,7 @@
       "notes": "Leadtime for transport in 2 month",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0576"
+      "canonId": "k0577"
     },
     {
       "team": "oversea",
@@ -31713,7 +31775,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0578"
+      "canonId": "k0579"
     },
     {
       "team": "bp",
@@ -31743,7 +31805,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0518"
+      "canonId": "k0519"
     },
     {
       "team": "bp",
@@ -31893,7 +31955,7 @@
       "notes": "ยังไม่ได้เปิดรับFreight เจ้าใหม่ อาจจะต้องรอFreight ที่ไม่Active จะตัดออก ถึงจะเปิดรับเจ้าใหม่ ต้องใช้เทมเพลตเดียวกัน ของเดือน5ปิดงานแล้ว ตอ",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0485"
+      "canonId": "k0486"
     },
     {
       "team": "bp",
@@ -31938,7 +32000,7 @@
       "notes": "ติดต่อคุณอลิสอีกทีวันอังคาร แต่เบื้องต้นเหมือนคุณอลิสมีเสนอนายไปแล้ว คนที่ดูส่งออกจริงๆ ไม่ว่าง",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0073"
+      "canonId": "k0074"
     },
     {
       "team": "bp",
@@ -31953,7 +32015,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0073"
+      "canonId": "k0074"
     },
     {
       "team": "bp",
@@ -31968,7 +32030,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0073"
+      "canonId": "k0074"
     },
     {
       "team": "bp",
@@ -32028,7 +32090,7 @@
       "notes": "คุณยุ้ยมีFW Quotation ให้คนในทีมผ่านเมลล์ เบื้องต้นได้ติดต่อคุณผิงกับใหม่ไปเพิ่ม",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0074"
+      "canonId": "k0075"
     },
     {
       "team": "bp",
@@ -32193,7 +32255,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -32253,7 +32315,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -32268,7 +32330,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -32538,7 +32600,7 @@
       "notes": "Update Quotation",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0075"
+      "canonId": "k0076"
     },
     {
       "team": "bp",
@@ -32553,7 +32615,7 @@
       "notes": "Update Quotation",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0075"
+      "canonId": "k0076"
     },
     {
       "team": "bp",
@@ -32583,7 +32645,7 @@
       "notes": "Update Quotation",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0074"
+      "canonId": "k0075"
     },
     {
       "team": "bp",
@@ -32658,7 +32720,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0486"
+      "canonId": "k0487"
     },
     {
       "team": "bp",
@@ -32673,7 +32735,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0510"
+      "canonId": "k0511"
     },
     {
       "team": "bp",
@@ -32703,7 +32765,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -32763,7 +32825,7 @@
       "notes": "PLAN TO VISIT A CUSTOMER IN 14 MAY",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0571"
+      "canonId": "k0572"
     },
     {
       "team": "mai",
@@ -32793,7 +32855,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0495"
+      "canonId": "k0496"
     },
     {
       "team": "mai",
@@ -32823,7 +32885,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0529"
+      "canonId": "k0530"
     },
     {
       "team": "mai",
@@ -32988,7 +33050,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0584"
+      "canonId": "k0585"
     },
     {
       "team": "mai",
@@ -33003,7 +33065,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0442"
+      "canonId": "k0443"
     },
     {
       "team": "mai",
@@ -33048,7 +33110,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0587"
+      "canonId": "k0588"
     },
     {
       "team": "oversea",
@@ -33123,7 +33185,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0471"
+      "canonId": "k0472"
     },
     {
       "team": "bp",
@@ -33378,7 +33440,7 @@
       "notes": "ไม่มีส่งออก มีแต่นำเข้า เสนอหัวลากกับShippingก็ไม่สนใจ",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0476"
+      "canonId": "k0477"
     },
     {
       "team": "mai",
@@ -33408,7 +33470,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -33423,7 +33485,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -33483,7 +33545,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -33498,7 +33560,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -33648,7 +33710,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0546"
+      "canonId": "k0547"
     },
     {
       "team": "oversea",
@@ -33663,7 +33725,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0470"
+      "canonId": "k0471"
     },
     {
       "team": "oversea",
@@ -33693,7 +33755,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0489"
+      "canonId": "k0490"
     },
     {
       "team": "oversea",
@@ -33723,7 +33785,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0454"
+      "canonId": "k0455"
     },
     {
       "team": "oversea",
@@ -33753,7 +33815,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0455"
+      "canonId": "k0456"
     },
     {
       "team": "oversea",
@@ -33798,7 +33860,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0484"
+      "canonId": "k0485"
     },
     {
       "team": "bp",
@@ -33843,7 +33905,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0491"
+      "canonId": "k0492"
     },
     {
       "team": "bp",
@@ -34038,7 +34100,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0064"
+      "canonId": "k0065"
     },
     {
       "team": "oversea",
@@ -34098,7 +34160,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0593"
+      "canonId": "k0594"
     },
     {
       "team": "oversea",
@@ -34113,7 +34175,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0522"
+      "canonId": "k0523"
     },
     {
       "team": "oversea",
@@ -34128,7 +34190,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0469"
+      "canonId": "k0470"
     },
     {
       "team": "oversea",
@@ -34203,7 +34265,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0567"
+      "canonId": "k0568"
     },
     {
       "team": "oversea",
@@ -34233,7 +34295,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0507"
+      "canonId": "k0508"
     },
     {
       "team": "oversea",
@@ -34248,7 +34310,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0516"
+      "canonId": "k0517"
     },
     {
       "team": "oversea",
@@ -34308,7 +34370,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0535"
+      "canonId": "k0536"
     },
     {
       "team": "oversea",
@@ -34323,7 +34385,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0543"
+      "canonId": "k0544"
     },
     {
       "team": "oversea",
@@ -34338,7 +34400,7 @@
       "notes": "AWAIT CARGO READY",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0565"
+      "canonId": "k0566"
     },
     {
       "team": "oversea",
@@ -34353,7 +34415,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0565"
+      "canonId": "k0566"
     },
     {
       "team": "oversea",
@@ -34368,7 +34430,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0566"
+      "canonId": "k0567"
     },
     {
       "team": "oversea",
@@ -34383,7 +34445,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0534"
+      "canonId": "k0535"
     },
     {
       "team": "oversea",
@@ -34473,7 +34535,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0544"
+      "canonId": "k0545"
     },
     {
       "team": "oversea",
@@ -34878,7 +34940,7 @@
       "notes": "Cant match the rate",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0517"
+      "canonId": "k0518"
     },
     {
       "team": "bp",
@@ -34983,7 +35045,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -34998,7 +35060,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -35088,7 +35150,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0598"
+      "canonId": "k0599"
     },
     {
       "team": "mai",
@@ -35118,7 +35180,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0431"
+      "canonId": "k0432"
     },
     {
       "team": "mai",
@@ -35148,7 +35210,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0495"
+      "canonId": "k0496"
     },
     {
       "team": "mai",
@@ -35163,7 +35225,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0570"
+      "canonId": "k0571"
     },
     {
       "team": "mai",
@@ -35193,7 +35255,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0540"
+      "canonId": "k0541"
     },
     {
       "team": "mai",
@@ -35223,7 +35285,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0528"
+      "canonId": "k0529"
     },
     {
       "team": "mai",
@@ -35253,7 +35315,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0541"
+      "canonId": "k0542"
     },
     {
       "team": "mai",
@@ -35298,7 +35360,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0466"
+      "canonId": "k0467"
     },
     {
       "team": "mai",
@@ -35343,7 +35405,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0549"
+      "canonId": "k0550"
     },
     {
       "team": "mai",
@@ -35373,7 +35435,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0529"
+      "canonId": "k0530"
     },
     {
       "team": "oversea",
@@ -35388,7 +35450,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0545"
+      "canonId": "k0546"
     },
     {
       "team": "oversea",
@@ -35418,7 +35480,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0522"
+      "canonId": "k0523"
     },
     {
       "team": "bp",
@@ -35673,7 +35735,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -35748,7 +35810,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "mai",
@@ -35853,7 +35915,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0483"
+      "canonId": "k0484"
     },
     {
       "team": "oversea",
@@ -35868,7 +35930,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0432"
+      "canonId": "k0433"
     },
     {
       "team": "oversea",
@@ -36213,7 +36275,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0600"
+      "canonId": "k0601"
     },
     {
       "team": "mai",
@@ -36228,7 +36290,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0064"
+      "canonId": "k0065"
     },
     {
       "team": "mai",
@@ -36378,7 +36440,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0443"
+      "canonId": "k0444"
     },
     {
       "team": "oversea",
@@ -36393,7 +36455,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0444"
+      "canonId": "k0445"
     },
     {
       "team": "oversea",
@@ -36423,7 +36485,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "new",
-      "canonId": "k0453"
+      "canonId": "k0454"
     },
     {
       "team": "oversea",
@@ -36753,7 +36815,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0078"
+      "canonId": "k0079"
     },
     {
       "team": "oversea",
@@ -36768,7 +36830,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "new",
-      "canonId": "k0065"
+      "canonId": "k0066"
     },
     {
       "team": "oversea",
@@ -36888,7 +36950,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0595"
+      "canonId": "k0596"
     },
     {
       "team": "oversea",
@@ -37038,7 +37100,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -37428,7 +37490,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -37458,7 +37520,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0580"
+      "canonId": "k0581"
     },
     {
       "team": "mai",
@@ -37533,7 +37595,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0579"
+      "canonId": "k0580"
     },
     {
       "team": "mai",
@@ -37548,7 +37610,7 @@
       "notes": "",
       "firstContact": true,
       "customerType": "existing",
-      "canonId": "k0562"
+      "canonId": "k0563"
     },
     {
       "team": "mai",
@@ -37743,7 +37805,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -37893,7 +37955,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -37908,7 +37970,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0063"
+      "canonId": "k0064"
     },
     {
       "team": "mai",
@@ -38073,7 +38135,7 @@
       "notes": "",
       "firstContact": false,
       "customerType": "existing",
-      "canonId": "k0079"
+      "canonId": "k0063"
     },
     {
       "team": "mai",
@@ -50639,5 +50701,5 @@
     ],
     "isMock": false
   },
-  "generated_at": "2026-06-11T06:31:56.578328Z"
+  "generated_at": "2026-06-11T09:54:55.253184Z"
 }
