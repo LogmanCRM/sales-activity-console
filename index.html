@@ -464,6 +464,25 @@
   }
   .kpi-clickable:hover .kpi-open { opacity: 1; transform: translateX(2px); }
 
+  /* In-card team / salesperson breakdown bars */
+  .kpi-bd { margin-top: 12px; display: flex; flex-direction: column; gap: 7px; }
+  .kpi-bd-row { display: flex; align-items: center; gap: 8px; }
+  .kpi-bd-label {
+    width: 64px; flex: none; font-size: 11px; font-weight: 600; color: var(--ink-2);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kpi-bd-track {
+    flex: 1; height: 9px; border-radius: 999px; background: var(--bg-2); overflow: hidden;
+  }
+  .kpi-bd-fill {
+    display: block; height: 100%; border-radius: 999px; min-width: 2px;
+    transition: width 0.5s ease;
+  }
+  .kpi-bd-val {
+    width: 34px; flex: none; text-align: right;
+    font-size: 12px; font-weight: 700; color: var(--ink);
+  }
+
   .ad-overlay {
     position: fixed; inset: 0; background: rgba(10,22,40,0.45);
     z-index: 200; display: flex; justify-content: flex-end;

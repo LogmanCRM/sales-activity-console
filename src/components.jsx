@@ -52,10 +52,12 @@ function Sparkline({ data, color = "#0a1628", height = 36, width = 120, fill = t
 }
 
 // ---------- KPI Card ----------
-function KpiCard({ label, thai, value, icon, accent, series, split, periodWeeks, onClick }) {
-  const total = split ? (split.existing + split.new) : value;
-  const exPct = split && total > 0 ? (split.existing / total) * 100 : 0;
+// `breakdown` = [{ label, value, color }] → horizontal bars inside the card
+// (split by team when viewing ALL teams, by salesperson for a single team).
+function KpiCard({ label, thai, value, icon, accent, breakdown, onClick }) {
   const clickable = typeof onClick === "function" && value > 0;
+  const bd = breakdown || [];
+  const bdMax = Math.max(...bd.map((b) => b.value), 1);
   return (
     <div className={`kpi-card ${clickable ? "kpi-clickable" : ""}`}
          onClick={clickable ? onClick : undefined}
@@ -72,21 +74,20 @@ function KpiCard({ label, thai, value, icon, accent, series, split, periodWeeks,
       <div className="kpi-value">
         <AnimatedNumber value={value} />
       </div>
-      {split && (
-        <div className="kpi-split">
-          <div className="kpi-split-bar">
-            <div className="kpi-split-existing" style={{ width: `${exPct}%`, background: accent }} />
-            <div className="kpi-split-new" style={{ width: `${100 - exPct}%`, background: accent, opacity: 0.35 }} />
-          </div>
-          <div className="kpi-split-legend">
-            <span><i style={{ background: accent }} />Existing <b className="mono">{split.existing}</b></span>
-            <span><i style={{ background: accent, opacity: 0.35 }} />New <b className="mono">{split.new}</b></span>
-          </div>
+      {bd.length > 0 && (
+        <div className="kpi-bd">
+          {bd.map((b) => (
+            <div key={b.label} className="kpi-bd-row">
+              <span className="kpi-bd-label" title={b.label}>{b.label}</span>
+              <span className="kpi-bd-track">
+                <span className="kpi-bd-fill"
+                      style={{ width: `${(b.value / bdMax) * 100}%`, background: b.color }} />
+              </span>
+              <span className="kpi-bd-val mono">{b.value}</span>
+            </div>
+          ))}
         </div>
       )}
-      <div className="kpi-foot">
-        <span className="kpi-foot-meta">{periodWeeks > 1 ? `${periodWeeks}-week total` : "this period"}</span>
-      </div>
       <div className="kpi-accent-bar" style={{ background: accent }} />
     </div>
   );

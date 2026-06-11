@@ -3,7 +3,7 @@
 const { useState, useMemo } = React;
 
 // ---------- Customer Type Filter ----------
-function CustomerTypeFilter({ value, onChange, counts }) {
+function CustomerTypeFilter({ value, onChange }) {
   const opts = [
   { id: "all", label: "All Customers", thai: "ลูกค้าทั้งหมด", icon: "◎" },
   { id: "existing", label: "Existing", thai: "ลูกค้าเดิม", icon: "▲" },
@@ -25,7 +25,6 @@ function CustomerTypeFilter({ value, onChange, counts }) {
               <span className="ctype-tab-label">{o.label}</span>
               <span className="ctype-tab-thai">{o.thai}</span>
             </div>
-            <span className="ctype-tab-count mono">{counts[o.id]}</span>
           </button>
         )}
       </div>
@@ -139,10 +138,10 @@ function TimeSelector({ weeks, mode, setMode, weekIdx, setWeekIdx, monthIdx, set
 // Customer type ("new"/"existing") comes from fuzzy-clustered company names,
 // so different spellings of the same firm are merged and not double-counted.
 const FIELD_DEFS = {
-  newPipeline: { key: "newPipeline", label: "New Pipeline",    thai: "ลูกค้าใหม่ (ไม่นับซ้ำ)", icon: "★", color: "#7c3aed", expect: null, noSplit: true },
-  followUp:    { key: "followUp",    label: "Follow Up",       thai: "ติดตาม / โทรซ้ำ",        icon: "⟳", color: "#0a1628", expect: 10 },
+  newPipeline: { key: "newPipeline", label: "New Pipeline",    thai: "ลูกค้าใหม่ (ไม่นับซ้ำ)", icon: "★", color: "#7c3aed", expect: 10 },
+  followUp:    { key: "followUp",    label: "Follow Up",       thai: "ติดตาม / โทรซ้ำ",        icon: "⟳", color: "#0a1628", expect: null },
   visits:      { key: "visits",      label: "Customer Visits", thai: "การไปหาลูกค้า",          icon: "◉", color: "#0891b2", expect: 2 },
-  quotations:  { key: "quotations",  label: "Quotations Sent", thai: "ส่ง Quotation",          icon: "◧", color: "#d97706", expect: null },
+  quotations:  { key: "quotations",  label: "Quotations Sent", thai: "ส่ง Quotation",          icon: "◧", color: "#d97706", expect: 25 },
   wonDeals:    { key: "wonDeals",    label: "Confirm Shipment",thai: "ปิดดีล / Won Deal",      icon: "✓", color: "#10b981", expect: null },
 };
 const FIELDS_BY_CTYPE = {
@@ -220,20 +219,13 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
 
   // Helper: value for the current period
   const valueFor = (field, ct = ctype) => metricValue(D, field, { teamId, weekSet, ctype: ct });
-  const valueForTeam = (tid, field, ct = ctype) => metricValue(D, field, { teamId: tid, weekSet, ctype: ct });
-  // Sparkline series (always full WEEKS regardless of mode)
-  const sparkSeries = (field) => D.WEEKS.map((wl) =>
-    metricValue(D, field, { teamId, weekSet: new Set([wl]), ctype }));
 
-  // Counts for the customer type filter chips = total Follow Up (all contacts)
-  const counts = {
-    all:      metricValue(D, "followUp", { teamId, weekSet, ctype: "all" }),
-    existing: metricValue(D, "followUp", { teamId, weekSet, ctype: "existing" }),
-    new:      metricValue(D, "followUp", { teamId, weekSet, ctype: "new" }),
-  };
-
-  // Weeks count in the current period (for expectation thresholds)
-  const periodWeeks = activeWeekIdxs.length;
+  // Expectation multiplier for the leaderboard:
+  //   week view  → ×1 (or ×weeks when "ALL weeks" is selected)
+  //   month view → ×4 per month (or ×4×months for "ALL months")
+  const expectMult = mode === "month"
+    ? 4 * (isAllM ? monthGroups.length : 1)
+    : (isAllW ? D.WEEKS.length : 1);
 
   // Team comparison data — only meaningful when teamId === "all"
   const teamsForChart = D.TEAMS.filter(t => t.id !== "all");
@@ -306,64 +298,33 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                     weekIdx={weekIdx} setWeekIdx={setWeekIdx}
                     monthIdx={monthIdx} setMonthIdx={setMonthIdx}
                     monthGroups={monthGroups} />
-      <CustomerTypeFilter value={ctype} onChange={setCtype} counts={counts} />
+      <CustomerTypeFilter value={ctype} onChange={setCtype} />
 
-      {/* KPI Row — fields depend on the selected customer type */}
+      {/* KPI Row — each card shows the metric broken down by team (ALL view)
+          or by salesperson (single-team view) as horizontal bars. */}
       <div className="kpi-grid" key={`kpi-${ctype}-${mode}-${weekIdx}-${monthIdx}`}
            style={{ gridTemplateColumns: `repeat(${fields.length}, 1fr)` }}>
         {fields.map((f) => {
           const cur = valueFor(f.key);
-          const series = sparkSeries(f.key);
-          const split = (ctype === "all" && !f.noSplit) ? {
-            existing: valueFor(f.key, "existing"),
-            new:      valueFor(f.key, "new"),
-          } : null;
+          const breakdown = teamId === "all"
+            ? teamsForChart.map((t) => ({
+                label: t.name.replace("TEAM ", ""),
+                value: metricValue(D, f.key, { teamId: t.id, weekSet, ctype }),
+                color: t.color,
+              }))
+            : people.map((sp) => ({
+                label: sp.name,
+                value: metricValue(D, f.key, { teamId, spId: sp.id, weekSet, ctype }),
+                color: team.color,
+              }));
           return (
             <KpiCard key={f.key}
                      label={f.label} thai={f.thai} value={cur}
-                     icon={f.icon} accent={f.color} series={series}
-                     split={split}
-                     periodWeeks={periodWeeks}
+                     icon={f.icon} accent={f.color}
+                     breakdown={breakdown}
                      onClick={() => setDrillField(f)} />
           );
         })}
-      </div>
-
-      {/* Team activity comparison — only when viewing ALL teams.
-          When a single team is selected, show per-salesperson comparison instead. */}
-      <div className="card chart-card">
-        <div className="card-head">
-          <div>
-            <div className="card-title">
-              {teamId === "all"
-                ? `Team Activity Comparison · ${periodLabel}`
-                : `${team.name} — Salesperson Activity · ${periodLabel}`}
-            </div>
-            <div className="card-sub">
-              {teamId === "all"
-                ? "กราฟแยกตาม activity — เปรียบเทียบทีมในที่เดียว"
-                : "เปรียบเทียบเซลล์แต่ละคนในทีม"}
-            </div>
-          </div>
-        </div>
-        {teamId === "all" ? (
-          <TeamCompareChart
-            teams={teamsForChart}
-            fields={fields}
-            valueOf={(tid, fk) => metricValue(D, fk, { teamId: tid, weekSet, ctype })}
-          />
-        ) : (
-          <TeamCompareChart
-            teams={people.map(sp => ({
-              id: sp.id,
-              name: sp.name,
-              thai: sp.thai,
-              color: team.color,
-            }))}
-            fields={fields}
-            valueOf={(spId, fk) => metricValue(D, fk, { teamId, spId, weekSet, ctype })}
-          />
-        )}
       </div>
 
       {/* Salesperson breakdown */}
@@ -382,8 +343,8 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
           </div>
         </div>
         {(() => {
-          // Columns = the active customer-type fields + Potential TEU
-          const lbCols = [...fields, { key: "potentialTeu", label: "Potential TEU" }];
+          // Columns = the active customer-type fields (Potential TEU removed)
+          const lbCols = fields;
           const gridCols = `1.6fr 0.7fr ${lbCols.map(() => "1fr").join(" ")}`;
           const vp = (sp, fk) => metricValue(D, fk, { teamId: sp.team, spId: sp.id, weekSet, ctype });
 
@@ -426,10 +387,6 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                       </div>
                     )}
                     {tPeople.map(sp => {
-                      const followUp = vp(sp, "followUp");
-                      const visits   = vp(sp, "visits");
-                      const followUpBelow = followUp < 10 * periodWeeks;
-                      const visitsBelow   = visits   < 2  * periodWeeks;
                       return (
                         <div key={sp.id} className="lb-row" style={{ gridTemplateColumns: gridCols }}>
                           <div className="lb-name">
@@ -442,7 +399,9 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                           <div><span className="team-chip" style={{ "--c": t.color }}>{t.name.replace("TEAM ", "")}</span></div>
                           {lbCols.map(c => {
                             const val = vp(sp, c.key);
-                            const below = (c.key === "followUp" && followUpBelow) || (c.key === "visits" && visitsBelow);
+                            // Below target if the metric has a threshold and falls short
+                            // (per-week × expectMult: ×1 weekly, ×4 monthly)
+                            const below = c.expect != null && val < c.expect * expectMult;
                             const isWon = c.key === "wonDeals";
                             return (
                               <div key={c.key}
