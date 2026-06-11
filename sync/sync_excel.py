@@ -31,6 +31,7 @@ import re
 import sys
 import json
 import math
+import difflib
 import subprocess
 from datetime import datetime, timedelta
 
@@ -870,6 +871,169 @@ def read_all_oversea(base_dir, sp_id_start):
 
 
 # =====================================================================
+# CUSTOMER NAME CLUSTERING  (fuzzy de-duplication for New / Existing)
+# =====================================================================
+# Salespeople type the same company name slightly differently each week
+# ("Smile Heart Foods" vs "Smile Heart Food Co"). Without merging these,
+# the same customer is counted as NEW every time, inflating the numbers.
+# We normalize names, fuzzy-cluster look-alikes, and mark every cluster:
+#   - customerType "existing" if ANY row in the cluster was flagged existing
+#   - exactly one "firstContact" contact event (earliest) → the New Pipeline hit
+
+_LEGAL_WORDS = {
+    "co", " co.", "ltd", "ltd.", "ltda", "company", "limited", "public",
+    "pcl", "plc", "inc", "inc.", "incorporated", "corp", "corp.",
+    "corporation", "group", "holding", "holdings", "llc", "lp", "llp",
+    "partnership", "sdn", "bhd", "pte", "gmbh", "sa", "srl", "the", "and",
+}
+
+# Ultra-common words: still used for matching, but NOT used as blocking keys
+# (otherwise every "...Thailand" name would be compared against every other).
+_INDEX_SKIP = {
+    "thailand", "thai", "bangkok", "international", "intl", "trading",
+    "import", "export", "imp", "exp", "industries", "industry",
+    "industrial", "food", "foods", "product", "products", "manufacturing",
+    "enterprise", "enterprises", "frozen", "global", "asia", "asian",
+}
+
+
+def _norm_name(name):
+    """Lowercase, drop parentheticals/punctuation/legal words → token string."""
+    s = str(name).lower()
+    s = re.sub(r"\(.*?\)", " ", s)
+    s = re.sub(r"[^a-z0-9฀-๿]+", " ", s)   # keep latin, digits, Thai
+    toks = [t for t in s.split() if t and t not in _LEGAL_WORDS]
+    return " ".join(toks)
+
+
+def _tok_sorted(norm):
+    return " ".join(sorted(norm.split()))
+
+
+def _names_match(a, b):
+    """True if two normalized names are the same company."""
+    if not a or not b:
+        return False
+    ta, tb = set(a.split()), set(b.split())
+    if not ta or not tb:
+        return False
+    small = ta if len(ta) <= len(tb) else tb
+    # one name fully contained in the other (needs >=2 meaningful tokens)
+    if (ta <= tb or tb <= ta) and len(small) >= 2:
+        return True
+    r1 = difflib.SequenceMatcher(None, a, b).ratio()
+    r2 = difflib.SequenceMatcher(None, _tok_sorted(a), _tok_sorted(b)).ratio()
+    return max(r1, r2) >= 0.88
+
+
+def classify_customer_events(events):
+    """
+    Mutates events in place, adding:
+      ev["customerType"]  "new" | "existing"
+      ev["canonId"]       cluster id (same company → same id)
+      ev["firstContact"]  True on the single earliest contact row per cluster
+    Returns the cluster list (for reporting).
+    """
+    # Aggregate per distinct raw name
+    raw = {}
+    for ev in events:
+        ev["firstContact"] = False
+        nm = (ev.get("customer") or "").strip()
+        if not nm:
+            ev["customerType"] = "new"
+            ev["canonId"] = None
+            continue
+        r = raw.get(nm)
+        if not r:
+            r = raw[nm] = {"norm": _norm_name(nm), "count": 0, "exist": 0}
+        r["count"] += 1
+        if ev.get("existing"):
+            r["exist"] += 1
+
+    # Most frequent / longest names become cluster anchors first
+    names = sorted(raw.keys(), key=lambda n: (-raw[n]["count"], -len(n)))
+
+    clusters  = []     # {id, reps:[norm...], names:set, exist:bool}
+    tok_index = {}     # token -> set(cluster_idx)   (blocking)
+
+    for nm in names:
+        norm = raw[nm]["norm"]
+        toks = set(norm.split())
+        if not toks:
+            # name had only legal/empty tokens — keep as its own cluster
+            ci = len(clusters)
+            clusters.append({"id": f"k{ci+1:04d}", "reps": [norm or nm],
+                             "names": {nm}, "exist": False})
+            continue
+
+        cand = set()
+        for t in toks:
+            if t not in _INDEX_SKIP:
+                cand |= tok_index.get(t, set())
+
+        matched = None
+        for ci in cand:
+            if any(_names_match(norm, rep) for rep in clusters[ci]["reps"]):
+                matched = ci
+                break
+
+        if matched is None:
+            matched = len(clusters)
+            clusters.append({"id": f"k{matched+1:04d}", "reps": [norm],
+                             "names": {nm}, "exist": False})
+        else:
+            clusters[matched]["names"].add(nm)
+            if norm not in clusters[matched]["reps"]:
+                clusters[matched]["reps"].append(norm)
+
+        for t in toks:
+            if t not in _INDEX_SKIP:
+                tok_index.setdefault(t, set()).add(matched)
+
+    # raw name -> cluster index
+    name2ci = {}
+    for ci, c in enumerate(clusters):
+        for nm in c["names"]:
+            name2ci[nm] = ci
+
+    # Cluster is "existing" if any of its spellings was ever flagged existing
+    for nm, r in raw.items():
+        if r["exist"] > 0:
+            clusters[name2ci[nm]]["exist"] = True
+
+    # Tag events + find earliest contact row per cluster
+    earliest = {}
+    for ev in events:
+        nm = (ev.get("customer") or "").strip()
+        if not nm or nm not in name2ci:
+            continue
+        ci = name2ci[nm]
+        c  = clusters[ci]
+        ev["customerType"] = "existing" if c["exist"] else "new"
+        ev["canonId"]      = c["id"]
+        if ev.get("type") == "contacts":
+            d = ev.get("date") or "9999-99-99"
+            cur = earliest.get(ci)
+            if cur is None or d < cur[0]:
+                earliest[ci] = (d, ev)
+    for ci, (_d, ev) in earliest.items():
+        ev["firstContact"] = True
+
+    # Reporting
+    merged       = [c for c in clusters if len(c["names"]) > 1]
+    merged_exist = [c for c in merged if c["exist"]]
+    print(f"    Customer clusters : {len(clusters)} (from {len(names)} raw names)")
+    print(f"    Merged spellings  : {len(merged)} clusters "
+          f"({sum(len(c['names']) for c in merged)} names) "
+          f"— {len(merged_exist)} mapped to EXISTING")
+    # Show a few of the biggest merges so the team can sanity-check
+    for c in sorted(merged, key=lambda x: -len(x["names"]))[:12]:
+        tag = "EXISTING" if c["exist"] else "new"
+        print(f"      [{tag:8}] " + "  |  ".join(sorted(c["names"])[:5]))
+    return clusters
+
+
+# =====================================================================
 # MERGE & FINALISE
 # =====================================================================
 
@@ -1145,10 +1309,16 @@ def main():
 
         sorted_weeks, activity = build_all_weeks(all_sps, bp_mai_wk, ovs_wk)
 
+        # Classify customers on the FULL event set (so "first contact" is
+        # detected globally, even across weeks that get trimmed below).
+        print("\n--- Customer de-duplication ---")
+        all_events_full = bp_mai_events + ovs_events
+        classify_customer_events(all_events_full)
+
         # Events: keep only those that fall in the displayed weeks (matches WEEKS array).
         weeks_set = set(sorted_weeks)
         all_events = [
-            e for e in (bp_mai_events + ovs_events)
+            e for e in all_events_full
             if e.get("week") in weeks_set
         ]
         # Sort newest first for nicer drill-down lists

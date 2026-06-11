@@ -7,7 +7,7 @@ function CustomerTypeFilter({ value, onChange, counts }) {
   const opts = [
   { id: "all", label: "All Customers", thai: "ลูกค้าทั้งหมด", icon: "◎" },
   { id: "existing", label: "Existing", thai: "ลูกค้าเดิม", icon: "▲" },
-  { id: "new", label: "New / Prospect", thai: "ลูกค้าใหม่", icon: "✦" }];
+  { id: "new", label: "New Pipeline", thai: "ลูกค้าใหม่", icon: "✦" }];
 
   return (
     <div className="ctype-filter">
@@ -131,35 +131,53 @@ function TimeSelector({ weeks, mode, setMode, weekIdx, setWeekIdx, monthIdx, set
   );
 }
 
-// ---------- Activity field defs (with expectations per week) ----------
-const ACTIVITY_FIELDS = [
-  { key: "contacts",   label: "Call",             thai: "การโทร / ติดต่อลูกค้า", icon: "✉", color: "#0a1628", expect: 10 },
-  { key: "visits",     label: "Customer Visits",  thai: "การไปหาลูกค้า",   icon: "◉", color: "#0891b2", expect: 2  },
-  { key: "quotations", label: "Quotations Sent",  thai: "ส่ง Quotation",   icon: "◧", color: "#d97706", expect: null },
-  { key: "problems",   label: "Problem Calls",    thai: "โทรแก้ปัญหา",     icon: "⚠", color: "#dc2626", expect: null },
-  { key: "newClients", label: "New Pipeline",     thai: "ลูกค้าใหม่เข้า pipeline", icon: "★", color: "#7c3aed", expect: null },
-  { key: "wonDeals",   label: "Confirm Shipment", thai: "ปิดดีล / Won Deal", icon: "✓", color: "#10b981", expect: null },
-];
+// ---------- Activity field defs ----------
+// Counting is now event-based (D.EVENTS, one row per logged interaction):
+//   newPipeline = distinct NEW customers first-contacted (deduplicated by company)
+//   followUp    = ALL contact rows (raw count) — repeat calls counted every time
+//   visits / quotations / wonDeals = rows of that type
+// Customer type ("new"/"existing") comes from fuzzy-clustered company names,
+// so different spellings of the same firm are merged and not double-counted.
+const FIELD_DEFS = {
+  newPipeline: { key: "newPipeline", label: "New Pipeline",    thai: "ลูกค้าใหม่ (ไม่นับซ้ำ)", icon: "★", color: "#7c3aed", expect: null, noSplit: true },
+  followUp:    { key: "followUp",    label: "Follow Up",       thai: "ติดตาม / โทรซ้ำ",        icon: "⟳", color: "#0a1628", expect: 10 },
+  visits:      { key: "visits",      label: "Customer Visits", thai: "การไปหาลูกค้า",          icon: "◉", color: "#0891b2", expect: 2 },
+  quotations:  { key: "quotations",  label: "Quotations Sent", thai: "ส่ง Quotation",          icon: "◧", color: "#d97706", expect: null },
+  wonDeals:    { key: "wonDeals",    label: "Confirm Shipment",thai: "ปิดดีล / Won Deal",      icon: "✓", color: "#10b981", expect: null },
+};
+const FIELDS_BY_CTYPE = {
+  all:      ["newPipeline", "followUp", "visits", "quotations", "wonDeals"],
+  new:      ["newPipeline", "followUp", "visits", "quotations", "wonDeals"],
+  existing: ["followUp", "visits", "quotations", "wonDeals"],
+};
+function fieldsForCtype(ctype) {
+  return (FIELDS_BY_CTYPE[ctype] || FIELDS_BY_CTYPE.all).map((k) => FIELD_DEFS[k]);
+}
 
-// "wonDeals" is a synthetic field — count of confirmed shipments per week.
-// Currently it's the same data as newClients (which counts status="confirm" rows).
-// "newClients" is being repurposed here as "New Pipeline" (count of week's pipeline entries).
-// We use CUSTOMERS.sinceWeek to derive a true New Pipeline count.
-function valueForField(D, teamId, fieldKey, weekIdxs, ctype) {
-  // weekIdxs = array of week indices (1 for single week, multiple for month, all for ALL)
-  if (fieldKey === "newClients") {
-    // New Pipeline = count of customers whose firstContactDate (sinceWeek) falls in these weeks
-    const weekLabels = weekIdxs.map(i => D.WEEKS[i]);
-    return D.CUSTOMERS.filter(c =>
-      (teamId === "all" || c.team === teamId) &&
-      weekLabels.includes(c.sinceWeek)
+const _EV_TYPE = { followUp: "contacts", visits: "visits", quotations: "quotations", wonDeals: "newClients" };
+
+// Core event-based metric. weekSet = Set of week labels in scope.
+function metricValue(D, fieldKey, { teamId, spId, weekSet, ctype }) {
+  const EV = D.EVENTS || [];
+  const match = (ev, ct) =>
+    (teamId === "all" || ev.team === teamId) &&
+    (!spId || ev.spId === spId) &&
+    weekSet.has(ev.week) &&
+    (ct === "all" || ev.customerType === ct);
+
+  if (fieldKey === "newPipeline") {
+    // distinct NEW customers first-contacted in scope (firstContact dedupes the company)
+    return EV.filter((ev) =>
+      ev.type === "contacts" && ev.firstContact &&
+      ev.customerType === "new" && match(ev, "all")
     ).length;
   }
-  if (fieldKey === "wonDeals") {
-    // Won Deals = original newClients sum (status="confirm" rows per week)
-    return weekIdxs.reduce((sum, i) => sum + D.totalForTeam(teamId, i, "newClients", ctype), 0);
+  if (fieldKey === "potentialTeu") {
+    return EV.filter((ev) => match(ev, ctype)).reduce((s, ev) => s + (ev.teu || 0), 0);
   }
-  return weekIdxs.reduce((sum, i) => sum + D.totalForTeam(teamId, i, fieldKey, ctype), 0);
+  const TYPE = _EV_TYPE[fieldKey];
+  if (!TYPE) return 0;
+  return EV.filter((ev) => ev.type === TYPE && match(ev, ctype)).length;
 }
 
 // ---------- Dashboard View ----------
@@ -191,17 +209,27 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
   // People for this team
   const people = teamId === "all" ? D.SALESPEOPLE : D.SALESPEOPLE.filter((s) => s.team === teamId);
 
-  // Helper: value for the current period
-  const valueFor = (field, ct = ctype) => valueForField(D, teamId, field, activeWeekIdxs, ct);
-  const valueForTeam = (tid, field, ct = ctype) => valueForField(D, tid, field, activeWeekIdxs, ct);
-  // Sparkline series (always full WEEKS regardless of mode)
-  const sparkSeries = (field) => D.WEEKS.map((_, i) => valueForField(D, teamId, field, [i], ctype));
+  // Active fields for the current customer-type tab
+  const fields = fieldsForCtype(ctype);
 
-  // Counts for the customer type filter chips
+  // Week labels in scope (Set for fast lookup)
+  const weekSet = useMemo(
+    () => new Set(activeWeekIdxs.map((i) => D.WEEKS[i])),
+    [activeWeekIdxs]
+  );
+
+  // Helper: value for the current period
+  const valueFor = (field, ct = ctype) => metricValue(D, field, { teamId, weekSet, ctype: ct });
+  const valueForTeam = (tid, field, ct = ctype) => metricValue(D, field, { teamId: tid, weekSet, ctype: ct });
+  // Sparkline series (always full WEEKS regardless of mode)
+  const sparkSeries = (field) => D.WEEKS.map((wl) =>
+    metricValue(D, field, { teamId, weekSet: new Set([wl]), ctype }));
+
+  // Counts for the customer type filter chips = total Follow Up (all contacts)
   const counts = {
-    all:      valueFor("contacts", "all"),
-    existing: valueFor("contacts", "existing"),
-    new:      valueFor("contacts", "new"),
+    all:      metricValue(D, "followUp", { teamId, weekSet, ctype: "all" }),
+    existing: metricValue(D, "followUp", { teamId, weekSet, ctype: "existing" }),
+    new:      metricValue(D, "followUp", { teamId, weekSet, ctype: "new" }),
   };
 
   // Weeks count in the current period (for expectation thresholds)
@@ -224,45 +252,35 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
 
   const drillItems = useMemo(() => {
     if (!drillField) return [];
-    const weekLabels = activeWeekIdxs.map(i => D.WEEKS[i]);
+    const k = drillField.key;
     const inTeam = (t) => teamId === "all" || t === teamId;
-    const ctypeMatch = (ev) => ctype === "all"
-      || (ctype === "existing" &&  ev.existing)
-      || (ctype === "new"      && !ev.existing);
+    const ctMatch = (ev) => ctype === "all" || ev.customerType === ctype;
+    const EV = D.EVENTS || [];
 
-    // New Pipeline → derived from CUSTOMERS.sinceWeek
-    if (drillField.key === "newClients") {
-      return D.CUSTOMERS
-        .filter(c => inTeam(c.team) && weekLabels.includes(c.sinceWeek))
-        .sort((a, b) => (b.firstContactDate || "").localeCompare(a.firstContactDate || ""))
-        .map(c => ({
-          customer: c.name,
-          team:     teamNameMap[c.team] || c.team,
-          sp:       spMap[c.owner]?.name || "—",
-          date:     c.firstContactDate,
-          week:     c.sinceWeek,
-          stage:    c.stage,
-          notes:    c.notes,
-        }));
+    let evs;
+    if (k === "newPipeline") {
+      // distinct new customers first-contacted (one row per company)
+      evs = EV.filter(ev => ev.type === "contacts" && ev.firstContact
+                         && ev.customerType === "new"
+                         && inTeam(ev.team) && weekSet.has(ev.week));
+    } else {
+      const TYPE = _EV_TYPE[k];
+      evs = EV.filter(ev => ev.type === TYPE
+                         && inTeam(ev.team) && weekSet.has(ev.week) && ctMatch(ev));
     }
-    // Won Deal → events with type "newClients" (rows where stage="won")
-    const evType = drillField.key === "wonDeals" ? "newClients" : drillField.key;
-    return (D.EVENTS || [])
-      .filter(ev => ev.type === evType
-                 && inTeam(ev.team)
-                 && weekLabels.includes(ev.week)
-                 && ctypeMatch(ev))
+    return evs
       .map(ev => ({
-        customer: ev.customer,
-        team:     teamNameMap[ev.team] || ev.team,
-        sp:       spMap[ev.spId]?.name || "—",
-        date:     ev.date,
-        week:     ev.week,
-        stage:    ev.stage,
-        notes:    ev.notes,
-        existing: ev.existing,
-      }));
-  }, [drillField, teamId, ctype, activeWeekIdxs]);
+        customer:     ev.customer,
+        team:         teamNameMap[ev.team] || ev.team,
+        sp:           spMap[ev.spId]?.name || "—",
+        date:         ev.date,
+        week:         ev.week,
+        stage:        ev.stage,
+        notes:        ev.notes,
+        customerType: ev.customerType,
+      }))
+      .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  }, [drillField, teamId, ctype, weekSet]);
 
   return (
     <div className="view dashboard-view" data-ctype={ctype}>
@@ -290,12 +308,13 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
                     monthGroups={monthGroups} />
       <CustomerTypeFilter value={ctype} onChange={setCtype} counts={counts} />
 
-      {/* KPI Row — 6 cards, no target comparison */}
-      <div className="kpi-grid kpi-grid-6" key={`kpi-${ctype}-${mode}-${weekIdx}-${monthIdx}`}>
-        {ACTIVITY_FIELDS.map((f) => {
+      {/* KPI Row — fields depend on the selected customer type */}
+      <div className="kpi-grid" key={`kpi-${ctype}-${mode}-${weekIdx}-${monthIdx}`}
+           style={{ gridTemplateColumns: `repeat(${fields.length}, 1fr)` }}>
+        {fields.map((f) => {
           const cur = valueFor(f.key);
           const series = sparkSeries(f.key);
-          const split = (ctype === "all" && f.key !== "newClients" && f.key !== "wonDeals") ? {
+          const split = (ctype === "all" && !f.noSplit) ? {
             existing: valueFor(f.key, "existing"),
             new:      valueFor(f.key, "new"),
           } : null;
@@ -330,8 +349,8 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
         {teamId === "all" ? (
           <TeamCompareChart
             teams={teamsForChart}
-            fields={ACTIVITY_FIELDS}
-            valueOf={(tid, fk) => valueForTeam(tid, fk)}
+            fields={fields}
+            valueOf={(tid, fk) => metricValue(D, fk, { teamId: tid, weekSet, ctype })}
           />
         ) : (
           <TeamCompareChart
@@ -341,16 +360,8 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
               thai: sp.thai,
               color: team.color,
             }))}
-            fields={ACTIVITY_FIELDS}
-            valueOf={(spId, fk) => {
-              if (fk === "newClients") {
-                return D.CUSTOMERS.filter(c => c.owner === spId &&
-                  activeWeekIdxs.map(i => D.WEEKS[i]).includes(c.sinceWeek)).length;
-              }
-              const realKey = fk === "wonDeals" ? "newClients" : fk;
-              return activeWeekIdxs.reduce((s, i) =>
-                s + D.pickVal(D.ACTIVITY[spId][i][realKey], ctype), 0);
-            }}
+            fields={fields}
+            valueOf={(spId, fk) => metricValue(D, fk, { teamId, spId, weekSet, ctype })}
           />
         )}
       </div>
@@ -370,89 +381,86 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
             <span className="pill-toggle active">{periodLabel}</span>
           </div>
         </div>
-        <div className="leaderboard leaderboard-v2">
-          <div className="lb-head">
-            <div>Sales Rep</div>
-            <div>Team</div>
-            <div className="num" title="≥ 10 calls / week">Call<br/><span className="lb-expect">≥10/wk</span></div>
-            <div className="num" title="≥ 2 visits / week">Visits<br/><span className="lb-expect">≥2/wk</span></div>
-            <div className="num">Quotes</div>
-            <div className="num">Problems</div>
-            <div className="num">New Pipeline</div>
-            <div className="num">Won Deal</div>
-            <div className="num">Potential TEU</div>
-          </div>
+        {(() => {
+          // Columns = the active customer-type fields + Potential TEU
+          const lbCols = [...fields, { key: "potentialTeu", label: "Potential TEU" }];
+          const gridCols = `1.6fr 0.7fr ${lbCols.map(() => "1fr").join(" ")}`;
+          const vp = (sp, fk) => metricValue(D, fk, { teamId: sp.team, spId: sp.id, weekSet, ctype });
 
-          {/* Group people by team when teamId === "all", else just one block */}
-          {(() => {
-            const teamsToShow = teamId === "all"
-              ? D.TEAMS.filter(t => t.id !== "all").filter(t => D.SALESPEOPLE.some(s => s.team === t.id))
-              : [team];
-            return teamsToShow.map(t => {
-              const tPeople = D.SALESPEOPLE.filter(s => s.team === t.id);
-              if (tPeople.length === 0) return null;
+          const teamsToShow = teamId === "all"
+            ? D.TEAMS.filter(t => t.id !== "all").filter(t => D.SALESPEOPLE.some(s => s.team === t.id))
+            : [team];
 
-              const vp = (sp, field) => {
-                if (field === "newClients") {
-                  return D.CUSTOMERS.filter(c => c.owner === sp.id &&
-                    activeWeekIdxs.map(i => D.WEEKS[i]).includes(c.sinceWeek)).length;
-                }
-                if (field === "wonDeals") {
-                  return activeWeekIdxs.reduce((s, i) =>
-                    s + D.pickVal(D.ACTIVITY[sp.id][i].newClients, ctype), 0);
-                }
-                return activeWeekIdxs.reduce((s, i) =>
-                  s + D.pickVal(D.ACTIVITY[sp.id][i][field], ctype), 0);
-              };
-              // Team totals row
-              const sumField = (field) => tPeople.reduce((s, sp) => s + vp(sp, field), 0);
+          return (
+            <div className="leaderboard leaderboard-v2">
+              <div className="lb-head" style={{ gridTemplateColumns: gridCols }}>
+                <div>Sales Rep</div>
+                <div>Team</div>
+                {lbCols.map(c => (
+                  <div key={c.key} className="num">
+                    {c.label}
+                    {c.expect != null && <><br/><span className="lb-expect">≥{c.expect}/wk</span></>}
+                  </div>
+                ))}
+              </div>
 
-              return (
-                <React.Fragment key={t.id}>
-                  {teamId === "all" && (
-                    <div className="lb-team-header" style={{ "--c": t.color }}>
-                      <div className="lb-team-badge" style={{ background: t.color }}>{t.name.replace("TEAM ", "").charAt(0)}</div>
-                      <div className="lb-team-text">
-                        <div className="lb-team-name">{t.name}</div>
-                        <div className="lb-team-thai">{t.thai} · {tPeople.length} reps</div>
-                      </div>
-                      <div className="lb-team-totals num mono">
-                        <span title="Total contacts">{sumField("contacts")} contacts</span>
-                        <span title="Total visits">· {sumField("visits")} visits</span>
-                        <span title="Total won deals" style={{ color: "#10b981" }}>· {sumField("wonDeals")} won</span>
-                      </div>
-                    </div>
-                  )}
-                  {tPeople.map(sp => {
-                    const contacts = vp(sp, "contacts");
-                    const visits   = vp(sp, "visits");
-                    const contactsBelow = contacts < 10 * periodWeeks;
-                    const visitsBelow   = visits   < 2  * periodWeeks;
-                    return (
-                      <div key={sp.id} className="lb-row">
-                        <div className="lb-name">
-                          <Avatar initials={sp.avatar} color={t.color} size={32} />
-                          <div>
-                            <div className="name-en">{sp.name}</div>
-                            <div className="name-th">{sp.thai}</div>
-                          </div>
+              {teamsToShow.map(t => {
+                const tPeople = D.SALESPEOPLE.filter(s => s.team === t.id);
+                if (tPeople.length === 0) return null;
+                const sumField = (fk) => tPeople.reduce((s, sp) => s + vp(sp, fk), 0);
+
+                return (
+                  <React.Fragment key={t.id}>
+                    {teamId === "all" && (
+                      <div className="lb-team-header" style={{ "--c": t.color }}>
+                        <div className="lb-team-badge" style={{ background: t.color }}>{t.name.replace("TEAM ", "").charAt(0)}</div>
+                        <div className="lb-team-text">
+                          <div className="lb-team-name">{t.name}</div>
+                          <div className="lb-team-thai">{t.thai} · {tPeople.length} reps</div>
                         </div>
-                        <div><span className="team-chip" style={{ "--c": t.color }}>{t.name.replace("TEAM ", "")}</span></div>
-                        <div className={`num mono ${contactsBelow ? "lb-below" : ""}`}>{contacts}</div>
-                        <div className={`num mono ${visitsBelow ? "lb-below" : ""}`}>{visits}</div>
-                        <div className="num mono">{vp(sp, "quotations")}</div>
-                        <div className="num mono">{vp(sp, "problems")}</div>
-                        <div className="num mono">{vp(sp, "newClients")}</div>
-                        <div className="num mono lb-big" style={{ color: "#10b981" }}>{vp(sp, "wonDeals")}</div>
-                        <div className="num mono">{vp(sp, "potentialTeu")}</div>
+                        <div className="lb-team-totals num mono">
+                          {ctype !== "existing" && <span title="New customers">{sumField("newPipeline")} new</span>}
+                          <span title="Total follow-up contacts">· {sumField("followUp")} follow-up</span>
+                          <span title="Total won deals" style={{ color: "#10b981" }}>· {sumField("wonDeals")} won</span>
+                        </div>
                       </div>
-                    );
-                  })}
-                </React.Fragment>
-              );
-            });
-          })()}
-        </div>
+                    )}
+                    {tPeople.map(sp => {
+                      const followUp = vp(sp, "followUp");
+                      const visits   = vp(sp, "visits");
+                      const followUpBelow = followUp < 10 * periodWeeks;
+                      const visitsBelow   = visits   < 2  * periodWeeks;
+                      return (
+                        <div key={sp.id} className="lb-row" style={{ gridTemplateColumns: gridCols }}>
+                          <div className="lb-name">
+                            <Avatar initials={sp.avatar} color={t.color} size={32} />
+                            <div>
+                              <div className="name-en">{sp.name}</div>
+                              <div className="name-th">{sp.thai}</div>
+                            </div>
+                          </div>
+                          <div><span className="team-chip" style={{ "--c": t.color }}>{t.name.replace("TEAM ", "")}</span></div>
+                          {lbCols.map(c => {
+                            const val = vp(sp, c.key);
+                            const below = (c.key === "followUp" && followUpBelow) || (c.key === "visits" && visitsBelow);
+                            const isWon = c.key === "wonDeals";
+                            return (
+                              <div key={c.key}
+                                   className={`num mono ${below ? "lb-below" : ""} ${isWon ? "lb-big" : ""}`}
+                                   style={isWon ? { color: "#10b981" } : undefined}>
+                                {val}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          );
+        })()}
       </div>
 
       {/* Recent pipeline */}
@@ -509,7 +517,7 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
         items={drillItems}
         emptyMessage="ไม่มีรายการในช่วงเวลาที่เลือก"
         columns={[
-          { key: "customer", label: "Customer", style: {minWidth: 200},
+          { key: "customer", label: "Customer", style: {minWidth: 220},
             render: (it) => (
               <div className="ad-cust">
                 <div className="ad-cust-name">{it.customer}</div>
@@ -520,10 +528,17 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
             render: (it) => <span className="ad-sp">{it.sp}</span> },
           { key: "team", label: "Team",
             render: (it) => <span className="ad-team-tag">{it.team}</span> },
+          { key: "customerType", label: "Type",
+            render: (it) => (
+              <span className="ad-cust-type" style={{
+                color: it.customerType === "new" ? "#7c3aed" : "#0891b2",
+                background: (it.customerType === "new" ? "#7c3aed" : "#0891b2") + "18",
+              }}>
+                {it.customerType === "new" ? "New" : "Existing"}
+              </span>
+            ) },
           { key: "date", label: "Date",
             render: (it) => <span className="mono ad-date">{it.date}<span className="ad-wk">{it.week}</span></span> },
-          { key: "stage", label: "Stage",
-            render: (it) => <span className="ad-stage">{it.stage || "—"}</span> },
         ]}
       />
     </div>);
