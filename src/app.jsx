@@ -192,109 +192,80 @@ function App({ D }) {
   const [teamId, setTeamId] = useState(defaultTeam);
   const [view, setView] = useState("dashboard");
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const [clock, setClock] = useState(new Date());
-
-  useEffect(() => {
-    const t = setInterval(() => setClock(new Date()), 1000);
-    return () => clearInterval(t);
-  }, []);
-
-  const syncLabel = D.generated_at
-    ? new Date(D.generated_at).toLocaleString("en-GB", {
-        day:"2-digit", month:"short", year:"numeric",
-        hour:"2-digit", minute:"2-digit",
-      })
-    : "—";
+  const [openSec, setOpenSec] = useState(null); // null | "teams" | "activity" | "market"
+  const teamCount = (id) => id === "all" ? D.SALESPEOPLE.length : D.SALESPEOPLE.filter(s => s.team === id).length;
 
   return (
-    <div className="app" data-team={teamId}>
-      <aside className="sidebar">
-        <div className="brand">
-          <div className="brand-mark">
-            <div className="bm-block" />
-            <div className="bm-block bm-block-2" />
-            <div className="bm-block bm-block-3" />
-          </div>
-          <div className="brand-text">
-            <div className="brand-name">Logman CRM</div>
-            <div className="brand-sub">Sales Activity &amp; Market Intelligence</div>
-          </div>
+    <div className="app app-exec" data-team={teamId}>
+      <aside className="rail exec">
+        <div className="rail-logo">
+          <i style={{ background:"#d97706" }} /><i style={{ background:"#0891b2" }} />
+          <i style={{ background:"#7c3aed" }} /><i style={{ background:"#fff" }} />
         </div>
-
-        <div className="side-section">
-          <div className="side-section-title">Teams</div>
-          <div className="team-list">
-            {D.TEAMS.map(t => (
-              <button key={t.id}
-                      className={`team-btn ${teamId === t.id ? "active" : ""}`}
-                      onClick={() => setTeamId(t.id)}>
-                <span className="team-btn-dot" style={{ background: t.color }} />
-                <div className="team-btn-text">
-                  <div className="team-btn-name">{t.name}</div>
-                  <div className="team-btn-thai">{t.thai}</div>
-                </div>
-                <span className="team-btn-count">
-                  {t.id === "all"
-                    ? D.SALESPEOPLE.length
-                    : D.SALESPEOPLE.filter(s => s.team === t.id).length}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="side-section">
-          <div className="side-section-title">Sales Activity</div>
-          <div className="nav-list">
-            <button className={`nav-btn ${view === "dashboard" ? "active" : ""}`}
-                    onClick={() => setView("dashboard")}>
-              <span className="nav-ic">▦</span>
-              Dashboard
-              <span className="nav-th">แดชบอร์ด</span>
-            </button>
-            <button className={`nav-btn ${view === "customers" ? "active" : ""}`}
-                    onClick={() => setView("customers")}>
-              <span className="nav-ic">◳</span>
-              Customers
-              <span className="nav-th">ลูกค้า</span>
-            </button>
-          </div>
-        </div>
-
+        <button className={`rbtn ${openSec === "teams" ? "active" : ""}`}
+                onClick={() => setOpenSec(openSec === "teams" ? null : "teams")}>☰<span className="rb-label">Teams</span></button>
+        <button className={`rbtn ${openSec === "activity" ? "active" : ""}`}
+                onClick={() => setOpenSec(openSec === "activity" ? null : "activity")}>▦<span className="rb-label">Sales Activity</span></button>
         {canViewMarket && (
-          <div className="side-section">
-            <div className="side-section-title">Market Intelligence</div>
-            <div className="nav-list">
-              <button className={`nav-btn ${view === "mkt-customers" ? "active" : ""}`}
-                      onClick={() => setView("mkt-customers")}>
-                <span className="nav-ic">⊞</span>
-                Customer List
-                <span className="nav-th">รายชื่อลูกค้า</span>
-              </button>
-              <button className={`nav-btn ${view === "mkt-dashboard" ? "active" : ""}`}
-                      onClick={() => setView("mkt-dashboard")}>
-                <span className="nav-ic">◆</span>
-                Market Dashboard
-                <span className="nav-th">ภาพรวมตลาด</span>
-              </button>
-            </div>
-          </div>
+          <button className={`rbtn ${openSec === "market" ? "active" : ""}`}
+                  onClick={() => setOpenSec(openSec === "market" ? null : "market")}>◆<span className="rb-label">Market Intelligence</span></button>
         )}
-
-        <div className="side-footer">
-          <div className="sync-card">
-            <div className="sync-head">
-              <div className="sync-dot" />
-              <span>Excel Synced</span>
-            </div>
-            <div className="sync-time mono">
-              {clock.toLocaleTimeString("en-GB", { hour:"2-digit", minute:"2-digit", second:"2-digit" })}
-            </div>
-            <div className="sync-meta">Last data: {syncLabel}</div>
-            <div className="sync-meta" style={{ marginTop:4 }}>Auto-refresh: every Tuesday 15:00</div>
-          </div>
-        </div>
+        <div className="rail-sp" />
       </aside>
+
+      {openSec && (
+        <>
+          <div className="scrim" onClick={() => setOpenSec(null)} />
+          <div className="flyout exec">
+            {openSec === "teams" && (
+              <>
+                <div className="fly-title">Teams</div>
+                <div className="fly-sub">เลือกทีมที่ต้องการดู</div>
+                <div className="fly-list">
+                  {D.TEAMS.map(t => (
+                    <button key={t.id} className={`fteam ${teamId === t.id ? "active" : ""}`}
+                            onClick={() => { setTeamId(t.id); setOpenSec(null); }}>
+                      <span className="dot" style={{ background: t.color }} />
+                      <span className="ft-meta"><div className="ft-en">{t.name}</div><div className="ft-th">{t.thai}</div></span>
+                      <span className="ft-cnt">{teamCount(t.id)}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+            {openSec === "activity" && (
+              <>
+                <div className="fly-title">Sales Activity</div>
+                <div className="fly-sub">มุมมองกิจกรรมการขาย</div>
+                <div className="fly-list">
+                  {[["dashboard","▦","Dashboard","แดชบอร์ด"],["customers","◳","Customers","ลูกค้า"]].map(([id,ic,en,th]) => (
+                    <button key={id} className={`fteam ${view === id ? "active" : ""}`}
+                            onClick={() => { setView(id); setOpenSec(null); }}>
+                      <span className="ft-ic">{ic}</span>
+                      <span className="ft-meta"><div className="ft-en">{en}</div><div className="ft-th">{th}</div></span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+            {openSec === "market" && canViewMarket && (
+              <>
+                <div className="fly-title">Market Intelligence</div>
+                <div className="fly-sub">ข้อมูลตลาดส่งออก</div>
+                <div className="fly-list">
+                  {[["mkt-customers","⊞","Customer List","รายชื่อลูกค้า"],["mkt-dashboard","◆","Market Dashboard","ภาพรวมตลาด"]].map(([id,ic,en,th]) => (
+                    <button key={id} className={`fteam ${view === id ? "active" : ""}`}
+                            onClick={() => { setView(id); setOpenSec(null); }}>
+                      <span className="ft-ic">{ic}</span>
+                      <span className="ft-meta"><div className="ft-en">{en}</div><div className="ft-th">{th}</div></span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
 
       <main className="main" key={`${teamId}-${view}`}>
         {view === "dashboard" && (

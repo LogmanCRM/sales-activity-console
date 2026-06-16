@@ -154,8 +154,8 @@ function metricValue(D, fieldKey, { teamId, spId, weekSet, ctype }) {
   return EV.filter((ev) => ev.type === TYPE && match(ev, ctype)).length;
 }
 
-// ---------- Dashboard View ----------
-function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
+// ---------- Dashboard View (LEGACY — superseded by the exec dashboard below) ----------
+function DashboardViewLegacy({ teamId, onSelectCustomer, onNavigate }) {
   const D = window.SalesData;
   const team = D.TEAMS.find((t) => t.id === teamId);
   const accent = team.color;
@@ -438,6 +438,216 @@ function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
 }
 
 // ---------- Customers View ----------
+// ═══════════════════════════════════════════════════════════════════════
+// EXECUTIVE DASHBOARD (preview3) — week-only, KPI matrix, line chart vs min
+// ═══════════════════════════════════════════════════════════════════════
+const CHART_METRICS = [
+  { key: "newPipeline", label: "New Pipeline",    icon: "✦", color: "#7c3aed", min: 50, minPerson: 10 },
+  { key: "visits",      label: "Customer Visits", icon: "◎", color: "#0891b2", min: 12, minPerson: 2 },
+  { key: "quotations",  label: "Quotations Sent", icon: "❏", color: "#d97706", min: 75, minPerson: 15 },
+];
+const REP_COLORS = ["#4f46e5","#0891b2","#d97706","#16a34a","#db2777","#7c3aed","#0d9488","#ca8a04","#dc2626","#2563eb","#9333ea","#0ea5e9"];
+
+function ExecKc({ f, value, breakdown }) {
+  const max = Math.max(...breakdown.map((b) => b.value), 1);
+  return (
+    <div className="kc" style={{ "--c": f.color }}>
+      <div className="kc-top">
+        <div className="kc-ic" style={{ background: f.color + "18", color: f.color }}>{f.icon}</div>
+        <div style={{ minWidth: 0 }}><div className="kc-nm">{f.label}</div><div className="kc-th">{f.thai}</div></div>
+      </div>
+      <div className="kc-val" style={{ color: f.color }}>{value > 0 ? <AnimatedNumber value={value} /> : <span className="mono">0</span>}</div>
+      <div className="kc-bd">
+        {breakdown.map((b) => (
+          <div className="bd" key={b.label}>
+            <span className="bd-l" title={b.label}>{b.label}</span>
+            <span className="bd-t"><span className="bd-f" style={{ width: (b.value / max * 100) + "%", background: b.color }} /></span>
+            <span className="bd-v mono">{b.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ExecLineChart({ weeks, series, min, curWeekIdx, hov }) {
+  const W = 920, H = 340, padL = 46, padR = 18, padT = 22, padB = 46;
+  const iw = W - padL - padR, ih = H - padT - padB;
+  const maxV = Math.max(min, ...series.flatMap((s) => s.vals), 1);
+  const yMax = Math.ceil(maxV * 1.18 / 10) * 10 || 10;
+  const x = (i) => padL + (weeks.length === 1 ? iw / 2 : (i / (weeks.length - 1)) * iw);
+  const y = (v) => padT + ih - (v / yMax) * ih;
+  const yvals = Array.from({ length: 6 }, (_, i) => Math.round(yMax / 5 * i));
+  const minY = y(min);
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`}>
+      {yvals.map((v, i) => (
+        <g key={i}><line x1={padL} x2={W - padR} y1={y(v)} y2={y(v)} stroke="#eef1f7" />
+          <text x={padL - 8} y={y(v) + 4} textAnchor="end" fontSize="11" fill="#aeb6c6" fontFamily="Inter">{v}</text></g>
+      ))}
+      {curWeekIdx >= 0 && <line x1={x(curWeekIdx)} x2={x(curWeekIdx)} y1={padT} y2={padT + ih} stroke="#4f46e5" strokeOpacity=".18" strokeWidth="10" />}
+      {weeks.map((w, i) => (
+        <text key={w} x={x(i)} y={H - 22} textAnchor="middle" fontSize="11" fill="#8a93a6" fontFamily="Inter" fontWeight={i === curWeekIdx ? 700 : 400}>{w.replace("W", "")}</text>
+      ))}
+      <text x={padL} y={H - 6} fontSize="10" fill="#aeb6c6" fontFamily="Inter">Week →</text>
+      <line x1={padL} x2={W - padR} y1={minY} y2={minY} stroke="#ef4444" strokeWidth="2" strokeDasharray="6 5" />
+      <rect x={W - padR - 96} y={minY - 20} width="96" height="17" rx="4" fill="#ef4444" />
+      <text x={W - padR - 48} y={minY - 8} textAnchor="middle" fontSize="10.5" fill="#fff" fontFamily="Inter" fontWeight="700">Min · {min}/wk</text>
+      {series.map((_, i) => i).sort((a, b) => (a === hov ? 1 : 0) - (b === hov ? 1 : 0)).map((si) => {
+        const s = series[si]; const dim = hov >= 0 && hov !== si; const hot = hov === si;
+        const pts = s.vals.map((v, i) => `${x(i)},${y(v)}`).join(" ");
+        return (
+          <g key={si} opacity={dim ? 0.1 : 1}>
+            <polyline points={pts} fill="none" stroke={s.color} strokeWidth={hot ? 4 : 2.6} strokeLinejoin="round" strokeLinecap="round" />
+            {s.vals.map((v, i) => (
+              <circle key={i} cx={x(i)} cy={y(v)} r={hot ? (i === curWeekIdx ? 5.5 : 4) : (i === curWeekIdx ? 4.5 : 3)} fill="#fff" stroke={s.color} strokeWidth={hot ? 2.8 : 2.2} />
+            ))}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+function DashboardView({ teamId, onSelectCustomer, onNavigate }) {
+  const D = window.SalesData;
+  const team = D.TEAMS.find((t) => t.id === teamId);
+  const [weekIdx, setWeekIdx] = useState(D.WEEKS.length - 1);
+  const [chartMetric, setChartMetric] = useState("newPipeline");
+  const [hov, setHov] = useState(-1);
+  const [drill, setDrill] = useState(null);
+  React.useEffect(() => { setHov(-1); }, [teamId, chartMetric]);
+
+  const TCOLOR = {}; D.TEAMS.forEach((t) => { TCOLOR[t.id] = t.color; });
+  const teams = D.TEAMS.filter((t) => t.id !== "all");
+  const people = teamId === "all" ? D.SALESPEOPLE : D.SALESPEOPLE.filter((s) => s.team === teamId);
+  const short = (id) => (D.TEAMS.find((t) => t.id === id)?.name || id).replace("TEAM ", "");
+  const spMap = useMemo(() => { const m = {}; D.SALESPEOPLE.forEach((s) => { m[s.id] = s; }); return m; }, []);
+
+  const isAllW = weekIdx === -1;
+  const activeWeeks = isAllW ? D.WEEKS : [D.WEEKS[weekIdx]];
+  const weekSet = useMemo(() => new Set(activeWeeks), [weekIdx, isAllW]);
+  const wtag = isAllW ? `All Weeks · ${D.WEEKS.length}w` : `Week ${D.WEEKS[weekIdx].replace("W", "")} · 2026`;
+
+  const mv = (key, opts) => metricValue(D, key, { ...opts, ctype: "all" });
+  const breakdownOf = (key) => teamId === "all"
+    ? teams.map((t) => ({ label: short(t.id), value: mv(key, { teamId: t.id, weekSet }), color: TCOLOR[t.id] }))
+    : people.map((sp) => ({ label: sp.name, value: mv(key, { teamId, spId: sp.id, weekSet }), color: TCOLOR[teamId] }));
+
+  const cm = CHART_METRICS.find((m) => m.key === chartMetric);
+  const chartMin = teamId === "all" ? cm.min : cm.minPerson;
+  const entities = teamId === "all"
+    ? teams.map((t) => ({ name: short(t.id), color: TCOLOR[t.id], val: (w) => mv(cm.key, { teamId: t.id, weekSet: new Set([w]) }), tot: (ws) => mv(cm.key, { teamId: t.id, weekSet: ws }) }))
+    : people.map((sp, i) => ({ name: sp.name, color: REP_COLORS[i % REP_COLORS.length], val: (w) => mv(cm.key, { teamId, spId: sp.id, weekSet: new Set([w]) }), tot: (ws) => mv(cm.key, { teamId, spId: sp.id, weekSet: ws }) }));
+  const chartSeries = entities.map((e) => ({ name: e.name, color: e.color, vals: D.WEEKS.map((w) => e.val(w)) }));
+  const chartSummary = entities.map((e) => { const total = e.tot(weekSet); const perWk = isAllW ? Math.round(total / D.WEEKS.length) : total; return { name: e.name, color: e.color, perWk, ok: perWk >= chartMin }; });
+
+  const KPI_ORDER = ["newPipeline", "followUp", "visits", "quotations", "wonDeals"];
+
+  const drillItems = useMemo(() => {
+    if (!drill) return [];
+    const EV = D.EVENTS || []; const inT = (t) => teamId === "all" || t === teamId;
+    let evs;
+    if (drill.key === "newPipeline") evs = EV.filter((ev) => ev.type === "contacts" && ev.firstContact && ev.customerType === "new" && inT(ev.team) && weekSet.has(ev.week));
+    else { const T = _EV_TYPE[drill.key]; evs = EV.filter((ev) => ev.type === T && inT(ev.team) && weekSet.has(ev.week)); }
+    return evs.map((ev) => ({ customer: ev.customer, team: short(ev.team), sp: spMap[ev.spId]?.name || "—", date: ev.date, week: ev.week, customerType: ev.customerType, notes: ev.notes }))
+      .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  }, [drill, teamId, weekIdx, isAllW]);
+
+  const syncLabel = D.generated_at ? new Date(D.generated_at).toLocaleString("en-GB", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }) : "—";
+
+  return (
+    <div className="view exec exec-dash">
+      <div className="head">
+        <div>
+          <div className="eyebrow">Executive Dashboard</div>
+          <h1 className="h1">{team.name} <small>/ {team.thai}</small></h1>
+          <div className="hsub">{people.length} sales reps · {wtag}</div>
+        </div>
+        <div className="live"><span className="livedot" /> Synced {syncLabel}</div>
+      </div>
+
+      <div className="weekbar">
+        <span className="wlabel">Week</span>
+        <button className={`wp wp-all ${isAllW ? "active" : ""}`} onClick={() => setWeekIdx(-1)}>ALL</button>
+        {D.WEEKS.map((w, i) => (
+          <button key={w} className={`wp ${i === weekIdx ? "active" : ""} ${i === D.WEEKS.length - 1 ? "cur" : ""}`} onClick={() => setWeekIdx(i)}>{w.replace("W", "")}</button>
+        ))}
+        <span className="wtag">{wtag}</span>
+      </div>
+
+      <div className="kgrid">
+        {KPI_ORDER.map((k) => {
+          const f = FIELD_DEFS[k]; const val = mv(k, { teamId, weekSet });
+          return (
+            <div key={k} style={{ cursor: val > 0 ? "pointer" : "default" }} onClick={() => { if (val > 0) setDrill(f); }}>
+              <ExecKc f={f} value={val} breakdown={breakdownOf(k)} />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="chart-card">
+        <div className="cc-head">
+          <div>
+            <div className="cc-title">Weekly Activity vs Minimum Target</div>
+            <div className="cc-sub">{teamId === "all" ? "เปรียบเทียบทุกทีมรายสัปดาห์ · ขั้นต่ำรายทีม" : `${team.name} · เบรครายเซลล์ · ขั้นต่ำรายคน`} · เส้นแดง = ขั้นต่ำ {chartMin}/สัปดาห์</div>
+          </div>
+          <div className="cc-seg">
+            {CHART_METRICS.map((m) => (
+              <button key={m.key} className={chartMetric === m.key ? "active" : ""}
+                      style={chartMetric === m.key ? { background: m.color } : {}}
+                      onClick={() => setChartMetric(m.key)}><span className="si">{m.icon}</span>{m.label}</button>
+            ))}
+          </div>
+        </div>
+        <div className="cc-chart"><ExecLineChart weeks={D.WEEKS} series={chartSeries} min={chartMin} curWeekIdx={weekIdx} hov={hov} /></div>
+        <div className="cc-legend">
+          {chartSummary.map((e, i) => (
+            <span className={`lgi lgi-hov ${hov === i ? "on" : ""} ${hov >= 0 && hov !== i ? "off" : ""}`} key={i}
+                  onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(-1)}>
+              <span className="ln" style={{ background: e.color }} />{e.name}
+            </span>
+          ))}
+          <span className="lgi"><span className="ln dash" />Minimum <b>{chartMin}/wk</b> {teamId === "all" ? "(ต่อทีม)" : "(ต่อคน)"}</span>
+        </div>
+        <div className="cc-cards">
+          {chartSummary.map((e, i) => (
+            <div className={`tsum tsum-hov ${hov === i ? "on" : ""} ${hov >= 0 && hov !== i ? "off" : ""}`} key={i}
+                 onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(-1)} style={{ "--c": e.color }}>
+              <div className="tsum-top">
+                <span className="tsum-dot" style={{ background: e.color }} />
+                <span className="tsum-nm">{e.name}</span>
+                <span className="tsum-st" style={{ color: e.ok ? "#16a34a" : "#ef4444", background: (e.ok ? "#16a34a" : "#ef4444") + "18" }}>{e.ok ? "On Track" : "Below"}</span>
+              </div>
+              <div className="tsum-row"><span>{isAllW ? "Avg / week" : "This week"}</span><b className="mono" style={{ color: e.ok ? "#16a34a" : "#ef4444" }}>{e.perWk}</b></div>
+              <div className="tsum-row"><span>Minimum</span><b className="mono" style={{ fontSize: 13, color: "#aeb6c6" }}>{chartMin}</b></div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <ActivityDetailDrawer
+        open={!!drill}
+        onClose={() => setDrill(null)}
+        title={drill ? `${drill.label} · ${wtag}` : ""}
+        subtitle={teamId === "all" ? "ALL TEAMS" : (team ? team.name : "")}
+        items={drillItems}
+        emptyMessage="ไม่มีรายการในช่วงเวลาที่เลือก"
+        columns={[
+          { key: "customer", label: "Customer", style: { minWidth: 220 },
+            render: (it) => (<div><div style={{ fontWeight: 600 }}>{it.customer}</div>{it.notes && <div style={{ fontSize: 11, color: "#8a93a6", fontStyle: "italic", marginTop: 3 }}>"{it.notes}"</div>}</div>) },
+          { key: "sp", label: "Sales Rep", render: (it) => it.sp },
+          { key: "team", label: "Team", render: (it) => it.team },
+          { key: "customerType", label: "Type",
+            render: (it) => (<span style={{ padding: "2px 9px", borderRadius: 999, fontSize: 10, fontWeight: 700, color: it.customerType === "new" ? "#7c3aed" : "#0891b2", background: (it.customerType === "new" ? "#7c3aed" : "#0891b2") + "18" }}>{it.customerType === "new" ? "New" : "Existing"}</span>) },
+          { key: "date", label: "Date", render: (it) => <span className="mono">{it.date}</span> },
+        ]}
+      />
+    </div>
+  );
+}
+
 function CustomersView({ teamId, onSelectCustomer }) {
   const D = window.SalesData;
   const [search, setSearch] = useState("");
