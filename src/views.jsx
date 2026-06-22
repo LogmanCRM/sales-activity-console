@@ -662,6 +662,25 @@ function CustomersView({ teamId, onSelectCustomer }) {
     teamId === "all" ? D.SALESPEOPLE : D.SALESPEOPLE.filter((s) => s.team === teamId),
   [teamId]);
 
+  // Shipment counts: customer.id -> confirmed shipment count (from newClients events, deduped by canonId)
+  const shipmentCounts = useMemo(() => {
+    const EV = D.EVENTS || [];
+    const byCanon = {};
+    const nameToCanon = {};
+    EV.forEach(ev => {
+      if (ev.canonId) {
+        nameToCanon[(ev.customer || "").toLowerCase().trim()] = ev.canonId;
+        if (ev.type === "newClients") byCanon[ev.canonId] = (byCanon[ev.canonId] || 0) + 1;
+      }
+    });
+    const result = {};
+    D.CUSTOMERS.forEach(c => {
+      const cid = nameToCanon[(c.name || "").toLowerCase().trim()];
+      result[c.id] = cid ? (byCanon[cid] || 0) : 0;
+    });
+    return result;
+  }, []);
+
   const filtered = useMemo(() => {
     let list = D.CUSTOMERS.filter((c) => teamId === "all" || c.team === teamId);
     if (stageFilter !== "all") list = list.filter((c) => c.stage === stageFilter);
@@ -684,6 +703,10 @@ function CustomersView({ teamId, onSelectCustomer }) {
         va = D.STAGES.findIndex((s) => s.id === a.stage);
         vb = D.STAGES.findIndex((s) => s.id === b.stage);
       }
+      if (key === "shipments") {
+        va = shipmentCounts[a.id] || 0;
+        vb = shipmentCounts[b.id] || 0;
+      }
       if (typeof va === "number") return (va - vb) * dir;
       return String(va).localeCompare(String(vb)) * dir;
     });
@@ -694,7 +717,7 @@ function CustomersView({ teamId, onSelectCustomer }) {
     count: D.CUSTOMERS.filter((c) => (teamId === "all" || c.team === teamId) && c.stage === s.id).length
   }));
 
-  const totalPotential = filtered.reduce((s, c) => s + c.potentialTeu, 0);
+  const totalShipments = filtered.reduce((s, c) => s + (shipmentCounts[c.id] || 0), 0);
   const team = D.TEAMS.find((t) => t.id === teamId);
   const inScopeAll = D.CUSTOMERS.filter((c) => teamId === "all" || c.team === teamId);
   const staleCount = inScopeAll.filter(D.isStale).length;
@@ -713,7 +736,7 @@ function CustomersView({ teamId, onSelectCustomer }) {
           <div className="page-eyebrow">CUSTOMER PIPELINE · {team.name}</div>
           <h1 className="page-title">Customer Directory <span className="page-title-en">/ ทะเบียนลูกค้า</span></h1>
           <div className="page-sub">
-            {filtered.length} of {inScopeAll.length} customers · {totalPotential.toLocaleString()} TEU potential
+            {filtered.length} of {inScopeAll.length} customers · {totalShipments.toLocaleString()} confirmed shipments
             {staleCount > 0 && <> · <span className="stale-inline">⚠ {staleCount} need review</span></>}
           </div>
         </div>
@@ -780,8 +803,8 @@ function CustomersView({ teamId, onSelectCustomer }) {
             <div className="ct-th sortable" onClick={() => toggleSort("stage")}>
               Stage <span className="sort-arrow">{sortArrow("stage")}</span>
             </div>
-            <div className="ct-th sortable num" onClick={() => toggleSort("potentialTeu")}>
-              Potential TEU <span className="sort-arrow">{sortArrow("potentialTeu")}</span>
+            <div className="ct-th sortable num" onClick={() => toggleSort("shipments")}>
+              Shipments <span className="sort-arrow">{sortArrow("shipments")}</span>
             </div>
             <div className="ct-th sortable num" onClick={() => toggleSort("daysSinceFirstContact")}>
               Age <span className="sort-arrow">{sortArrow("daysSinceFirstContact")}</span>
@@ -820,8 +843,8 @@ function CustomersView({ teamId, onSelectCustomer }) {
                 </div>
                 <div><StageBadge stage={c.stage} /></div>
                 <div className="num mono ct-teu">
-                  {c.potentialTeu}
-                  <span className="teu-unit">TEU</span>
+                  {shipmentCounts[c.id] || 0}
+                  <span className="teu-unit">ships</span>
                 </div>
                 <div className={`num mono ct-age ${stale ? "age-stale" : ageWarn ? "age-warn" : ""}`}>
                   {c.daysSinceFirstContact}d
@@ -857,6 +880,20 @@ function CustomersView({ teamId, onSelectCustomer }) {
 function CustomerDrawer({ customer, onClose }) {
   if (!customer) return null;
   const D = window.SalesData;
+  // Count confirmed shipments for this customer
+  const drawerShipments = (() => {
+    const EV = D.EVENTS || [];
+    const byCanon = {};
+    const nameToCanon = {};
+    EV.forEach(ev => {
+      if (ev.canonId) {
+        nameToCanon[(ev.customer || "").toLowerCase().trim()] = ev.canonId;
+        if (ev.type === "newClients") byCanon[ev.canonId] = (byCanon[ev.canonId] || 0) + 1;
+      }
+    });
+    const cid = nameToCanon[(customer.name || "").toLowerCase().trim()];
+    return cid ? (byCanon[cid] || 0) : 0;
+  })();
   const sp = D.SALESPEOPLE.find((s) => s.id === customer.owner);
   const teamMeta = D.TEAMS.find((t) => t.id === customer.team);
   const stageMeta = D.STAGES.find((s) => s.id === customer.stage);
@@ -907,8 +944,8 @@ function CustomerDrawer({ customer, onClose }) {
             </div>
           </div>
           <div className="dg-item">
-            <div className="dg-label">Potential Volume</div>
-            <div className="dg-big mono" style={{ color: teamMeta.color }}>{customer.potentialTeu} <span style={{ fontSize: 13 }}>TEU</span></div>
+            <div className="dg-label">Confirmed Shipments</div>
+            <div className="dg-big mono" style={{ color: teamMeta.color }}>{drawerShipments} <span style={{ fontSize: 13 }}>ships</span></div>
           </div>
           <div className="dg-item">
             <div className="dg-label">Contacts This Month</div>
@@ -932,7 +969,7 @@ function CustomerDrawer({ customer, onClose }) {
             {[
             { d: customer.lastActivity, e: `Stage updated to ${stageMeta.label}`, by: sp.name },
             { d: "2026-05-09", e: `Follow-up call · 25 min`, by: sp.name },
-            { d: "2026-05-06", e: `Quotation v2 sent (${customer.potentialTeu} TEU)`, by: sp.name },
+            { d: "2026-05-06", e: `Quotation v2 sent`, by: sp.name },
             { d: "2026-05-02", e: `Site visit · ${customer.location}`, by: sp.name },
             { d: `Since ${customer.sinceWeek}`, e: `Account created`, by: sp.name }].
             map((t, i) =>
