@@ -6,9 +6,6 @@ Sources
               File: Shared Documents/General/TEAM BP.xlsx  (sheet "2026")
   Team MAI  : SharePoint  logman365.sharepoint.com/sites/Salesteam
               File: Shared Documents/General/Sales Log.xlsx
-  Team OVS  : Local OneDrive sync (auto-scans ALL monthly sub-folders)
-              Sales CRM/TEAM OVERSEA/…/<Month Folder>/<file>.xlsx
-
 SharePoint authentication
   On the FIRST run the script prints a short code and a URL.  Open
   https://microsoft.com/devicelogin, enter the code, and sign in with
@@ -57,10 +54,6 @@ CACHE_DIR   = os.path.join(_SCRIPT_DIR, ".cache")
 
 BP_PATH  = os.environ.get("BP_PATH",  os.path.join(CACHE_DIR, "TEAM_BP.xlsx"))
 MAI_PATH = os.environ.get("MAI_PATH", os.path.join(CACHE_DIR, "Sales_Log.xlsx"))
-OVS_BASE = os.environ.get("OVS_BASE", os.path.join(
-    SALES_CRM, "TEAM OVERSEA",
-    "CHARLIE SK's files - Overseas Sales Pipeline 2026_Shared File",
-))
 OUTPUT_PATH = os.environ.get(
     "OUTPUT_PATH", os.path.join(_REPO_ROOT, "data.json")
 )
@@ -107,9 +100,8 @@ STAGES = [
 
 TEAMS = [
     {"id": "all",     "name": "ALL TEAMS",    "thai": "รวมทุกทีม",   "color": "#0a1628"},
-    {"id": "bp",      "name": "TEAM BP",      "thai": "ทีม BP",      "color": "#d97706"},
-    {"id": "mai",     "name": "TEAM MAI",     "thai": "ทีม MAI",     "color": "#0891b2"},
-    {"id": "oversea", "name": "TEAM OVERSEA", "thai": "ทีม Oversea", "color": "#7c3aed"},
+    {"id": "bp",  "name": "TEAM BP",  "thai": "ทีม BP",  "color": "#d97706"},
+    {"id": "mai", "name": "TEAM MAI", "thai": "ทีม MAI", "color": "#0891b2"},
 ]
 
 STAGE_PRIORITY = {s["id"]: i for i, s in enumerate(STAGES)}
@@ -617,258 +609,6 @@ def read_bp_mai(bp_path, mai_path):
     return list(sps_map.values()), wk_data, custs, events
 
 
-# =====================================================================
-# TEAM OVERSEA  — scans ALL monthly Excel files in OVS_BASE folder
-# =====================================================================
-
-def _build_col_map(ws):
-    """Read rows 2-3, return {HEADER_TEXT: col_index (0-based)}."""
-    col_map = {}
-    try:
-        row2 = [c.value for c in ws[2]]
-        row3 = [c.value for c in ws[3]]
-    except Exception:
-        return col_map
-    for i, val in enumerate(row3):
-        if val:
-            col_map[str(val).strip().upper()] = i
-    for i, val in enumerate(row2):
-        if val:
-            k = str(val).strip().upper()
-            if k not in col_map:
-                col_map[k] = i
-    return col_map
-
-
-def _ci(col_map, *keywords):
-    """Return first column index whose key contains any of the keywords."""
-    for kw in keywords:
-        kw_up = kw.upper()
-        for k, v in col_map.items():
-            if kw_up in k:
-                return v
-    return None
-
-
-def _safe_int(row, idx):
-    if idx is None or idx >= len(row):
-        return 0
-    v = row[idx]
-    if isinstance(v, (int, float)) and not math.isnan(v):
-        return int(v)
-    return 0
-
-
-def find_oversea_files(base_dir):
-    """Recursively find all .xlsx files under base_dir (skips ~$ temp files)."""
-    files = []
-    if not os.path.isdir(base_dir):
-        print(f"  WARN Oversea base dir not found:\n    {base_dir}")
-        return files
-    for root, dirs, filenames in os.walk(base_dir):
-        dirs[:] = sorted(d for d in dirs
-                         if not d.startswith(".") and d != "desktop.ini")
-        for fn in sorted(filenames):
-            if fn.endswith(".xlsx") and not fn.startswith("~$"):
-                files.append(os.path.join(root, fn))
-    return files
-
-
-def _read_oversea_file(filepath, sps_registry, wk_accum, cust_accum, sp_seq, events):
-    """
-    Process one Oversea xlsx file.  Accumulates into shared dicts:
-      sps_registry : {sp_name → sp_dict}
-      wk_accum     : {sp_name → {wk_label → week_dict}}
-      cust_accum   : {"oversea_<name>" → customer_dict}
-      events       : flat list of row-level activity events
-    """
-    rel = os.path.join(
-        os.path.basename(os.path.dirname(filepath)),
-        os.path.basename(filepath),
-    )
-    print(f"  Reading {rel} …")
-
-    wb = openpyxl.load_workbook(filepath, data_only=True, read_only=False)
-    sales_sheets = [s for s in wb.sheetnames
-                    if re.match(r"sales\s+[a-h]", s.lower())]
-
-    if not sales_sheets:
-        print(f"    WARN No 'Sales X' sheets found — skipping")
-        wb.close()
-        return
-
-    row_total = 0
-    for sheet_name in sales_sheets:
-        ws = wb[sheet_name]
-
-        # Salesperson name from "Sales A - NIDHI" → "Nidhi"
-        m = re.search(r"[-–]\s*(.+)$", sheet_name)
-        sp_name = m.group(1).strip().title() if m else sheet_name.strip().title()
-
-        # Register SP (deduplicate across files by name)
-        if sp_name not in sps_registry:
-            sp_seq[0] += 1
-            sp_id = f"s{sp_seq[0]}"
-            sps_registry[sp_name] = {
-                "id": sp_id, "name": sp_name, "thai": sp_name,
-                "team": "oversea", "avatar": sp_name[:2].upper(),
-            }
-            wk_accum[sp_name] = {}
-        sp_id = sps_registry[sp_name]["id"]
-
-        col_map   = _build_col_map(ws)
-        idx_no    = _ci(col_map, "NO.")
-        idx_date  = _ci(col_map, "ENTRY DATE")
-        idx_ctype = _ci(col_map, "CUSTOMER TYPE")
-        idx_20gp  = _ci(col_map, "20GP")
-        idx_40hq  = _ci(col_map, "40HQ")
-        idx_20rh  = _ci(col_map, "20RH")
-        idx_40rh  = _ci(col_map, "40RH")
-        idx_lcust = _ci(col_map, "LOCAL CUSTOMER")
-        idx_agent = _ci(col_map, "OVERSEAS AGENT NAME", "AGENT NAME")
-        idx_actry = _ci(col_map, "AGENT COUNTRY")
-        idx_stat  = _ci(col_map, "STATUS")
-        idx_rem   = _ci(col_map, "REMARKS")
-        idx_pod   = _ci(col_map, "POD")
-
-        for row in ws.iter_rows(min_row=5, values_only=True):
-            # Skip blank / footer rows
-            if idx_no is not None and idx_no < len(row):
-                no_val = row[idx_no]
-                if no_val is None:
-                    continue
-                if isinstance(no_val, str) and re.search(
-                        r"total|count|margin", no_val, re.I):
-                    continue
-
-            date_raw = row[idx_date] if idx_date is not None and idx_date < len(row) else None
-            d = parse_date(date_raw)
-            if not d:
-                continue
-            wk_label  = date_to_week_label(d)
-            ctype_raw = row[idx_ctype] if idx_ctype is not None and idx_ctype < len(row) else None
-            existing  = is_existing(ctype_raw)
-
-            local_cust = row[idx_lcust] if idx_lcust is not None and idx_lcust < len(row) else None
-            agent_name = row[idx_agent] if idx_agent is not None and idx_agent < len(row) else None
-            agent_ctry = row[idx_actry] if idx_actry is not None and idx_actry < len(row) else None
-
-            is_agent = bool(agent_name and str(agent_name).strip())
-            if is_agent:
-                cust_name = str(agent_name).strip() + " [Agent]"
-                location  = str(agent_ctry).strip() if agent_ctry else "International"
-                industry  = "Overseas Agent"
-            elif local_cust and str(local_cust).strip():
-                cust_name = str(local_cust).strip()
-                pod_raw   = row[idx_pod] if idx_pod is not None and idx_pod < len(row) else None
-                location  = str(pod_raw).strip() if pod_raw else "Thailand"
-                industry  = "Local Customer"
-            else:
-                continue
-
-            # TEU: 20GP×1 + 40HQ×2 + 20RH×1 + 40RH×2
-            teu = (_safe_int(row, idx_20gp)
-                   + _safe_int(row, idx_40hq) * 2
-                   + _safe_int(row, idx_20rh)
-                   + _safe_int(row, idx_40rh) * 2)
-
-            status_raw = row[idx_stat] if idx_stat is not None and idx_stat < len(row) else None
-            stage      = map_ovs_stage(status_raw)
-            remark_raw = row[idx_rem]  if idx_rem  is not None and idx_rem  < len(row) else None
-            notes      = str(remark_raw).strip() if remark_raw else ""
-
-            # Week activity
-            if wk_label not in wk_accum[sp_name]:
-                wk_accum[sp_name][wk_label] = empty_week()
-            wk = wk_accum[sp_name][wk_label]
-
-            add_split(wk["contacts"], existing)
-            if stage == "won":
-                add_split(wk["newClients"], existing)
-                add_split(wk["wonTeu"], existing, teu)
-            elif stage != "lost":
-                add_split(wk["potentialTeu"], existing, teu)
-
-            # Row-level event (Oversea always counts as 'contacts'; if won → also wonDeals)
-            ev_type = "newClients" if stage == "won" else "contacts"
-            events.append({
-                "team":     "oversea",
-                "spId":     sp_id,
-                "customer": cust_name,
-                "week":     wk_label,
-                "date":     d.isoformat(),
-                "type":     ev_type,
-                "stage":    stage,
-                "teu":      teu,
-                "existing": existing,
-                "notes":    (notes or "")[:140],
-            })
-
-            # Customer record
-            cust_key = f"oversea_{cust_name}"
-            date_str = d.isoformat()
-            if cust_key not in cust_accum:
-                cust_accum[cust_key] = {
-                    "name": cust_name, "team": "oversea",
-                    "stage": stage, "location": location,
-                    "industry": industry, "lastActivity": date_str,
-                    "firstContactDate": date_str, "owner": sp_id,
-                    "potentialTeu": teu, "notes": notes,
-                    "sinceWeek": wk_label,
-                    "contactsThisMonth": 1, "quotationsSent": 0,
-                }
-            else:
-                c = cust_accum[cust_key]
-                if STAGE_PRIORITY.get(stage, 0) > STAGE_PRIORITY.get(c["stage"], 0):
-                    c["stage"] = stage
-                if date_str > c["lastActivity"]:
-                    c["lastActivity"] = date_str
-                    c["owner"] = sp_id
-                if date_str < c["firstContactDate"]:
-                    c["firstContactDate"] = date_str
-                    c["sinceWeek"] = wk_label
-                c["potentialTeu"] = max(c["potentialTeu"], teu)
-                if notes and not c["notes"]:
-                    c["notes"] = notes
-                c["contactsThisMonth"] += 1
-            row_total += 1
-
-    wb.close()
-    print(f"    OK {os.path.basename(filepath)}: {row_total} deal rows "
-          f"across {len(sales_sheets)} sheet(s)")
-
-
-def read_all_oversea(base_dir, sp_id_start):
-    """
-    Scan base_dir recursively for monthly xlsx files.
-    Deduplicates salespeople by name across files.
-    Returns (sps_list, wk_data_by_sp_id, customers_list).
-    """
-    files = find_oversea_files(base_dir)
-    if not files:
-        print(f"  WARN No Oversea xlsx files found in:\n    {base_dir}")
-        return [], {}, [], []
-
-    print(f"\n--- Team OVERSEA ({len(files)} file(s)) ---")
-
-    sps_registry = {}   # sp_name → sp_dict
-    wk_accum     = {}   # sp_name → {wk_label → week_dict}
-    cust_accum   = {}   # "oversea_<name>" → customer_dict
-    events       = []
-    sp_seq       = [sp_id_start]
-
-    for filepath in files:
-        try:
-            _read_oversea_file(filepath, sps_registry, wk_accum, cust_accum, sp_seq, events)
-        except Exception as exc:
-            print(f"    WARN {os.path.basename(filepath)}: {exc}")
-
-    # Convert wk_accum (keyed by sp_name) → keyed by sp_id
-    sps     = list(sps_registry.values())
-    wk_data = {sp["id"]: wk_accum.get(sp["name"], {}) for sp in sps}
-    custs   = list(cust_accum.values())
-    return sps, wk_data, custs, events
-
 
 # =====================================================================
 # CUSTOMER NAME CLUSTERING  (fuzzy de-duplication for New / Existing)
@@ -1059,13 +799,12 @@ def finalise_customers(raw_customers):
     return out
 
 
-def build_all_weeks(all_salespeople, bp_mai_wk, ovs_wk):
+def build_all_weeks(all_salespeople, bp_mai_wk):
     """Collect all week labels, trim to last 12, fill gaps with zeros."""
     combined = {}
     for sp in all_salespeople:
         sid  = sp["id"]
-        src  = bp_mai_wk if sp["team"] in ("bp", "mai") else ovs_wk
-        combined[sid] = src.get(sid, {})
+        combined[sid] = bp_mai_wk.get(sid, {})
 
     all_labels = set()
     for wks in combined.values():
@@ -1294,25 +1033,21 @@ def main():
         mai_path = ensure_file(MAI_SHAREPOINT_URL, MAI_PATH, "Team MAI")
 
         bp_mai_sps, bp_mai_wk, bp_mai_custs, bp_mai_events = read_bp_mai(bp_path, mai_path)
-        max_seq = max((int(sp["id"][1:]) for sp in bp_mai_sps), default=0)
 
-        # ── Step 2 : Read all Oversea monthly files ───────────────────────
-        ovs_sps, ovs_wk, ovs_custs, ovs_events = read_all_oversea(OVS_BASE, max_seq)
-
-        # ── Step 2b : Market Intelligence ─────────────────────────────────
+        # ── Step 2 : Market Intelligence ──────────────────────────────────
         print("\n--- Market Intelligence ---")
         market_data = read_market_intelligence(MARKET_PATH)
 
         # ── Step 3 : Merge & write ────────────────────────────────────────
-        all_sps   = bp_mai_sps + ovs_sps
-        all_custs = finalise_customers(bp_mai_custs + ovs_custs)
+        all_sps   = bp_mai_sps
+        all_custs = finalise_customers(bp_mai_custs)
 
-        sorted_weeks, activity = build_all_weeks(all_sps, bp_mai_wk, ovs_wk)
+        sorted_weeks, activity = build_all_weeks(all_sps, bp_mai_wk)
 
         # Classify customers on the FULL event set (so "first contact" is
         # detected globally, even across weeks that get trimmed below).
         print("\n--- Customer de-duplication ---")
-        all_events_full = bp_mai_events + ovs_events
+        all_events_full = bp_mai_events
         classify_customer_events(all_events_full)
 
         # Events: keep only those that fall in the displayed weeks (matches WEEKS array).

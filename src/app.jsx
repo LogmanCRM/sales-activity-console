@@ -4,13 +4,12 @@ const { useState, useEffect } = React;
 // ─────────────────────────────────────────────────────────────────────
 // ACCESS CONTROL
 // แก้ password ได้ที่นี่ แล้ว push ขึ้น GitHub ใหม่
-// null = ดูได้ทุกทีม  |  "bp"/"mai"/"oversea" = ดูแค่ทีมนั้น
+// null = ดูได้ทุกทีม  |  "bp"/"mai" = ดูแค่ทีมนั้น
 // ─────────────────────────────────────────────────────────────────────
 const ACCESS_KEYS = {
   "managementLMI": null,
   "bp2026":        "bp",
   "mai2026":       "mai",
-  "oversea2026":   "oversea",
 };
 
 function getAccess() {
